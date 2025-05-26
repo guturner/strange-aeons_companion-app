@@ -16,9 +16,36 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsJewelry" : {
+                "enabled": false
+            },
             "sellsWeapons" : {
                 "enabled" : true,
                 "filter" : "{\"type\" : \"melee_weapon\"}"
+            },
+            "inventory" : [
+
+            ]
+        },
+        {
+            "merchantId" : UUID(,"ff36f4f3-7355-4b7e-904e-fec0ed530507"),
+            "name" : "Clockwork Jeweler I",
+            "type" : "Jeweler",
+            "introductions" : [
+                "Greetings, adventurer! I am a jeweler, automaton series J."
+            ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled" : true,
+                "filter" : "{}"
+            },
+            "sellsWeapons" : {
+                "enabled" : false
             },
             "inventory" : [
 
@@ -37,6 +64,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : true,
                 "filter" : "{}"
+            },
+            "sellsJewelry" : {
+                "enabled": false
             },
             "sellsWeapons" : {
                 "enabled" : false

@@ -1,5 +1,5 @@
 from mappers.inventory_mapper import InventoryMapper, InventoryTypeMapper
-from models.city import Merchant, InventoryType
+from models.city import Merchant
 
 
 class MerchantMapper:
@@ -18,5 +18,6 @@ class MerchantMapper:
             sells_general_goods=InventoryTypeMapper(self.database_result["sellsGeneralGoods"]).map_to_inventory_type(),
             sells_weapons=InventoryTypeMapper(self.database_result["sellsWeapons"]).map_to_inventory_type(),
             sells_armor=InventoryTypeMapper(self.database_result["sellsArmor"]).map_to_inventory_type(),
+            sells_jewelry=InventoryTypeMapper(self.database_result["sellsJewelry"]).map_to_inventory_type(),
             inventory=list(map(lambda i: InventoryMapper(i).map_to_item(), inventory_result)),
         )

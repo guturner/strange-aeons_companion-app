@@ -16,3 +16,7 @@ class LookupInventoryUseCase:
     def lookup_armor_inventory(self, inventory_filter):
         armor_inventory = self.__inventory_dao.get_armor(inventory_filter)
         return LookupInventorySuccess(armor_inventory)
+
+    def lookup_jewelry_inventory(self, inventory_filter):
+        jewelry_inventory = self.__inventory_dao.get_jewelry(inventory_filter)
+        return LookupInventorySuccess(jewelry_inventory)

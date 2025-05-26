@@ -120,6 +120,36 @@ def item_general_good():
         stats=None
     )
 
+def item_general_jewelry():
+    return Item(
+        item_type="jewelry",
+        name="Star Sapphire",
+        cost="1000 GP",
+        size=None,
+        armor_bonus=None,
+        armor_check_penalty=None,
+        damage=None,
+        crit_range=None,
+        delay=None,
+        max_dexterity=None,
+        stats=None
+    )
+
+def item_armor_jewelry():
+    return Item(
+        item_type="jewelry",
+        name="Khaji Da",
+        cost="100000 GP",
+        size=None,
+        armor_bonus=None,
+        armor_check_penalty=None,
+        damage=None,
+        crit_range=None,
+        delay=None,
+        max_dexterity=None,
+        stats="Spell Haste IV"
+    )
+
 def item_weapon():
     return Item(
         item_type="melee_weapon",
@@ -135,7 +165,7 @@ def item_weapon():
         stats="magic resistance (5)"
     )
 
-def merchant(merchant_name, inventory, sells_general_goods=InventoryType(False, None), sells_weapons=InventoryType(False, None), sells_armor=InventoryType(False, None)):
+def merchant(merchant_name, inventory, sells_general_goods=InventoryType(False, None), sells_weapons=InventoryType(False, None), sells_armor=InventoryType(False, None), sells_jewelry=InventoryType(False, None)):
     return Merchant(
         merchant_id=uuid.uuid4(),
         name=merchant_name,
@@ -144,7 +174,23 @@ def merchant(merchant_name, inventory, sells_general_goods=InventoryType(False, 
         sells_general_goods=sells_general_goods,
         sells_weapons=sells_weapons,
         sells_armor=sells_armor,
+        sells_jewelry=sells_jewelry,
         inventory=inventory
+    )
+
+def merchant_general_goods_and_weapons():
+    return merchant(
+        merchant_name="Mr. Chant",
+        inventory=[],
+        sells_general_goods=InventoryType(True, "{}"),
+        sells_weapons=InventoryType(True, "{}")
+    )
+
+def merchant_jewelry():
+    return merchant(
+        merchant_name="Ensign Chant",
+        inventory=[],
+        sells_jewelry=InventoryType(True, "{}")
     )
 
 def recipe_book(build_inventory_table_use_case=Mock(), build_table_use_case=Mock(), lookup_city_use_case=Mock(), lookup_inventory_use_case=Mock(), lookup_merchant_use_case=Mock(), lookup_user_use_case=Mock(), update_user_use_case=Mock()):
@@ -189,10 +235,13 @@ def mock_update_user_by_username(username, user):
         return None
 
 def mock_get_city_by_city_name(city_name):
-    return city(city_name, merchants=[merchant(merchant_name="Mr. Chant", inventory=[], sells_general_goods=InventoryType(True, "{}"), sells_weapons=InventoryType(True, "{}"))], occupants=[1])
+    return city(city_name, merchants=[merchant_general_goods_and_weapons(), merchant_jewelry()], occupants=[1])
 
 def mock_get_general_goods(additional_filter):
     return [item_general_good()]
 
 def mock_get_weapons(additional_filter):
     return [item_weapon()]
+
+def mock_get_jewelry(additional_filter):
+    return [item_armor_jewelry(), item_general_jewelry()]

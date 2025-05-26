@@ -691,3 +691,13 @@
     "stats" : null,
     "cost" : "25 GP"
 }
+{
+    "type" : "jewelry",
+    "name" : "Amber",
+    "cost" : "26 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Aquamarine",
+    "cost" : "3 SP"
+}

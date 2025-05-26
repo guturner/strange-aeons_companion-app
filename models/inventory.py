@@ -4,6 +4,7 @@ from enum import Enum
 class ItemType(Enum):
     ARMOR = "Armor"
     GENERAL_GOOD = "General Good"
+    JEWELRY = "Jewelry"
     MELEE_WEAPON = "Weapon"
     RANGED_WEAPON = "Weapon"
     UNKNOWN = "Unknown"

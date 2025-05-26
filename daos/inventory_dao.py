@@ -25,3 +25,7 @@ class InventoryDao(DAO):
     def get_armor(self, additional_filter):
         result = self._db["inventories"].find(_build_filter({"type" : "armor"}, additional_filter))
         return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))
+
+    def get_jewelry(self, additional_filter):
+        result = self._db["inventories"].find(_build_filter({"type" : "jewelry"}, additional_filter))
+        return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))

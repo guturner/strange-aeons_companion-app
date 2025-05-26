@@ -28,7 +28,7 @@ class ShopCog(commands.Cog):
             case LookupCitySuccess(city=found_city):
                 if found_city.is_user_in_city(user_id):
                     if not merchant_name:
-                        await ctx.send(found_city.directions.get_directions_string(found_city.merchants))
+                        await ctx.send(found_city.directions.get_directions_string(sorted(found_city.merchants, key=lambda merchant: merchant.name)))
 
                     else:
                         formatted_merchant_name = " ".join(tuple(map(str.capitalize, merchant_name)))

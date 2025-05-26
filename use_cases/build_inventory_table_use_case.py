@@ -53,6 +53,9 @@ class BuildInventoryTableUseCase:
                 sells_armor = found_merchant.sells_armor.enabled
                 armor_filter = found_merchant.sells_armor.inventory_filter
 
+                sells_jewelry = found_merchant.sells_jewelry.enabled
+                jewelry_filter = found_merchant.sells_jewelry.inventory_filter
+
                 general_goods_inventory_data = _get_inventory_data(
                     sells_general_goods,
                     lambda: self.__lookup_inventory_use_case.lookup_general_goods_inventory(general_goods_filter),
@@ -71,7 +74,13 @@ class BuildInventoryTableUseCase:
                     sells_armor, sells_weapons
                 )
 
-                rows = general_goods_inventory_data + weapons_inventory_data + armor_inventory_data + inventory_data
+                jewelry_inventory_data = _get_inventory_data(
+                    sells_jewelry,
+                    lambda: self.__lookup_inventory_use_case.lookup_jewelry_inventory(jewelry_filter),
+                    sells_armor, sells_weapons
+                )
+
+                rows = general_goods_inventory_data + weapons_inventory_data + armor_inventory_data + jewelry_inventory_data + inventory_data
                 rows = tuple(sorted(list(rows), key=lambda row: row[0]))
 
                 build_table_chunks_result = self.__build_table_use_case.build_ascii_table_chunks(headers, rows, max_rows=8)
