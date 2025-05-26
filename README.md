@@ -42,6 +42,8 @@ In PyCharm:
 * On the 'Generate New' tab, select 'Type: Poetry'
   * Poetry will read the pyproject.toml file to install dependencies.
 
+Run `poetry install`.
+
 ### Database
 The EverQuest: Strange Aeons companion app requires a MongoDB database.
 As there is not yet an administrative UI, the admin must manually populate the database with data according to

@@ -274,6 +274,166 @@
     "cost" : "8 GP"
 }
 {
+    "type" : "melee_weapon",
+    "name" : "Flail, Heavy",
+    "size" : "Large, Martial",
+    "damage" : "1D10",
+    "critRange" : "19-20, x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "15 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Gauntlet (Small)",
+    "size" : "Unarmed, Simple",
+    "damage" : "1D2",
+    "critRange" : "x2",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "2 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Gauntlet (Medium-size)",
+    "size" : "Unarmed, Simple",
+    "damage" : "1D3",
+    "critRange" : "x2",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "2 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Gauntlet (Large)",
+    "size" : "Unarmed, Simple",
+    "damage" : "1D4",
+    "critRange" : "x2",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "2 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Gauntlet Spiked",
+    "size" : "Tiny, Simple",
+    "damage" : "1D3",
+    "critRange" : "x2",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "5 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Glaive",
+    "size" : "Large, Martial",
+    "damage" : "1D12",
+    "critRange" : "x3",
+    "delay" : "Slow",
+    "stats" : "10 ft. Reach",
+    "cost" : "8 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Greataxe",
+    "size" : "Large, Martial",
+    "damage" : "2D6",
+    "critRange" : "x3",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "20 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Greatclub",
+    "size" : "Large, Martial",
+    "damage" : "1D12",
+    "critRange" : "x2",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "5 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Greatsword",
+    "size" : "Large, Martial",
+    "damage" : "2D6",
+    "critRange" : "19-20, x2",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "50 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Guisarme",
+    "size" : "Large, Martial",
+    "damage" : "2D4",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : "10 ft. Reach",
+    "cost" : "9 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Halberd",
+    "size" : "Large, Martial",
+    "damage" : "1D12",
+    "critRange" : "x3",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "10 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Hammer, Light",
+    "size" : "Small, Martial",
+    "damage" : "1D4",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : "20 ft. Range Increment",
+    "cost" : "1 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Handaxe",
+    "size" : "Small, Martial",
+    "damage" : "1D6",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "6 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Javelin",
+    "size" : "Medium, Simple",
+    "damage" : "1D6",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : "30 ft. Range Increment",
+    "cost" : "1 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Kama",
+    "size" : "Small, Martial",
+    "damage" : "1D4",
+    "critRange" : "x2",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "2 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Kukri",
+    "size" : "Tiny, Martial",
+    "damage" : "1D4",
+    "critRange" : "18-20, x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "8 GP"
+}
+{
     "type" : "ranged_weapon",
     "name" : "Longbow",
     "size" : "Large, Martial",
@@ -282,6 +442,124 @@
     "delay" : "Standard",
     "stats" : null,
     "cost" : "75 GP"
+}
+{
+    "type" : "ranged_weapon",
+    "name" : "Longbow, Composite",
+    "size" : "Large, Martial",
+    "damage" : "1D8",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "100 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Longspear",
+    "size" : "Large, Martial",
+    "damage" : "1D8",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : "10 ft. Reach",
+    "cost" : "5 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Mace, Light",
+    "size" : "Small, Simple",
+    "damage" : "1D6",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "5 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Mace, Heavy",
+    "size" : "Medium, Simple",
+    "damage" : "1D8",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "12 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Morningstar",
+    "size" : "Medium, Simple",
+    "damage" : "1D10",
+    "critRange" : "x2",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "8 GP"
+}
+{
+    "type" : "ranged_weapon",
+    "name" : "Net",
+    "size" : "Medium, Martial",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "20 GP"
+}
+{
+    "type" : "ranged_weapon",
+    "name" : "Shortbow",
+    "size" : "Medium, Martial",
+    "damage" : "1D6",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "30 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Sword, Bastard",
+    "size" : "Large, Martial",
+    "damage" : "1D10",
+    "critRange" : "19-20, x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "35 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Sword, Short",
+    "size" : "Small, Martial",
+    "damage" : "1D6",
+    "critRange" : "19-20, x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "10 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Trident",
+    "size" : "Medium, Martial",
+    "damage" : "1D10",
+    "critRange" : "x2",
+    "delay" : "Slow",
+    "stats" : "10 ft. Range Increment",
+    "cost" : "15 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Two-Handed Hammer",
+    "size" : "Large, Martial",
+    "damage" : "2D6",
+    "critRange" : "x2",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "20 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Warhammer",
+    "size" : "Medium, Martial",
+    "damage" : "1D8",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "12 GP"
 }
 {
     "type" : "armor",

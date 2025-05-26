@@ -72,8 +72,9 @@ class BuildInventoryTableUseCase:
                 )
 
                 rows = general_goods_inventory_data + weapons_inventory_data + armor_inventory_data + inventory_data
+                rows = tuple(sorted(list(rows), key=lambda row: row[0]))
 
-                build_table_chunks_result = self.__build_table_use_case.build_ascii_table_chunks(headers, rows, max_rows=10)
+                build_table_chunks_result = self.__build_table_use_case.build_ascii_table_chunks(headers, rows, max_rows=8)
                 inventory_table_chunks = build_table_chunks_result.table_chunks
                 if len(inventory_table_chunks) == 1:
                     return BuildInventoryTableSuccess(table=f"```{found_merchant.name}'s Inventory:\n{inventory_table_chunks[0]}```")

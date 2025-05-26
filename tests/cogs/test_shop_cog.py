@@ -43,7 +43,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         await ShopCog.shop(shop_cog, ctx, "Qeynos", "Mr.", "Chant")
 
         # Then
-        ctx.send.assert_called_once_with("```Mr. Chant's Inventory:\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| NAME      | TYPE         | COST     | DMG  | CRIT       | DELAY | SIZE           | STATS                |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| Widget    | General Good | 100 GP   | --   | --         | --    | --             | --                   |\n| Wabbajack | Weapon       | 10000 GP | 1D10 | 10-20, x10 | Quick | Large, Martial | magic resistance (5) |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+```")
+        ctx.send.assert_called_once_with("```Mr. Chant's Inventory:\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| NAME      | TYPE         | COST     | DMG  | CRIT       | DELAY | SIZE           | STATS                |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| Wabbajack | Weapon       | 10000 GP | 1D10 | 10-20, x10 | Quick | Large, Martial | magic resistance (5) |\n| Widget    | General Good | 100 GP   | --   | --         | --    | --             | --                   |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+```")
 
     async def test_shop__lookup_merchants__happy_path(self):
         # Given
