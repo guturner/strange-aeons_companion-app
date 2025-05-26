@@ -1,0 +1,415 @@
+{
+    "type" : "general_good",
+    "name" : "Bedroll",
+    "cost" : "1 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Bell",
+    "cost" : "1 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Blanket, Winter",
+    "cost" : "5 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Bottle",
+    "cost" : "2 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Bucket",
+    "cost" : "5 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Candle",
+    "cost" : "1 CP"
+}
+{
+    "type" : "general_good",
+    "name" : "Canvas (1 sq. yd.)",
+    "cost" : "1 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Case (Map or Scroll)",
+    "cost" : "1 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Chain (10 ft.)",
+    "cost" : "30 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Chalk, 1 piece",
+    "cost" : "1 CP"
+}
+{
+    "type" : "general_good",
+    "name" : "Crowbar",
+    "cost" : "2 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Fishing Net (25 sq. ft.)",
+    "cost" : "4 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Fishing Pole",
+    "cost" : "4 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Flask",
+    "cost" : "3 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Flint and Steel",
+    "cost" : "1 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Grappling Hook",
+    "cost" : "1 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Hammer",
+    "cost" : "5 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Ink (1 oz. vial)",
+    "cost" : "8 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Ink Pen",
+    "cost" : "1 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Lamp",
+    "cost" : "1 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Mirror",
+    "cost" : "10 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Oil (1 pint flask)",
+    "cost" : "1 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Parchment (1 sheet)",
+    "cost" : "2 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Rations (per day)",
+    "cost" : "5 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Rope, Hemp (50 ft.)",
+    "cost" : "1 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Rope, Silk (50 ft.)",
+    "cost" : "10 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Sealing Wax",
+    "cost" : "1 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Sewing Needle",
+    "cost" : "5 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Signal Whistle",
+    "cost" : "8 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Soap (1 lb)",
+    "cost" : "5 SP"
+}
+{
+    "type" : "general_good",
+    "name" : "Spade",
+    "cost" : "2 GP"
+}
+{
+    "type" : "general_good",
+    "name" : "Torch",
+    "cost" : "1 CP"
+}
+{
+    "type" : "general_good",
+    "name" : "Water Skin",
+    "cost" : "1 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Axe, Throwing",
+    "size" : "Small, Martial",
+    "damage" : "1D6",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : "10 ft. Range Increment",
+    "cost" : "8 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Battleaxe",
+    "size" : "Medium, Martial",
+    "damage" : "1D8",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "10 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Brass Knuckles",
+    "size" : "Tiny, Simple",
+    "damage" : "1D3",
+    "critRange" : "x2",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "1 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Broad Sword",
+    "size" : "Medium, Martial",
+    "damage" : "1D10",
+    "critRange" : "x2",
+    "delay" : "Slow",
+    "stats" : null,
+    "cost" : "13 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Chain, Spiked",
+    "size" : "Large, Martial",
+    "damage" : "2D4",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : "10 ft. Reach",
+    "cost" : "325 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Clawed Handwrap",
+    "size" : "Small, Martial",
+    "damage" : "1D4",
+    "critRange" : "x2",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "12 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Club",
+    "size" : "Medium, Simple",
+    "damage" : "1D6",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : "10 ft. Range Increment",
+    "cost" : "3 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Dagger",
+    "size" : "Tiny, Simple",
+    "damage" : "1D3",
+    "critRange" : "19-20, x2",
+    "delay" : "Quick",
+    "stats" : "10 ft. Range Increment",
+    "cost" : "2 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Dagger, Punching",
+    "size" : "Tiny, Simple",
+    "damage" : "1D3",
+    "critRange" : "x3",
+    "delay" : "Quick",
+    "stats" : null,
+    "cost" : "2 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Falchion",
+    "size" : "Large, Martial",
+    "damage" : "2D4",
+    "critRange" : "18-20, x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "75 GP"
+}
+{
+    "type" : "melee_weapon",
+    "name" : "Flail, Light",
+    "size" : "Medium, Martial",
+    "damage" : "1D8",
+    "critRange" : "x2",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "8 GP"
+}
+{
+    "type" : "ranged_weapon",
+    "name" : "Longbow",
+    "size" : "Large, Martial",
+    "damage" : "1D8",
+    "critRange" : "x3",
+    "delay" : "Standard",
+    "stats" : null,
+    "cost" : "75 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Banded Mail",
+    "size" : "Heavy",
+    "armor_bonus" : "+6",
+    "max_dexterity" : "+1",
+    "armor_check_penalty" : "-6",
+    "stats" : null,
+    "cost" : "250 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Breastplate",
+    "size" : "Medium",
+    "armor_bonus" : "+5",
+    "max_dexterity" : "+3",
+    "armor_check_penalty" : "-4",
+    "stats" : null,
+    "cost" : "200 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Chainmail",
+    "size" : "Medium",
+    "armor_bonus" : "+5",
+    "max_dexterity" : "+2",
+    "armor_check_penalty" : "-5",
+    "stats" : null,
+    "cost" : "150 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Chain Shirt",
+    "size" : "Light",
+    "armor_bonus" : "+4",
+    "max_dexterity" : "+4",
+    "armor_check_penalty" : "-2",
+    "stats" : null,
+    "cost" : "100 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Cloth",
+    "size" : "Light",
+    "armor_bonus" : "+1",
+    "max_dexterity" : "+8",
+    "armor_check_penalty" : "0",
+    "stats" : null,
+    "cost" : "5 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Full Plate",
+    "size" : "Heavy",
+    "armor_bonus" : "+8",
+    "max_dexterity" : "+1",
+    "armor_check_penalty" : "-6",
+    "stats" : null,
+    "cost" : "1500 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Half-Plate",
+    "size" : "Heavy",
+    "armor_bonus" : "+7",
+    "max_dexterity" : "+0",
+    "armor_check_penalty" : "-7",
+    "stats" : null,
+    "cost" : "600 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Hide",
+    "size" : "Medium",
+    "armor_bonus" : "+3",
+    "max_dexterity" : "+4",
+    "armor_check_penalty" : "-3",
+    "stats" : null,
+    "cost" : "15 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Leather",
+    "size" : "Light",
+    "armor_bonus" : "+2",
+    "max_dexterity" : "+6",
+    "armor_check_penalty" : "0",
+    "stats" : null,
+    "cost" : "10 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Raw Silk",
+    "size" : "Light",
+    "armor_bonus" : "+2",
+    "max_dexterity" : "+9",
+    "armor_check_penalty" : "0",
+    "stats" : null,
+    "cost" : "500 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Scale Mail",
+    "size" : "Medium",
+    "armor_bonus" : "+4",
+    "max_dexterity" : "+3",
+    "armor_check_penalty" : "-4",
+    "stats" : null,
+    "cost" : "50 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Splint Mail",
+    "size" : "Heavy",
+    "armor_bonus" : "+6",
+    "max_dexterity" : "+0",
+    "armor_check_penalty" : "-7",
+    "stats" : null,
+    "cost" : "200 GP"
+}
+{
+    "type" : "armor",
+    "name" : "Studded Leather",
+    "size" : "Light",
+    "armor_bonus" : "+3",
+    "max_dexterity" : "+5",
+    "armor_check_penalty" : "-1",
+    "stats" : null,
+    "cost" : "25 GP"
+}

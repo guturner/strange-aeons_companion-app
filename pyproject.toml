@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "strange-aeons"
+version = "0.1.0"
+description = "The companion app for the EverQuest: Strange Aeons tabletop campaign."
+authors = ["Guy Turner"]
+
+[tool.poetry.dependencies]
+python = "^3.13.3"
+nextcord = "^3.1.0"
+python-dotenv = "^1.1.0"
+pymongo = "^4.13.0"
+pytest = "^8.3.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

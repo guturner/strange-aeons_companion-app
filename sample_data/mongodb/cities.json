@@ -1,0 +1,57 @@
+{
+    "cityId" : UUID("9acff913-0ced-495a-9625-c42356f695ce"),
+    "name" : "Ak'Anon",
+    "merchants" : [
+        {
+            "merchantId" : UUID("70a6d2b4-25e4-4183-8de6-b969b312d671"),
+            "name" : "Clockwork Blacksmith II",
+            "type" : "Blacksmith",
+            "introductions" : [
+                "Greetings, adventurer! I am a merchant, automaton series B."
+            ],
+            "sellsArmor" : {
+                "enabled" : true,
+                "filter" : "{\"size\" : \"Heavy\"}"
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsWeapons" : {
+                "enabled" : true,
+                "filter" : "{\"type\" : \"melee_weapon\"}"
+            },
+            "inventory" : [
+
+            ]
+        },
+        {
+            "merchantId" : UUID("345ff13a-f412-4aa6-8ce9-5172aba49a18"),
+            "name" : "Clockwork Merchant XXIII",
+            "type" : "General Goods",
+            "introductions" : [
+                "Greetings, adventurer! I am a merchant, automaton series M."
+            ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : true,
+                "filter" : "{}"
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ]
+        }
+    ],
+    "occupants" : [
+
+    ],
+    "directions" : {
+        "question" : "You spot a nearby Clockwork Guide and ask it what merchants are nearby.",
+        "answer" : "Clockwork Guide XII: *mechanical whirring* Greetings, adventurer! I am a guide, automaton Series G! Here are the nearby merchants:",
+        "notFound" : "Clockwork Guide XII: *eyes flash red* Query failed! Unknown target {{merchant_name}}!"
+    }
+}

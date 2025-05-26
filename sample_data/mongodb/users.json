@@ -1,0 +1,37 @@
+{
+    "userId" : null,
+    "player" : {
+        "name" : {
+            "first" : "The",
+            "last" : "GM"
+        },
+        "gm" : true
+    },
+    "discord" : {
+        "username" : "the_gm_1"
+    },
+    "character" : null
+}
+{
+    "userId" : null,
+    "player" : {
+        "name" : {
+            "first" : "A",
+            "last" : "Player"
+        },
+        "gm" : false
+    },
+    "discord" : {
+        "username" : "a_player_1"
+    },
+    "character" : {
+		"name" : {
+			"first" : "The",
+			"last" : "Hero"
+		},
+		"race" : "Half Elf",
+		"class" : "Ranger",
+		"level" : NumberInt(1),
+		"alignment" : "OG"
+	}
+}

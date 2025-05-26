@@ -1,0 +1,10 @@
+.idea/
+.pytest_cache/
+__pycache__/
+
+.env.local
+.env.dev
+.env.*
+!.env
+
+logs.log
