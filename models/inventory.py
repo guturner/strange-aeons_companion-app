@@ -17,7 +17,7 @@ def get_item_type_by_input(input_string):
 
 class Item:
     def __init__(self, item_type, name, cost, size, armor_bonus, armor_check_penalty, damage, crit_range, delay, max_dexterity, stats):
-        self.item_type = get_item_type_by_input(item_type).value
+        self.item_type = get_item_type_by_input(item_type)
         self.name = name
         self.cost = cost
         self.size = size if size else "--"

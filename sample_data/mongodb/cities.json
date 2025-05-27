@@ -48,7 +48,12 @@
                 "enabled" : false
             },
             "inventory" : [
-
+                {
+                    "type" : "armor",
+                    "name" : "Golden Ear Stud",
+                    "stats" : "Int +1, Extended Affliction I",
+                    "cost" : "4500 GP"
+                }
             ]
         },
         {

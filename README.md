@@ -99,6 +99,10 @@ the schema below:
                   "enabled" : [Boolean],
                   "filter" : [null, String]
               },
+              "sellsJewelry" : {
+                  "enabled" : [Boolean],
+                  "filter" : [null, String]
+              },
               "sellsWeapons" : {
                   "enabled" : [Boolean],
                   "filter" : [null, String]
