@@ -13,7 +13,6 @@ class User:
         self.discord_username = discord_account.username
         self.is_gm = player.is_gm
 
-
 class Player:
     def __init__(self, name, is_gm):
         self.first_name = name.first

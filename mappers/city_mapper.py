@@ -1,5 +1,5 @@
 from mappers.merchant_mapper import MerchantMapper
-from models.city import Directions, City
+from models.city import City, Directions
 
 
 class CityMapper:

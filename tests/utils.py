@@ -1,7 +1,7 @@
 import uuid
 from unittest.mock import Mock
 
-from models.city import Merchant, City, Directions, InventoryType
+from models.city import City, Directions, InventoryType, Merchant
 from models.inventory import Item
 from models.user import Character, DiscordAccount, Player, Name, User
 from use_cases.recipe_book import RecipeBook
