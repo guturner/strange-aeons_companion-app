@@ -1,9 +1,3 @@
-import tarfile
-import unittest
-
-from io import BytesIO
-from pathlib import Path
-
 from pymongo import MongoClient
 from testcontainers.mongodb import MongoDbContainer
 from unittest.mock import MagicMock, AsyncMock, call
@@ -12,6 +6,7 @@ from cogs.shop_cog import ShopCog
 from daos.city_dao import CityDAO
 from daos.inventory_dao import InventoryDAO
 from models.database import Database
+from tests.e2e_test import E2ETest
 from tests.utils import recipe_book
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
 from use_cases.build_table_use_case import BuildTableUseCase
@@ -19,73 +14,20 @@ from use_cases.lookup_city_use_case import LookupCityUseCase
 from use_cases.lookup_inventory_use_case import LookupInventoryUseCase
 from use_cases.lookup_merchant_use_case import LookupMerchantUseCase
 
-def _tar_for_file(file_path: Path, file_name):
-    tar_stream = BytesIO()
-    with tarfile.open(fileobj=tar_stream, mode="w") as tar:
-        tar.add(file_path, arcname=file_name)
-    tar_stream.seek(0)
-    return tar_stream.read()
 
-async def _setup_environment(mongo, uri, cities_filter=None, cities_update=None):
-    mongo_client = MongoClient(uri)
+class TestShopCogE2E(E2ETest):
+    async def __setup_environment(self, mongo, uri, cities_filter = None, cities_update = None):
+        mongo_client = MongoClient(uri)
 
-    print("Starting to load cities data...")
-    cities_data_path = Path(__file__).parent.parent.parent / "sample_data" / "mongodb" / "cities.json"
-    mongo._container.put_archive("/tmp", _tar_for_file(cities_data_path, "cities.json"))
-    cities_exec_result = mongo._container.exec_run([
-        "mongoimport",
-        "--db", "everquest",
-        "--collection", "cities",
-        "--file", "/tmp/cities.json",
-        "--mode=insert"
-    ])
-    if cities_exec_result.exit_code != 0:
-        print("Failed to load cities data:")
-        print(cities_exec_result.output.decode())
-        exit(1)
-    else:
-        print("Cities data loaded successfully!")
+        self.load_cities_data(mongo)
+        self.load_inventories_data(mongo)
+        self.load_users_data(mongo)
 
-    print("Starting to load inventories data...")
-    inventories_data_path = Path(__file__).parent.parent.parent / "sample_data" / "mongodb" / "inventories.json"
-    mongo._container.put_archive("/tmp", _tar_for_file(inventories_data_path, "inventories.json"))
-    inventories_exec_result = mongo._container.exec_run([
-        "mongoimport",
-        "--db", "everquest",
-        "--collection", "inventories",
-        "--file", "/tmp/inventories.json",
-        "--mode=insert"
-    ])
-    if inventories_exec_result.exit_code != 0:
-        print("Failed to load inventories data:")
-        print(cities_exec_result.output.decode())
-        exit(1)
-    else:
-        print("Inventories data loaded successfully!")
+        if cities_filter is not None and cities_update is not None:
+            print("Starting to update city occupants...")
+            mongo_client.everquest.cities.update_one(cities_filter, cities_update)
+            print("City occupants updated successfully!")
 
-    print("Starting to load users data...")
-    users_data_path = Path(__file__).parent.parent.parent / "sample_data" / "mongodb" / "users.json"
-    mongo._container.put_archive("/tmp", _tar_for_file(users_data_path, "users.json"))
-    users_exec_result = mongo._container.exec_run([
-        "mongoimport",
-        "--db", "everquest",
-        "--collection", "users",
-        "--file", "/tmp/users.json",
-        "--mode=insert"
-    ])
-    if users_exec_result.exit_code != 0:
-        print("Failed to load users data:")
-        print(cities_exec_result.output.decode())
-        exit(1)
-    else:
-        print("Users data loaded successfully!")
-
-    if cities_filter is not None and cities_update is not None:
-        print("Starting to update city occupants...")
-        mongo_client.everquest.cities.update_one(cities_filter, cities_update)
-        print("City occupants updated successfully!")
-
-class TestShopCogE2E(unittest.IsolatedAsyncioTestCase):
     async def test_shop__happy_path(self):
         with MongoDbContainer("mongo:8.0") as mongo:
             # Given
@@ -94,7 +36,7 @@ class TestShopCogE2E(unittest.IsolatedAsyncioTestCase):
             uri = mongo.get_connection_url()
             db_name = "everquest"
 
-            await _setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
+            await self.__setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
 
             db = Database(uri, db_name)
             city_dao = CityDAO(db)
@@ -138,7 +80,7 @@ class TestShopCogE2E(unittest.IsolatedAsyncioTestCase):
             uri = mongo.get_connection_url()
             db_name = "everquest"
 
-            await _setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
+            await self.__setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
 
             db = Database(uri, db_name)
             city_dao = CityDAO(db)
