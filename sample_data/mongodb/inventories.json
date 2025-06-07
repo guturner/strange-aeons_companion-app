@@ -701,3 +701,148 @@
     "name" : "Aquamarine",
     "cost" : "3 SP"
 }
+{
+    "type" : "jewelry",
+    "name" : "Black Pearl",
+    "cost" : "210 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Black Sapphire",
+    "cost" : "1200 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Blue Diamond",
+    "cost" : "3000 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Bloodstone",
+    "cost" : "5 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Carnelian",
+    "cost" : "9 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Cat's Eye Agate",
+    "cost" : "2 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Cloudy Stone of Veeshan",
+    "cost" : "2000 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Diamond",
+    "cost" : "2500 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Emerald",
+    "cost" : "140 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Fire Emerald",
+    "cost" : "850 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Fire Opal",
+    "cost" : "550 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Fulligran's Soulstone",
+    "cost" : "2000 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Hematite",
+    "cost" : "15 SP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Jacinth",
+    "cost" : "900 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Jade",
+    "cost" : "37 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Jasper",
+    "cost" : "8 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Lapis Lazuli",
+    "cost" : "1 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Malachite",
+    "cost" : "5 SP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Onyx",
+    "cost" : "7 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Opal",
+    "cost" : "180 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Pearl",
+    "cost" : "47 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Peridot",
+    "cost" : "100 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Ruby",
+    "cost" : "1500 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Sapphire",
+    "cost" : "1000 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Star Rose Quartz",
+    "cost" : "11 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Star Ruby",
+    "cost" : "700 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Topaz",
+    "cost" : "53 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Turquoise",
+    "cost" : "1 GP"
+}
+{
+    "type" : "jewelry",
+    "name" : "Wolf's Eye Agate",
+    "cost" : "2 GP"
+}
