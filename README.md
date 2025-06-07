@@ -127,6 +127,7 @@ the schema below:
   * ```json
     {
       "type" : [String],
+      "masterwork" : [Boolean],
       "name" : [String],
       "armor_bonus" : [null, String],
       "armor_check_penalty" : [null, String],
@@ -148,3 +149,9 @@ See the `sample_data/mongodb` folder for sample data that you can load into Mong
 pip install pytest
 pytest
 ```
+
+#### End-to-End Tests
+The EverQuest: Strange Aeons Companion App uses [Testcontainers](https://testcontainers.com/) for end-to-end (E2E) integration
+testing. Ensure you have Docker Desktop running locally.
+
+E2E tests can be found under `tests/*e2e.py`

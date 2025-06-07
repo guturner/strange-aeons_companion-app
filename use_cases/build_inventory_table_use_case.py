@@ -48,16 +48,16 @@ class BuildInventoryTableUseCase:
                 has_custom_ranged_weapon = _has_custom_item_type(found_merchant.inventory, "ranged_weapon")
 
                 sells_general_goods = found_merchant.sells_general_goods.enabled
-                general_goods_filter = found_merchant.sells_general_goods.inventory_filter
+                general_goods_filter = found_merchant.sells_general_goods.override_filter
 
                 sells_weapons = found_merchant.sells_weapons.enabled
-                weapons_filter = found_merchant.sells_weapons.inventory_filter
+                weapons_filter = found_merchant.sells_weapons.override_filter
 
                 sells_armor = found_merchant.sells_armor.enabled
-                armor_filter = found_merchant.sells_armor.inventory_filter
+                armor_filter = found_merchant.sells_armor.override_filter
 
                 sells_jewelry = found_merchant.sells_jewelry.enabled
-                jewelry_filter = found_merchant.sells_jewelry.inventory_filter
+                jewelry_filter = found_merchant.sells_jewelry.override_filter
 
                 display_armor_rows = sells_armor or has_custom_armor
                 display_weapon_rows = sells_weapons or has_custom_melee_weapon or has_custom_ranged_weapon

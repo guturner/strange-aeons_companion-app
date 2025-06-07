@@ -31,6 +31,6 @@ class Merchant:
         self.inventory = inventory
 
 class InventoryType:
-    def __init__(self, enabled, inventory_filter):
+    def __init__(self, enabled, override_filter):
         self.enabled = enabled
-        self.inventory_filter = inventory_filter
+        self.override_filter = override_filter

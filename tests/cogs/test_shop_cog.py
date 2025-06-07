@@ -196,7 +196,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
 
         def mock_get_city_by_city_name(city_name):
-            return city(city_name, merchants=[merchant(merchant_name="Mr. Chant", inventory=[], sells_general_goods=InventoryType(True, "{}"))], occupants=[1])
+            return city(city_name, merchants=[merchant(merchant_name="Mr. Chant", inventory=[], sells_general_goods=InventoryType(True, None))], occupants=[1])
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)

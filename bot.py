@@ -9,7 +9,7 @@ from nextcord.ext import commands
 
 from cogs import hail_cog, help_cog, shop_cog, whoami_cog
 from daos.city_dao import CityDAO
-from daos.inventory_dao import InventoryDao
+from daos.inventory_dao import InventoryDAO
 from daos.user_dao import UserDAO
 from models.database import Database
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
@@ -87,7 +87,7 @@ def __main():
     database = __configure_database(mongo_uri, database_name)
 
     city_dao = CityDAO(database)
-    inventory_dao = InventoryDao(database)
+    inventory_dao = InventoryDAO(database)
     user_dao = UserDAO(database)
 
     build_table_use_case = BuildTableUseCase()

@@ -4,28 +4,38 @@ from daos.dao import DAO
 from mappers.inventory_mapper import InventoryMapper
 
 
-def _build_filter(base_filter, additional_filter):
-    if additional_filter is not None:
-        return {"$and" : [base_filter, json.loads(additional_filter)]}
-    else:
-        return base_filter
-
-class InventoryDao(DAO):
+class InventoryDAO(DAO):
     def __init__(self, database):
         super().__init__(database)
 
-    def get_general_goods(self, additional_filter):
-        result = self._db["inventories"].find(_build_filter({"type" : "general_good"}, additional_filter))
+    def get_general_goods(self, override_filter):
+        if override_filter is None:
+            result = self._db["inventories"].find({"type": "general_good"})
+        else:
+            result = self._db["inventories"].find(json.loads(override_filter))
+
         return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))
 
-    def get_weapons(self, additional_filter):
-        result = self._db["inventories"].find(_build_filter({"$or" : [{"type" : "melee_weapon"}, {"type" : "ranged_weapon"}]}, additional_filter))
+    def get_weapons(self, override_filter):
+        if override_filter is None:
+            result = self._db["inventories"].find({"$or" : [{"type" : "melee_weapon"}, {"type" : "ranged_weapon"}]})
+        else:
+            result = self._db["inventories"].find(json.loads(override_filter))
+
         return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))
 
-    def get_armor(self, additional_filter):
-        result = self._db["inventories"].find(_build_filter({"type" : "armor"}, additional_filter))
+    def get_armor(self, override_filter):
+        if override_filter is None:
+            result = self._db["inventories"].find({"type" : "armor"})
+        else:
+            result = self._db["inventories"].find(json.loads(override_filter))
+
         return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))
 
-    def get_jewelry(self, additional_filter):
-        result = self._db["inventories"].find(_build_filter({"type" : "jewelry"}, additional_filter))
+    def get_jewelry(self, override_filter):
+        if override_filter is None:
+            result = self._db["inventories"].find({"type" : "jewelry"})
+        else:
+            result = self._db["inventories"].find(json.loads(override_filter))
+
         return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))

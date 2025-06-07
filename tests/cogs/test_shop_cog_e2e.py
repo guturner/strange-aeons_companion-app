@@ -1,0 +1,176 @@
+import tarfile
+import unittest
+
+from io import BytesIO
+from pathlib import Path
+
+from pymongo import MongoClient
+from testcontainers.mongodb import MongoDbContainer
+from unittest.mock import MagicMock, AsyncMock, call
+
+from cogs.shop_cog import ShopCog
+from daos.city_dao import CityDAO
+from daos.inventory_dao import InventoryDAO
+from models.database import Database
+from tests.utils import recipe_book
+from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
+from use_cases.build_table_use_case import BuildTableUseCase
+from use_cases.lookup_city_use_case import LookupCityUseCase
+from use_cases.lookup_inventory_use_case import LookupInventoryUseCase
+from use_cases.lookup_merchant_use_case import LookupMerchantUseCase
+
+def _tar_for_file(file_path: Path, file_name):
+    tar_stream = BytesIO()
+    with tarfile.open(fileobj=tar_stream, mode="w") as tar:
+        tar.add(file_path, arcname=file_name)
+    tar_stream.seek(0)
+    return tar_stream.read()
+
+async def _setup_environment(mongo, uri, cities_filter=None, cities_update=None):
+    mongo_client = MongoClient(uri)
+
+    print("Starting to load cities data...")
+    cities_data_path = Path(__file__).parent.parent.parent / "sample_data" / "mongodb" / "cities.json"
+    mongo._container.put_archive("/tmp", _tar_for_file(cities_data_path, "cities.json"))
+    cities_exec_result = mongo._container.exec_run([
+        "mongoimport",
+        "--db", "everquest",
+        "--collection", "cities",
+        "--file", "/tmp/cities.json",
+        "--mode=insert"
+    ])
+    if cities_exec_result.exit_code != 0:
+        print("Failed to load cities data:")
+        print(cities_exec_result.output.decode())
+        exit(1)
+    else:
+        print("Cities data loaded successfully!")
+
+    print("Starting to load inventories data...")
+    inventories_data_path = Path(__file__).parent.parent.parent / "sample_data" / "mongodb" / "inventories.json"
+    mongo._container.put_archive("/tmp", _tar_for_file(inventories_data_path, "inventories.json"))
+    inventories_exec_result = mongo._container.exec_run([
+        "mongoimport",
+        "--db", "everquest",
+        "--collection", "inventories",
+        "--file", "/tmp/inventories.json",
+        "--mode=insert"
+    ])
+    if inventories_exec_result.exit_code != 0:
+        print("Failed to load inventories data:")
+        print(cities_exec_result.output.decode())
+        exit(1)
+    else:
+        print("Inventories data loaded successfully!")
+
+    print("Starting to load users data...")
+    users_data_path = Path(__file__).parent.parent.parent / "sample_data" / "mongodb" / "users.json"
+    mongo._container.put_archive("/tmp", _tar_for_file(users_data_path, "users.json"))
+    users_exec_result = mongo._container.exec_run([
+        "mongoimport",
+        "--db", "everquest",
+        "--collection", "users",
+        "--file", "/tmp/users.json",
+        "--mode=insert"
+    ])
+    if users_exec_result.exit_code != 0:
+        print("Failed to load users data:")
+        print(cities_exec_result.output.decode())
+        exit(1)
+    else:
+        print("Users data loaded successfully!")
+
+    if cities_filter is not None and cities_update is not None:
+        print("Starting to update city occupants...")
+        mongo_client.everquest.cities.update_one(cities_filter, cities_update)
+        print("City occupants updated successfully!")
+
+class TestShopCogE2E(unittest.IsolatedAsyncioTestCase):
+    async def test_shop__happy_path(self):
+        with MongoDbContainer("mongo:8.0") as mongo:
+            # Given
+            bot = MagicMock()
+
+            uri = mongo.get_connection_url()
+            db_name = "everquest"
+
+            await _setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
+
+            db = Database(uri, db_name)
+            city_dao = CityDAO(db)
+            inventory_dao = InventoryDAO(db)
+
+            build_table_use_case = BuildTableUseCase()
+            lookup_city_use_case = LookupCityUseCase(city_dao)
+            lookup_inventory_use_case = LookupInventoryUseCase(inventory_dao)
+            lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
+            build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
+
+            shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case,
+                                                lookup_city_use_case=lookup_city_use_case,
+                                                lookup_inventory_use_case=lookup_inventory_use_case,
+                                                lookup_merchant_use_case=lookup_merchant_use_case,
+                                                build_inventory_table_use_case=build_inventory_table_use_case))
+
+            ctx = MagicMock()
+            ctx.author = MagicMock()
+            ctx.author.id = 2
+            ctx.author.name = "a_player_1"
+            ctx.send = AsyncMock()
+
+            # When
+            await ShopCog.shop(shop_cog, ctx, "Ak'Anon", "Clockwork", "Merchant", "XXIII")
+
+            # Then
+            ctx.send.assert_has_calls([
+                call("```Clockwork Merchant XXIII's Inventory (Part 1 / 5):\n+--------------------------+--------------+-------+\n| NAME                     | TYPE         | COST  |\n+--------------------------+--------------+-------+\n| Bedroll                  | General Good | 1 SP  |\n| Bell                     | General Good | 1 GP  |\n| Blanket, Winter          | General Good | 5 SP  |\n| Bottle                   | General Good | 2 GP  |\n| Bucket                   | General Good | 5 SP  |\n| Candle                   | General Good | 1 CP  |\n| Canvas (1 sq. yd.)       | General Good | 1 SP  |\n| Case (Map or Scroll)     | General Good | 1 GP  |\n+--------------------------+--------------+-------+```"),
+                call("```Clockwork Merchant XXIII's Inventory (Part 2 / 5):\n+--------------------------+--------------+-------+\n| NAME                     | TYPE         | COST  |\n+--------------------------+--------------+-------+\n| Chain (10 ft.)           | General Good | 30 GP |\n| Chalk, 1 piece           | General Good | 1 CP  |\n| Crowbar                  | General Good | 2 GP  |\n| Fishing Net (25 sq. ft.) | General Good | 4 GP  |\n| Fishing Pole             | General Good | 4 SP  |\n| Flask                    | General Good | 3 SP  |\n| Flint and Steel          | General Good | 1 GP  |\n| Grappling Hook           | General Good | 1 GP  |\n+--------------------------+--------------+-------+```"),
+                call("```Clockwork Merchant XXIII's Inventory (Part 3 / 5):\n+--------------------------+--------------+-------+\n| NAME                     | TYPE         | COST  |\n+--------------------------+--------------+-------+\n| Hammer                   | General Good | 5 SP  |\n| Ink (1 oz. vial)         | General Good | 8 GP  |\n| Ink Pen                  | General Good | 1 SP  |\n| Lamp                     | General Good | 1 SP  |\n| Mirror                   | General Good | 10 GP |\n| Oil (1 pint flask)       | General Good | 1 SP  |\n| Parchment (1 sheet)      | General Good | 2 SP  |\n| Rations (per day)        | General Good | 5 SP  |\n+--------------------------+--------------+-------+```"),
+                call("```Clockwork Merchant XXIII's Inventory (Part 4 / 5):\n+--------------------------+--------------+-------+\n| NAME                     | TYPE         | COST  |\n+--------------------------+--------------+-------+\n| Rope, Hemp (50 ft.)      | General Good | 1 GP  |\n| Rope, Silk (50 ft.)      | General Good | 10 GP |\n| Sealing Wax              | General Good | 1 GP  |\n| Sewing Needle            | General Good | 5 SP  |\n| Signal Whistle           | General Good | 8 SP  |\n| Soap (1 lb)              | General Good | 5 SP  |\n| Spade                    | General Good | 2 GP  |\n| Torch                    | General Good | 1 CP  |\n+--------------------------+--------------+-------+```"),
+                call("```Clockwork Merchant XXIII's Inventory (Part 5 / 5):\n+--------------------------+--------------+-------+\n| NAME                     | TYPE         | COST  |\n+--------------------------+--------------+-------+\n| Water Skin               | General Good | 1 GP  |\n+--------------------------+--------------+-------+```")
+            ])
+
+    async def test_shop__masterwork_weapons__happy_path(self):
+        with MongoDbContainer("mongo:8.0") as mongo:
+            # Given
+            bot = MagicMock()
+
+            uri = mongo.get_connection_url()
+            db_name = "everquest"
+
+            await _setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
+
+            db = Database(uri, db_name)
+            city_dao = CityDAO(db)
+            inventory_dao = InventoryDAO(db)
+
+            build_table_use_case = BuildTableUseCase()
+            lookup_city_use_case = LookupCityUseCase(city_dao)
+            lookup_inventory_use_case = LookupInventoryUseCase(inventory_dao)
+            lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
+            build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
+
+            shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case,
+                                                lookup_city_use_case=lookup_city_use_case,
+                                                lookup_inventory_use_case=lookup_inventory_use_case,
+                                                lookup_merchant_use_case=lookup_merchant_use_case,
+                                                build_inventory_table_use_case=build_inventory_table_use_case))
+
+            ctx = MagicMock()
+            ctx.author = MagicMock()
+            ctx.author.id = 2
+            ctx.author.name = "a_player_1"
+            ctx.send = AsyncMock()
+
+            # When
+            await ShopCog.shop(shop_cog, ctx, "Ak'Anon", "Clockwork", "Blacksmith", "II")
+
+            # Then
+            ctx.send.assert_has_calls([
+                call("```Clockwork Blacksmith II's Inventory (Part 1 / 6):\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| NAME                      | TYPE   | COST    | AC | MAX DEX | ACP | DMG  | CRIT      | DELAY    | SIZE            | STATS                  |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| Axe, Throwing             | Weapon | 8 GP    | -- | --      | --  | 1D6  | x2        | Standard | Small, Martial  | 10 ft. Range Increment |\n| Banded Mail               | Armor  | 250 GP  | +6 | +1      | -6  | --   | --        | --       | Heavy           | --                     |\n| Battleaxe                 | Weapon | 10 GP   | -- | --      | --  | 1D8  | x3        | Standard | Medium, Martial | --                     |\n| Brass Knuckles            | Weapon | 1 GP    | -- | --      | --  | 1D3  | x2        | Quick    | Tiny, Simple    | --                     |\n| Broad Sword               | Weapon | 13 GP   | -- | --      | --  | 1D10 | x2        | Slow     | Medium, Martial | --                     |\n| Chain, Spiked             | Weapon | 325 GP  | -- | --      | --  | 2D4  | x2        | Standard | Large, Martial  | 10 ft. Reach           |\n| Clawed Handwrap           | Weapon | 12 GP   | -- | --      | --  | 1D4  | x2        | Quick    | Small, Martial  | --                     |\n| Club                      | Weapon | 3 GP    | -- | --      | --  | 1D6  | x2        | Standard | Medium, Simple  | 10 ft. Range Increment |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+```"),
+                call("```Clockwork Blacksmith II's Inventory (Part 2 / 6):\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| NAME                      | TYPE   | COST    | AC | MAX DEX | ACP | DMG  | CRIT      | DELAY    | SIZE            | STATS                  |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| Dagger                    | Weapon | 2 GP    | -- | --      | --  | 1D3  | 19-20, x2 | Quick    | Tiny, Simple    | 10 ft. Range Increment |\n| Dagger, Punching          | Weapon | 2 GP    | -- | --      | --  | 1D3  | x3        | Quick    | Tiny, Simple    | --                     |\n| Falchion                  | Weapon | 75 GP   | -- | --      | --  | 2D4  | 18-20, x2 | Standard | Large, Martial  | --                     |\n| Flail, Heavy              | Weapon | 15 GP   | -- | --      | --  | 1D10 | 19-20, x2 | Standard | Large, Martial  | --                     |\n| Flail, Light              | Weapon | 8 GP    | -- | --      | --  | 1D8  | x2        | Standard | Medium, Martial | --                     |\n| Full Plate                | Armor  | 1500 GP | +8 | +1      | -6  | --   | --        | --       | Heavy           | --                     |\n| Gauntlet (Large)          | Weapon | 2 GP    | -- | --      | --  | 1D4  | x2        | Quick    | Unarmed, Simple | --                     |\n| Gauntlet (Medium-size)    | Weapon | 2 GP    | -- | --      | --  | 1D3  | x2        | Quick    | Unarmed, Simple | --                     |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+```"),
+                call("```Clockwork Blacksmith II's Inventory (Part 3 / 6):\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| NAME                      | TYPE   | COST    | AC | MAX DEX | ACP | DMG  | CRIT      | DELAY    | SIZE            | STATS                  |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| Gauntlet (Small)          | Weapon | 2 GP    | -- | --      | --  | 1D2  | x2        | Quick    | Unarmed, Simple | --                     |\n| Gauntlet Spiked           | Weapon | 5 GP    | -- | --      | --  | 1D3  | x2        | Quick    | Tiny, Simple    | --                     |\n| Glaive                    | Weapon | 8 GP    | -- | --      | --  | 1D12 | x3        | Slow     | Large, Martial  | 10 ft. Reach           |\n| Greataxe                  | Weapon | 20 GP   | -- | --      | --  | 2D6  | x3        | Slow     | Large, Martial  | --                     |\n| Greatclub                 | Weapon | 5 GP    | -- | --      | --  | 1D12 | x2        | Slow     | Large, Martial  | --                     |\n| Greatsword                | Weapon | 50 GP   | -- | --      | --  | 2D6  | 19-20, x2 | Slow     | Large, Martial  | --                     |\n| Guisarme                  | Weapon | 9 GP    | -- | --      | --  | 2D4  | x3        | Standard | Large, Martial  | 10 ft. Reach           |\n| Halberd                   | Weapon | 10 GP   | -- | --      | --  | 1D12 | x3        | Slow     | Large, Martial  | --                     |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+```"),
+                call("```Clockwork Blacksmith II's Inventory (Part 4 / 6):\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| NAME                      | TYPE   | COST    | AC | MAX DEX | ACP | DMG  | CRIT      | DELAY    | SIZE            | STATS                  |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| Half-Plate                | Armor  | 600 GP  | +7 | +0      | -7  | --   | --        | --       | Heavy           | --                     |\n| Hammer, Light             | Weapon | 1 GP    | -- | --      | --  | 1D4  | x2        | Standard | Small, Martial  | 20 ft. Range Increment |\n| Handaxe                   | Weapon | 6 GP    | -- | --      | --  | 1D6  | x3        | Standard | Small, Martial  | --                     |\n| Javelin                   | Weapon | 1 GP    | -- | --      | --  | 1D6  | x2        | Standard | Medium, Simple  | 30 ft. Range Increment |\n| Kama                      | Weapon | 2 GP    | -- | --      | --  | 1D4  | x2        | Quick    | Small, Martial  | --                     |\n| Kukri                     | Weapon | 8 GP    | -- | --      | --  | 1D4  | 18-20, x2 | Standard | Tiny, Martial   | --                     |\n| Longspear                 | Weapon | 5 GP    | -- | --      | --  | 1D8  | x3        | Standard | Large, Martial  | 10 ft. Reach           |\n| Mace, Heavy               | Weapon | 12 GP   | -- | --      | --  | 1D8  | x2        | Standard | Medium, Simple  | --                     |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+```"),
+                call("```Clockwork Blacksmith II's Inventory (Part 5 / 6):\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| NAME                      | TYPE   | COST    | AC | MAX DEX | ACP | DMG  | CRIT      | DELAY    | SIZE            | STATS                  |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| Mace, Light               | Weapon | 5 GP    | -- | --      | --  | 1D6  | x2        | Standard | Small, Simple   | --                     |\n| Morningstar               | Weapon | 8 GP    | -- | --      | --  | 1D10 | x2        | Slow     | Medium, Simple  | --                     |\n| Splint Mail               | Armor  | 200 GP  | +6 | +0      | -7  | --   | --        | --       | Heavy           | --                     |\n| Sword, Bastard            | Weapon | 35 GP   | -- | --      | --  | 1D10 | 19-20, x2 | Standard | Large, Martial  | --                     |\n| Sword, Short              | Weapon | 10 GP   | -- | --      | --  | 1D6  | 19-20, x2 | Standard | Small, Martial  | --                     |\n| Sword, Short (Masterwork) | Weapon | 310 GP  | -- | --      | --  | 1D6  | 19-20, x2 | Standard | Small, Martial  | Atk +1 (non-magical)   |\n| Trident                   | Weapon | 15 GP   | -- | --      | --  | 1D10 | x2        | Slow     | Medium, Martial | 10 ft. Range Increment |\n| Two-Handed Hammer         | Weapon | 20 GP   | -- | --      | --  | 2D6  | x2        | Slow     | Large, Martial  | --                     |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+```"),
+                call("```Clockwork Blacksmith II's Inventory (Part 6 / 6):\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| NAME                      | TYPE   | COST    | AC | MAX DEX | ACP | DMG  | CRIT      | DELAY    | SIZE            | STATS                  |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+\n| Warhammer                 | Weapon | 12 GP   | -- | --      | --  | 1D8  | x3        | Standard | Medium, Martial | --                     |\n+---------------------------+--------+---------+----+---------+-----+------+-----------+----------+-----------------+------------------------+```")
+            ])

@@ -1,5 +1,5 @@
 {
-    "userId" : null,
+    "userId" : { "$numberlong" : "1" },
     "player" : {
         "name" : {
             "first" : "The",
@@ -13,7 +13,7 @@
     "character" : null
 }
 {
-    "userId" : null,
+    "userId" : { "$numberlong" : "2" },
     "player" : {
         "name" : {
             "first" : "A",
@@ -31,7 +31,7 @@
 		},
 		"race" : "Half Elf",
 		"class" : "Ranger",
-		"level" : NumberInt(1),
+		"level" : { "$numberint" : "1" },
 		"alignment" : "OG"
 	}
 }

@@ -1,9 +1,9 @@
 {
-    "cityId" : UUID("9acff913-0ced-495a-9625-c42356f695ce"),
+    "cityId" : { "$uuid" : "9acff913-0ced-495a-9625-c42356f695ce" },
     "name" : "Ak'Anon",
     "merchants" : [
         {
-            "merchantId" : UUID("70a6d2b4-25e4-4183-8de6-b969b312d671"),
+            "merchantId" : { "$uuid" : "70a6d2b4-25e4-4183-8de6-b969b312d671" },
             "name" : "Clockwork Blacksmith II",
             "type" : "Blacksmith",
             "introductions" : [
@@ -11,7 +11,7 @@
             ],
             "sellsArmor" : {
                 "enabled" : true,
-                "filter" : "{\"size\" : \"Heavy\"}"
+                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
             },
             "sellsGeneralGoods" : {
                 "enabled" : false
@@ -21,14 +21,14 @@
             },
             "sellsWeapons" : {
                 "enabled" : true,
-                "filter" : "{\"type\" : \"melee_weapon\"}"
+                "override_filter" : "{\"type\" : \"melee_weapon\"}"
             },
             "inventory" : [
 
             ]
         },
         {
-            "merchantId" : UUID(,"ff36f4f3-7355-4b7e-904e-fec0ed530507"),
+            "merchantId" : { "$uuid" : "ff36f4f3-7355-4b7e-904e-fec0ed530507" },
             "name" : "Clockwork Jeweler I",
             "type" : "Jeweler",
             "introductions" : [
@@ -42,7 +42,7 @@
             },
             "sellsJewelry" : {
                 "enabled" : true,
-                "filter" : "{}"
+                "override_filter" : null
             },
             "sellsWeapons" : {
                 "enabled" : false
@@ -57,7 +57,7 @@
             ]
         },
         {
-            "merchantId" : UUID("345ff13a-f412-4aa6-8ce9-5172aba49a18"),
+            "merchantId" : { "$uuid" : "345ff13a-f412-4aa6-8ce9-5172aba49a18" },
             "name" : "Clockwork Merchant XXIII",
             "type" : "General Goods",
             "introductions" : [
@@ -68,7 +68,7 @@
             },
             "sellsGeneralGoods" : {
                 "enabled" : true,
-                "filter" : "{}"
+                "override_filter" : null
             },
             "sellsJewelry" : {
                 "enabled": false

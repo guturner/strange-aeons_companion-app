@@ -15,7 +15,7 @@ class InventoryTypeMapper:
     def map_to_inventory_type(self):
         return InventoryType(
             enabled=_get_or_none(self.database_result, "enabled"),
-            inventory_filter=_get_or_none(self.database_result, "filter")
+            override_filter=_get_or_none(self.database_result, "override_filter")
         )
 
 class InventoryMapper:

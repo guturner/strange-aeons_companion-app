@@ -212,15 +212,15 @@ def merchant_general_goods_and_weapons():
     return merchant(
         merchant_name="Mr. Chant",
         inventory=[],
-        sells_general_goods=InventoryType(True, "{}"),
-        sells_weapons=InventoryType(True, "{}")
+        sells_general_goods=InventoryType(True, None),
+        sells_weapons=InventoryType(True, None)
     )
 
 def merchant_jewelry():
     return merchant(
         merchant_name="Ensign Chant",
         inventory=[],
-        sells_jewelry=InventoryType(True, "{}")
+        sells_jewelry=InventoryType(True, None)
     )
 
 def merchant_general_goods_and_custom_armor():
@@ -230,7 +230,7 @@ def merchant_general_goods_and_custom_armor():
         inventory=[
             item_custom_armor()
         ],
-        sells_general_goods=InventoryType(True, "{}")
+        sells_general_goods=InventoryType(True, None)
     )
 
 def merchant_general_goods_and_custom_weapon():
@@ -240,7 +240,7 @@ def merchant_general_goods_and_custom_weapon():
         inventory=[
             item_custom_weapon()
         ],
-        sells_general_goods=InventoryType(True, "{}")
+        sells_general_goods=InventoryType(True, None)
     )
 
 def recipe_book(build_inventory_table_use_case=Mock(), build_table_use_case=Mock(), lookup_city_use_case=Mock(), lookup_inventory_use_case=Mock(), lookup_merchant_use_case=Mock(), lookup_user_use_case=Mock(), update_user_use_case=Mock()):
@@ -290,7 +290,7 @@ def mock_get_city_by_city_name(city_name):
 def mock_get_general_goods(additional_filter):
     return [item_general_good()]
 
-def mock_get_weapons(additional_filter):
+def mock_get_weapons(additional_filter, include_masterwork=False):
     return [item_weapon()]
 
 def mock_get_jewelry(additional_filter):
