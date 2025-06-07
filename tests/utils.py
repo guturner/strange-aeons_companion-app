@@ -287,11 +287,11 @@ def mock_update_user_by_username(username, user):
 def mock_get_city_by_city_name(city_name):
     return city(city_name, merchants=[merchant_general_goods_and_weapons(), merchant_jewelry(), merchant_general_goods_and_custom_armor(), merchant_general_goods_and_custom_weapon()], occupants=[1])
 
-def mock_get_general_goods(additional_filter):
+def mock_get_general_goods(override_filter):
     return [item_general_good()]
 
-def mock_get_weapons(additional_filter, include_masterwork=False):
+def mock_get_weapons(override_filter):
     return [item_weapon()]
 
-def mock_get_jewelry(additional_filter):
+def mock_get_jewelry(override_filter):
     return [item_armor_jewelry(), item_general_jewelry()]
