@@ -150,7 +150,11 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
-        shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case, lookup_city_use_case=lookup_city_use_case, lookup_inventory_use_case=lookup_inventory_use_case, lookup_merchant_use_case=lookup_merchant_use_case, build_inventory_table_use_case=build_inventory_table_use_case))
+        shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case,
+                                            lookup_city_use_case=lookup_city_use_case,
+                                            lookup_inventory_use_case=lookup_inventory_use_case,
+                                            lookup_merchant_use_case=lookup_merchant_use_case,
+                                            build_inventory_table_use_case=build_inventory_table_use_case))
 
         ctx = MagicMock()
         ctx.author = MagicMock()

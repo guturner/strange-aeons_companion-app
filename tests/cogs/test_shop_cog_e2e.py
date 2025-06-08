@@ -16,17 +16,10 @@ from use_cases.lookup_merchant_use_case import LookupMerchantUseCase
 
 
 class TestShopCogE2E(E2ETest):
-    async def __setup_environment(self, mongo, uri, cities_filter = None, cities_update = None):
-        mongo_client = MongoClient(uri)
-
+    async def __setup_environment(self, mongo):
         self.load_cities_data(mongo)
         self.load_inventories_data(mongo)
         self.load_users_data(mongo)
-
-        if cities_filter is not None and cities_update is not None:
-            print("Starting to update city occupants...")
-            mongo_client.everquest.cities.update_one(cities_filter, cities_update)
-            print("City occupants updated successfully!")
 
     async def test_shop__happy_path(self):
         with MongoDbContainer("mongo:8.0") as mongo:
@@ -35,8 +28,9 @@ class TestShopCogE2E(E2ETest):
 
             uri = mongo.get_connection_url()
             db_name = "everquest"
+            mongo_client = MongoClient(uri)
 
-            await self.__setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
+            await self.__setup_environment(mongo)
 
             db = Database(uri, db_name)
             city_dao = CityDAO(db)
@@ -59,6 +53,9 @@ class TestShopCogE2E(E2ETest):
             ctx.author.id = 2
             ctx.author.name = "a_player_1"
             ctx.send = AsyncMock()
+
+            self.initialize_user(mongo_client, "a_player_1", 2)
+            self.set_city_occupants(mongo_client, "Ak'Anon", [2])
 
             # When
             await ShopCog.shop(shop_cog, ctx, "Ak'Anon", "Clockwork", "Merchant", "XXIII")
@@ -79,8 +76,9 @@ class TestShopCogE2E(E2ETest):
 
             uri = mongo.get_connection_url()
             db_name = "everquest"
+            mongo_client = MongoClient(uri)
 
-            await self.__setup_environment(mongo, uri, {"name" : "Ak'Anon"}, {"$set" : {"occupants" : [1, 2]}})
+            await self.__setup_environment(mongo)
 
             db = Database(uri, db_name)
             city_dao = CityDAO(db)
@@ -103,6 +101,9 @@ class TestShopCogE2E(E2ETest):
             ctx.author.id = 2
             ctx.author.name = "a_player_1"
             ctx.send = AsyncMock()
+
+            self.initialize_user(mongo_client, "a_player_1", 2)
+            self.set_city_occupants(mongo_client, "Ak'Anon", [2])
 
             # When
             await ShopCog.shop(shop_cog, ctx, "Ak'Anon", "Clockwork", "Blacksmith", "II")

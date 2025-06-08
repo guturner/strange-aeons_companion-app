@@ -4,6 +4,8 @@ import unittest
 from io import BytesIO
 from pathlib import Path
 
+import pytest
+
 
 def _tar_for_file(file_path: Path, file_name):
     tar_stream = BytesIO()
@@ -29,11 +31,31 @@ class E2ETest(unittest.IsolatedAsyncioTestCase):
         ])
 
         if exec_result.exit_code != 0:
-            print(f"Failed to load {collection_name} data:")
-            print(exec_result.output.decode())
-            exit(1)
+            error_message = f"Failed to load {collection_name} data: {exec_result.output.decode()}"
+            print(error_message)
+            pytest.fail(error_message)
         else:
             print(f"{collection_name.capitalize()} data loaded successfully!")
+
+    def initialize_user(self, mongo_client, username, user_id):
+        print(f"Initializing user {username}...")
+        result = mongo_client.everquest.users.update_one({"discord.username": username}, {"$set": {"userId": user_id}})
+        if result.modified_count == 1:
+            print(f"User {username} initialized successfully!")
+        else:
+            error_message = f"Failed to initialize user {username}: {result.raw_result}"
+            print(error_message)
+            pytest.fail(error_message)
+
+    def set_city_occupants(self, mongo_client, city_name, occupants_list):
+        print("Starting to update city occupants...")
+        result = mongo_client.everquest.cities.update_one({"name" : city_name}, {"$set" : {"occupants" : occupants_list}})
+        if result.modified_count == 1:
+            print("City occupants updated successfully!")
+        else:
+            error_message = f"Failed to update city occupants: {result.raw_result}"
+            print(error_message)
+            pytest.fail(error_message)
 
     def load_cities_data(self, mongo):
         self.__load_data(mongo, "cities", "cities.json")
