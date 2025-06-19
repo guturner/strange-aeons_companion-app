@@ -143,7 +143,12 @@ the schema below:
     
 #### Sample Data
 See the `sample_data/mongodb` folder for sample data that you can load into MongoDB.
-    
+
+To load sample data, use `mongoimport`:
+1. [Follow this link to install mongoimport on Windows.](https://www.mongodb.com/try/download/database-tools)
+2. Run: `.\mongoimport.exe --uri "mongodb://<username>:<password>@<host>:<port>/<db>?authSource=admin" --collection <collection> --file <path/to/file.json> --mode upsert`
+NOTE: You must url-encode special characters in your password.
+
 ### Testing
 ```
 pip install pytest

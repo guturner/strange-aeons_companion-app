@@ -3,6 +3,54 @@
     "name" : "Ak'Anon",
     "merchants" : [
         {
+            "merchantId" : { "$uuid" : "12c66999-ecf4-4b54-95e4-96dd9c402500" },
+            "name" : "Clockwork Armorer IV",
+            "type" : "Armorer",
+            "introductions" : [
+                "Greetings, adventurer! I am a merchant, automaton series A."
+            ],
+            "sellsArmor" : {
+                "enabled" : true
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+                {
+                    "type" : "armor",
+                    "name" : "Cloak of the Ice Bear",
+                    "stats" : "HP +3, Cold Resistance (8), Cold Save +2",
+                    "cost" : "2700 GP"
+                },
+                {
+                    "type" : "armor",
+                    "name" : "Gnomish Environmental Suit",
+                    "size" : "Light",
+                    "armor_bonus" : "+3",
+                    "max_dexterity" : "+6",
+                    "armor_check_penalty" : "+0",
+                    "stats" : "Acid, Cold, Electricity, Fire, Poison, Sonic Resistance (4) and Save +1",
+                    "cost" : "5160 GP"
+                },
+                {
+                    "type" : "armor",
+                    "name" : "Truesilver Mail",
+                    "size" : "Heavy",
+                    "armor_bonus" : "+8",
+                    "max_dexterity" : "+1",
+                    "armor_check_penalty" : "-5",
+                    "stats" : "Exceedingly lightweight at only 24.5 lbs.",
+                    "cost" : "1950 GP"
+                }
+            ]
+        },
+        {
             "merchantId" : { "$uuid" : "70a6d2b4-25e4-4183-8de6-b969b312d671" },
             "name" : "Clockwork Blacksmith II",
             "type" : "Blacksmith",
