@@ -34,5 +34,7 @@ class InventoryMapper:
             damage=_get_or_none(self.database_result, "damage"),
             crit_range=_get_or_none(self.database_result, "critRange"),
             delay=_get_or_none(self.database_result, "delay"),
-            stats=_get_or_none(self.database_result, "stats")
+            stats=_get_or_none(self.database_result, "stats"),
+            spell_level=_get_or_none(self.database_result, "spell_level"),
+            spell_description=_get_or_none(self.database_result, "spell_description")
         )

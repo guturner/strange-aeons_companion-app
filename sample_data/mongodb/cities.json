@@ -18,6 +18,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSpells" : {
+                "enabled": false
+            },
             "sellsWeapons" : {
                 "enabled" : false
             },
@@ -48,7 +51,8 @@
                     "stats" : "Exceedingly lightweight at only 24.5 lbs.",
                     "cost" : "1950 GP"
                 }
-            ]
+            ],
+            "tableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "70a6d2b4-25e4-4183-8de6-b969b312d671" },
@@ -67,13 +71,17 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSpells" : {
+                "enabled": false
+            },
             "sellsWeapons" : {
                 "enabled" : true,
                 "override_filter" : "{\"type\" : \"melee_weapon\"}"
             },
             "inventory" : [
 
-            ]
+            ],
+            "tableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "ff36f4f3-7355-4b7e-904e-fec0ed530507" },
@@ -92,6 +100,9 @@
                 "enabled" : true,
                 "override_filter" : null
             },
+            "sellsSpells" : {
+                "enabled": false
+            },
             "sellsWeapons" : {
                 "enabled" : false
             },
@@ -102,7 +113,35 @@
                     "stats" : "Int +1, Extended Affliction I",
                     "cost" : "4500 GP"
                 }
-            ]
+            ],
+            "tableRows" : 10
+        },
+        {
+            "merchantId" : { "$uuid" : "37debb93-c24c-40e6-ae61-0baab48a53dc" },
+            "name" : "Clockwork Merchant XVI",
+            "type" : "Spells",
+            "introductions" : [
+                "Greetings, adventurer! I am a merchant, automaton series M."
+            ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": true
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 4
         },
         {
             "merchantId" : { "$uuid" : "345ff13a-f412-4aa6-8ce9-5172aba49a18" },
@@ -115,10 +154,12 @@
                 "enabled" : false
             },
             "sellsGeneralGoods" : {
-                "enabled" : true,
-                "override_filter" : null
+                "enabled" : true
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
                 "enabled": false
             },
             "sellsWeapons" : {
@@ -126,7 +167,8 @@
             },
             "inventory" : [
 
-            ]
+            ],
+            "tableRows" : 10
         }
     ],
     "occupants" : [

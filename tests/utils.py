@@ -117,7 +117,9 @@ def item_general_good():
         crit_range=None,
         delay=None,
         max_dexterity=None,
-        stats=None
+        stats=None,
+        spell_level=None,
+        spell_description=None
     )
 
 def item_general_jewelry():
@@ -132,7 +134,9 @@ def item_general_jewelry():
         crit_range=None,
         delay=None,
         max_dexterity=None,
-        stats=None
+        stats=None,
+        spell_level=None,
+        spell_description=None
     )
 
 def item_armor_jewelry():
@@ -147,7 +151,26 @@ def item_armor_jewelry():
         crit_range=None,
         delay=None,
         max_dexterity=None,
-        stats="Spell Haste IV"
+        stats="Spell Haste IV",
+        spell_level=None,
+        spell_description=None
+    )
+
+def item_spell():
+    return Item(
+        item_type="spell",
+        name="Kamehameha",
+        cost="1000 GP",
+        size=None,
+        armor_bonus=None,
+        armor_check_penalty=None,
+        damage=None,
+        crit_range=None,
+        delay=None,
+        max_dexterity=None,
+        stats=None,
+        spell_level="Mag 30",
+        spell_description="It's over 9000!"
     )
 
 def item_weapon():
@@ -162,7 +185,9 @@ def item_weapon():
         crit_range="10-20, x10",
         delay="Quick",
         max_dexterity=None,
-        stats="magic resistance (5)"
+        stats="magic resistance (5)",
+        spell_level=None,
+        spell_description=None
     )
 
 def item_custom_armor():
@@ -177,7 +202,9 @@ def item_custom_armor():
         crit_range=None,
         delay=None,
         max_dexterity="+5",
-        stats="magic resistance (5)"
+        stats="magic resistance (5)",
+        spell_level=None,
+        spell_description=None
     )
 
 def item_custom_weapon():
@@ -192,20 +219,24 @@ def item_custom_weapon():
         crit_range="10-20, x10",
         delay="Quick",
         max_dexterity=None,
-        stats="magic resistance (5)"
+        stats="magic resistance (5)",
+        spell_level=None,
+        spell_description=None
     )
 
-def merchant(merchant_name, inventory, merchant_type="General Goods", sells_general_goods=InventoryType(False, None), sells_weapons=InventoryType(False, None), sells_armor=InventoryType(False, None), sells_jewelry=InventoryType(False, None)):
+def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armor=InventoryType(False, None), sells_general_goods=InventoryType(False, None), sells_jewelry=InventoryType(False, None), sells_spells=InventoryType(False, None), sells_weapons=InventoryType(False, None), table_rows=8):
     return Merchant(
         merchant_id=uuid.uuid4(),
         name=merchant_name,
         merchant_type=merchant_type,
         introductions=[],
-        sells_general_goods=sells_general_goods,
-        sells_weapons=sells_weapons,
         sells_armor=sells_armor,
+        sells_general_goods=sells_general_goods,
         sells_jewelry=sells_jewelry,
-        inventory=inventory
+        sells_spells=sells_spells,
+        sells_weapons=sells_weapons,
+        inventory=inventory,
+        table_rows=table_rows
     )
 
 def merchant_general_goods_and_weapons():
@@ -241,6 +272,16 @@ def merchant_general_goods_and_custom_weapon():
             item_custom_weapon()
         ],
         sells_general_goods=InventoryType(True, None)
+    )
+
+def merchant_spells():
+    return merchant(
+        merchant_name="Spell Mann",
+        merchant_type="Spells",
+        inventory=[
+            item_spell()
+        ],
+        sells_spells=InventoryType(True, None)
     )
 
 def recipe_book(build_inventory_table_use_case=Mock(), build_table_use_case=Mock(), lookup_city_use_case=Mock(), lookup_inventory_use_case=Mock(), lookup_merchant_use_case=Mock(), lookup_user_use_case=Mock(), update_user_use_case=Mock()):
@@ -285,13 +326,16 @@ def mock_update_user_by_username(username, user):
         return None
 
 def mock_get_city_by_city_name(city_name):
-    return city(city_name, merchants=[merchant_general_goods_and_weapons(), merchant_jewelry(), merchant_general_goods_and_custom_armor(), merchant_general_goods_and_custom_weapon()], occupants=[1])
+    return city(city_name, merchants=[merchant_general_goods_and_weapons(), merchant_jewelry(), merchant_general_goods_and_custom_armor(), merchant_general_goods_and_custom_weapon(), merchant_spells()], occupants=[1])
 
 def mock_get_general_goods(override_filter):
     return [item_general_good()]
 
-def mock_get_weapons(override_filter):
-    return [item_weapon()]
-
 def mock_get_jewelry(override_filter):
     return [item_armor_jewelry(), item_general_jewelry()]
+
+def mock_get_spells(override_filter):
+    return [item_spell()]
+
+def mock_get_weapons(override_filter):
+    return [item_weapon()]

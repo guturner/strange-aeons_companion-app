@@ -956,3 +956,115 @@
     "name" : "Wolf's Eye Agate",
     "cost" : "2 GP"
 }
+{
+    "type" : "spell",
+    "name" : "Minor Shielding",
+    "cost" : "25 GP",
+    "spell_level" : "Enc 1, Mag 1, Nec 1, Wiz 1",
+    "spell_description" : "+2 AC, +2 HP (self)"
+}
+{
+    "type" : "spell",
+    "name" : "Burn",
+    "cost" : "100 GP",
+    "spell_level" : "Mag 2",
+    "spell_description" : "1D10 fire damage (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementalkin: Air",
+    "cost" : "100 GP",
+    "spell_level" : "Mag 2",
+    "spell_description" : "Summons an Air Elemental (Type 1)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementalkin: Earth",
+    "cost" : "100 GP",
+    "spell_level" : "Mag 2",
+    "spell_description" : "Summons an Earth Elemental (Type 1)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementalkin: Fire",
+    "cost" : "100 GP",
+    "spell_level" : "Mag 2",
+    "spell_description" : "Summons a Fire Elemental (Type 1)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementalkin: Water",
+    "cost" : "100 GP",
+    "spell_level" : "Mag 2",
+    "spell_description" : "Summons a Water Elemental (Type 1)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementaling: Air",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "Summons an Air Elemental (Type 2)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementaling: Earth",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "Summons an Earth Elemental (Type 2)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementaling: Fire",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "Summons a Fire Elemental (Type 2)"
+}
+{
+    "type" : "spell",
+    "name" : "Elementaling: Water",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "Summons a Water Elemental (Type 2)"
+}
+{
+    "type" : "spell",
+    "name" : "Invisibility",
+    "cost" : "225 GP",
+    "spell_level" : "Bst 6, Enc 2, Mag 3, Shm 8, Wiz 5",
+    "spell_description" : "Invisibility (excluding undead) (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Cure Disease",
+    "cost" : "25 GP",
+    "spell_level" : "Bst 1, Clr 2, Dru 2, Nec 5, Pal 2, Shm 1",
+    "spell_description" : "Removes 1 [disease] effect (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Cure Poison",
+    "cost" : "25 GP",
+    "spell_level" : "Bst 2, Clr 1, Dru 2, Pal 1, Rng 2, Shm 2",
+    "spell_description" : "Removes 1 [poison] effect (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Minor Healing",
+    "cost" : "25 GP",
+    "spell_level" : "Bst 1, Clr 1, Dru 1, Pal 1, Rng 1, Shm 1",
+    "spell_description" : "Cures 1D10 HP (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Endure Cold",
+    "cost" : "25 GP",
+    "spell_level" : "Bst 1, Clr 4, Dru 3, Nec 1, Rng 3, Shd 2, Shm 1",
+    "spell_description" : "Cold Resistance (8), Cold Save +2 (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Invisibility to Undead",
+    "cost" : "25 GP",
+    "spell_level" : "Clr 4, Enc 5, Nec 1, Pal 3, Shd 1, Wiz 9",
+    "spell_description" : "Invisibility (only undead) (self for Shd & Wiz; 1 creature for others)"
+}
