@@ -216,6 +216,18 @@
 }
 {
     "type" : "melee_weapon",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Broad Sword, +1",
+    "size" : "Medium, Martial",
+    "damage" : "1D10",
+    "critRange" : "x2",
+    "delay" : "Slow",
+    "stats" : "Atk +1, Dmg +1 (magical)",
+    "cost" : "2313 GP"
+}
+{
+    "type" : "melee_weapon",
     "name" : "Chain, Spiked",
     "size" : "Large, Martial",
     "damage" : "2D4",
@@ -555,6 +567,18 @@
 }
 {
     "type" : "melee_weapon",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Sword, Short, +1",
+    "size" : "Small, Martial",
+    "damage" : "1D6",
+    "critRange" : "19-20, x2",
+    "delay" : "Standard",
+    "stats" : "Atk +1, Dmg +1 (magical)",
+    "cost" : "2310 GP"
+}
+{
+    "type" : "melee_weapon",
     "name" : "Trident",
     "size" : "Medium, Martial",
     "damage" : "1D10",
@@ -616,6 +640,18 @@
 }
 {
     "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Breastplate, +1",
+    "size" : "Medium",
+    "armor_bonus" : "+6",
+    "max_dexterity" : "+3",
+    "armor_check_penalty" : "-3",
+    "stats" : null,
+    "cost" : "1350 GP"
+}
+{
+    "type" : "armor",
     "name" : "Chainmail",
     "size" : "Medium",
     "armor_bonus" : "+5",
@@ -637,6 +673,18 @@
 }
 {
     "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Chainmail, +1",
+    "size" : "Medium",
+    "armor_bonus" : "+6",
+    "max_dexterity" : "+2",
+    "armor_check_penalty" : "-4",
+    "stats" : null,
+    "cost" : "1300 GP"
+}
+{
+    "type" : "armor",
     "name" : "Chain Shirt",
     "size" : "Light",
     "armor_bonus" : "+4",
@@ -655,6 +703,18 @@
     "armor_check_penalty" : "-1",
     "stats" : null,
     "cost" : "250 GP"
+}
+{
+    "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Chain Shirt, +1",
+    "size" : "Light",
+    "armor_bonus" : "+5",
+    "max_dexterity" : "+4",
+    "armor_check_penalty" : "-1",
+    "stats" : null,
+    "cost" : "1250 GP"
 }
 {
     "type" : "armor",
@@ -689,6 +749,18 @@
 }
 {
     "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Full Plate, +1",
+    "size" : "Heavy",
+    "armor_bonus" : "+9",
+    "max_dexterity" : "+1",
+    "armor_check_penalty" : "-5",
+    "stats" : null,
+    "cost" : "2650 GP"
+}
+{
+    "type" : "armor",
     "name" : "Half-Plate",
     "size" : "Heavy",
     "armor_bonus" : "+7",
@@ -707,6 +779,18 @@
     "armor_check_penalty" : "-6",
     "stats" : null,
     "cost" : "750 GP"
+}
+{
+    "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Half-Plate, +1",
+    "size" : "Heavy",
+    "armor_bonus" : "+8",
+    "max_dexterity" : "+0",
+    "armor_check_penalty" : "-6",
+    "stats" : null,
+    "cost" : "1750 GP"
 }
 {
     "type" : "armor",
@@ -761,6 +845,18 @@
 }
 {
     "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Scale Mail, +1",
+    "size" : "Medium",
+    "armor_bonus" : "+5",
+    "max_dexterity" : "+3",
+    "armor_check_penalty" : "-3",
+    "stats" : null,
+    "cost" : "1200 GP"
+}
+{
+    "type" : "armor",
     "name" : "Splint Mail",
     "size" : "Heavy",
     "armor_bonus" : "+6",
@@ -782,6 +878,18 @@
 }
 {
     "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Splint Mail, +1",
+    "size" : "Heavy",
+    "armor_bonus" : "+7",
+    "max_dexterity" : "+0",
+    "armor_check_penalty" : "-6",
+    "stats" : null,
+    "cost" : "1350 GP"
+}
+{
+    "type" : "armor",
     "name" : "Studded Leather",
     "size" : "Light",
     "armor_bonus" : "+3",
@@ -800,6 +908,18 @@
     "armor_check_penalty" : "+0",
     "stats" : null,
     "cost" : "175 GP"
+}
+{
+    "type" : "armor",
+    "masterwork" : true,
+    "magic" : true,
+    "name" : "Studded Leather, +1",
+    "size" : "Light",
+    "armor_bonus" : "+4",
+    "max_dexterity" : "+5",
+    "armor_check_penalty" : "+0",
+    "stats" : null,
+    "cost" : "1175 GP"
 }
 {
     "type" : "jewelry",
