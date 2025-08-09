@@ -180,3 +180,391 @@
         "notFound" : "Clockwork Guide XII: *eyes flash red* Query failed! Unknown target {{merchant_name}}!"
     }
 }
+{
+    "cityId" : { "$uuid" : "371880e8-820a-4e4a-a895-6b97cad9b4aa" },
+    "name" : "Commonlands",
+    "merchants" : [
+        {
+            "merchantId" : { "$uuid" : "9594c1f6-eb8a-4ae6-ac51-1056038e9c78" },
+            "name" : "Parus the Strong",
+            "type" : "Blacksmith",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : true,
+                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : true,
+                "override_filter" : "{\"type\" : \"melee_weapon\"}"
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 8
+        },
+        {
+            "merchantId" : { "$uuid" : "4d83a605-63bd-4e84-9179-1719f28b6a56" },
+            "name" : "Shady Swashbuckler",
+            "type" : "Jeweler",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled" : true
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+                {
+                    "type" : "armor",
+                    "name" : "Golden Ear Stud",
+                    "stats" : "Int +1, Extended Affliction I",
+                    "cost" : "4500 GP"
+                }
+            ],
+            "tableRows" : 10
+        },
+        {
+            "merchantId" : { "$uuid" : "7356d36f-bd2d-462b-a07d-5888bad5e570" },
+            "name" : "Slea Pinewhisper",
+            "type" : "General Goods",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : true
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 10
+        }
+    ],
+    "occupants" : [
+
+    ],
+    "directions" : {
+        "question" : "You hear the snoring of a nearby sentry leaning against his spear.",
+        "answer" : "Sentry Boris: Wha..? Huh? You're looking for who now?",
+        "notFound" : "Sentry Boris: *snoring* Neva' heard of no {{merchant_name}}..."
+    }
+}
+{
+    "cityId" : { "$uuid" : "c7e6ded6-7b7f-4848-9189-e10c7005f08e" },
+    "name" : "Freeport",
+    "merchants" : [
+        {
+            "merchantId" : { "$uuid" : "5a4b87ff-97d1-4d4f-983e-ea3ad938392f" },
+            "name" : "Erista Tidius",
+            "type" : "Armorer",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : true
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 8
+        },
+        {
+            "merchantId" : { "$uuid" : "ec71d712-6526-4f39-8fe4-a1e8db179d6e" },
+            "name" : "Kyrin Steelbone",
+            "type" : "Blacksmith",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : true,
+                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : true,
+                "override_filter" : "{\"type\" : \"melee_weapon\"}"
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 8
+        },
+        {
+            "merchantId" : { "$uuid" : "2cb10328-b2e4-414e-b1cf-0e6f45438bbe" },
+            "name" : "Aimie Moonspin",
+            "type" : "Jeweler",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled" : true
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+                {
+                    "type" : "armor",
+                    "name" : "Golden Ear Stud",
+                    "stats" : "Int +1, Extended Affliction I",
+                    "cost" : "4500 GP"
+                }
+            ],
+            "tableRows" : 10
+        },
+        {
+            "merchantId" : { "$uuid" : "287cd547-fc7a-4eed-bfb4-5cde5c956419" },
+            "name" : "Orex Nolus",
+            "type" : "Spells",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": true
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 4
+        },
+        {
+            "merchantId" : { "$uuid" : "5baf770d-eb5f-4a53-8424-fa064c44b2c7" },
+            "name" : "Slan O'Donner",
+            "type" : "General Goods",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : true
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 10
+        }
+    ],
+    "occupants" : [
+
+    ],
+    "directions" : {
+        "question" : "You hear the snoring of a nearby sentry leaning against his spear.",
+        "answer" : "Sentry Boris: Wha..? Huh? You're looking for who now?",
+        "notFound" : "Sentry Boris: *snoring* Neva' heard of no {{merchant_name}}..."
+    }
+}
+{
+    "cityId" : { "$uuid" : "1901897f-99db-4b9b-9921-4a0b2e04defd" },
+    "name" : "Qeynos",
+    "merchants" : [
+        {
+            "merchantId" : { "$uuid" : "26df9318-0ca0-4300-ad2e-7606b39114f4" },
+            "name" : "Gerault Takenmaul",
+            "type" : "Armorer",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : true
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 8
+        },
+        {
+            "merchantId" : { "$uuid" : "033a5c09-d8b5-4a8b-9e99-59b3647142ba" },
+            "name" : "Dren Ironforge",
+            "type" : "Blacksmith",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : true,
+                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : true,
+                "override_filter" : "{\"type\" : \"melee_weapon\"}"
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 8
+        },
+        {
+            "merchantId" : { "$uuid" : "38c6d221-44fc-4855-a996-86b68ded8042" },
+            "name" : "Ziska Ironforge",
+            "type" : "Jeweler",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled" : true
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+                {
+                    "type" : "armor",
+                    "name" : "Golden Ear Stud",
+                    "stats" : "Int +1, Extended Affliction I",
+                    "cost" : "4500 GP"
+                }
+            ],
+            "tableRows" : 10
+        },
+        {
+            "merchantId" : { "$uuid" : "fc3a93a9-cc84-4cec-93c7-0406602454d9" },
+            "name" : "Ladia Qursii",
+            "type" : "Spells",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": true
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 4
+        },
+        {
+            "merchantId" : { "$uuid" : "35c822d9-ea9c-4fc4-809e-02fcbbe9108d" },
+            "name" : "Ghil Starn",
+            "type" : "General Goods",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : true
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 10
+        }
+    ],
+    "occupants" : [
+
+    ],
+    "directions" : {
+        "question" : "A passing guard nods in your direction.",
+        "answer" : "Guard Elron: Keep the peace and we'll get along just fine. Who can I point you to?",
+        "notFound" : "Guard Elron: I'm sorry, adventurer. I don't know a {{merchant_name}}."
+    }
+}
