@@ -417,9 +417,9 @@
 
     ],
     "directions" : {
-        "question" : "You hear the snoring of a nearby sentry leaning against his spear.",
-        "answer" : "Sentry Boris: Wha..? Huh? You're looking for who now?",
-        "notFound" : "Sentry Boris: *snoring* Neva' heard of no {{merchant_name}}..."
+        "question" : "A cloaked figure approaches you quietly.",
+        "answer" : "Black Market Dealer: Psst, what d'ya need? Who are ya lookin' for?",
+        "notFound" : "Black Market Dealer: Get outta my face, there ain't no {{merchant_name}} around here."
     }
 }
 {
