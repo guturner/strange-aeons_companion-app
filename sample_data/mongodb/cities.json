@@ -356,6 +356,12 @@
                     "name" : "Blackened Iron Spaulders",
                     "stats" : "Grants the 'Slam' Feat",
                     "cost" : "1200 GP"
+                },
+                {
+                    "type" : "armor",
+                    "name" : "Bone Shield",
+                    "stats" : "+1 Small Shield, disease resistance (1), sonic resistance (1)",
+                    "cost" : "1500 GP"
                 }
             ],
             "tableRows" : 8
@@ -475,7 +481,12 @@
                 "enabled" : false
             },
             "inventory" : [
-
+                {
+                    "type" : "armor",
+                    "name" : "Bloodstained Mantle",
+                    "stats" : "Str +1, magic resistance (4), magic save +1",
+                    "cost" : "2500 GP"
+                }
             ],
             "tableRows" : 10
         }
@@ -580,6 +591,12 @@
                     "name" : "Golden Ear Stud",
                     "stats" : "Int +1, Extended Affliction I",
                     "cost" : "4500 GP"
+                },
+                {
+                    "type" : "armor",
+                    "name" : "Spiked Leather Wolf Collar",
+                    "stats" : "Wis +1, Mana +3",
+                    "cost" : "2750 GP"
                 }
             ],
             "tableRows" : 10
