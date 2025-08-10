@@ -19,13 +19,14 @@ class Directions:
         return f"{self.question}\n\n{self.answer}\n    {"\n    ".join(f"{merchant.name} ({merchant.merchant_type})" for merchant in merchants)}"
 
 class Merchant:
-    def __init__(self, merchant_id, name, merchant_type, introductions, sells_armor, sells_general_goods, sells_jewelry, sells_spells, sells_weapons, inventory, table_rows):
+    def __init__(self, merchant_id, name, merchant_type, introductions, sells_armor, sells_general_goods, sells_instruments, sells_jewelry, sells_spells, sells_weapons, inventory, table_rows):
         self.merchant_id = merchant_id
         self.name = name
         self.merchant_type = merchant_type
         self.introductions = introductions
         self.sells_armor = sells_armor
         self.sells_general_goods = sells_general_goods
+        self.sells_instruments = sells_instruments
         self.sells_jewelry = sells_jewelry
         self.sells_spells = sells_spells
         self.sells_weapons = sells_weapons

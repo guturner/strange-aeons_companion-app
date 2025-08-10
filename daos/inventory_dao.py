@@ -24,6 +24,14 @@ class InventoryDAO(DAO):
 
         return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))
 
+    def get_instruments(self, override_filter):
+        if override_filter is None:
+            result = self._db["inventories"].find({"type": "instrument"})
+        else:
+            result = self._db["inventories"].find(json.loads(override_filter))
+
+        return tuple(map(lambda i: InventoryMapper(i).map_to_item(), result))
+
     def get_jewelry(self, override_filter):
         if override_filter is None:
             result = self._db["inventories"].find({"type" : "jewelry"})

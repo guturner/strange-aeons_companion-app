@@ -224,7 +224,41 @@ def item_custom_weapon():
         spell_description=None
     )
 
-def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armor=InventoryType(False, None), sells_general_goods=InventoryType(False, None), sells_jewelry=InventoryType(False, None), sells_spells=InventoryType(False, None), sells_weapons=InventoryType(False, None), table_rows=8):
+def item_instrument():
+    return Item(
+        item_type="instrument",
+        name="Lucille",
+        cost="10000 GP",
+        size=None,
+        armor_bonus=None,
+        armor_check_penalty=None,
+        damage=None,
+        crit_range=None,
+        delay=None,
+        max_dexterity=None,
+        stats="+100 Play String Instruments",
+        spell_level=None,
+        spell_description=None
+    )
+
+def item_misc():
+    return Item(
+        item_type="unknown_item_type",
+        name="Doohickey",
+        cost="250 GP",
+        size=None,
+        armor_bonus=None,
+        armor_check_penalty=None,
+        damage=None,
+        crit_range=None,
+        delay=None,
+        max_dexterity=None,
+        stats="+1 Knowledge (engineering)",
+        spell_level=None,
+        spell_description=None
+    )
+
+def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armor=InventoryType(False, None), sells_general_goods=InventoryType(False, None), sells_instruments=InventoryType(False, None), sells_jewelry=InventoryType(False, None), sells_spells=InventoryType(False, None), sells_weapons=InventoryType(False, None), table_rows=8):
     return Merchant(
         merchant_id=uuid.uuid4(),
         name=merchant_name,
@@ -232,6 +266,7 @@ def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armo
         introductions=[],
         sells_armor=sells_armor,
         sells_general_goods=sells_general_goods,
+        sells_instruments=sells_instruments,
         sells_jewelry=sells_jewelry,
         sells_spells=sells_spells,
         sells_weapons=sells_weapons,

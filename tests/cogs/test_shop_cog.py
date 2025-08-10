@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, MagicMock, Mock
 from cogs.shop_cog import ShopCog
 from models.city import InventoryType
 from tests.utils import mock_get_general_goods, mock_get_jewelry, mock_get_weapons, mock_get_city_by_city_name, \
-    recipe_book, city, merchant, mock_get_spells
+    recipe_book, city, merchant, mock_get_spells, item_misc, item_instrument
 
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
 from use_cases.build_table_use_case import BuildTableUseCase
@@ -165,6 +165,103 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
 
         # Then
         ctx.send.assert_called_once_with("```Spell Mann's Inventory:\n+------------+-------+---------+-----------+-----------------+\n| NAME       | TYPE  | COST    | SPELL LVL | DESCRIPTION     |\n+------------+-------+---------+-----------+-----------------+\n| Kamehameha | Spell | 1000 GP | Mag 30    | It's over 9000! |\n| Kamehameha | Spell | 1000 GP | Mag 30    | It's over 9000! |\n+------------+-------+---------+-----------+-----------------+```")
+
+    async def test_shop__instruments__happy_path(self):
+        # Given
+        bot = MagicMock()
+
+        def mock_get_mock_city(city_name):
+            return city(city_name, merchants=[merchant(merchant_name="Miss C", inventory=[item_instrument()])], occupants=[1])
+
+        mock_city_dao = Mock()
+        mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
+
+        mock_inventory_dao = Mock()
+
+        build_table_use_case = BuildTableUseCase()
+        lookup_city_use_case = LookupCityUseCase(mock_city_dao)
+        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
+        build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
+
+        shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case, lookup_city_use_case=lookup_city_use_case, lookup_inventory_use_case=lookup_inventory_use_case, lookup_merchant_use_case=lookup_merchant_use_case, build_inventory_table_use_case=build_inventory_table_use_case))
+
+        ctx = MagicMock()
+        ctx.author = MagicMock()
+        ctx.author.id = 1
+        ctx.author.name = "fake_username_1"
+        ctx.send = AsyncMock()
+
+        # When
+        await ShopCog.shop(shop_cog, ctx, "Qeynos", "Miss", "C")
+
+        # Then
+        ctx.send.assert_called_once_with("```Miss C's Inventory:\n+---------+------------+----------+------+------------------------------+\n| NAME    | TYPE       | COST     | SIZE | STATS                        |\n+---------+------------+----------+------+------------------------------+\n| Lucille | Instrument | 10000 GP | --   | +100 Play String Instruments |\n+---------+------------+----------+------+------------------------------+```")
+
+    async def test_shop__misc_only__happy_path(self):
+        # Given
+        bot = MagicMock()
+
+        def mock_get_mock_city(city_name):
+            return city(city_name, merchants=[merchant(merchant_name="Miss C", inventory=[item_misc()])], occupants=[1])
+
+        mock_city_dao = Mock()
+        mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
+
+        mock_inventory_dao = Mock()
+
+        build_table_use_case = BuildTableUseCase()
+        lookup_city_use_case = LookupCityUseCase(mock_city_dao)
+        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
+        build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
+
+        shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case, lookup_city_use_case=lookup_city_use_case, lookup_inventory_use_case=lookup_inventory_use_case, lookup_merchant_use_case=lookup_merchant_use_case, build_inventory_table_use_case=build_inventory_table_use_case))
+
+        ctx = MagicMock()
+        ctx.author = MagicMock()
+        ctx.author.id = 1
+        ctx.author.name = "fake_username_1"
+        ctx.send = AsyncMock()
+
+        # When
+        await ShopCog.shop(shop_cog, ctx, "Qeynos", "Miss", "C")
+
+        # Then
+        ctx.send.assert_called_once_with("```Miss C's Inventory:\n+-----------+---------------+--------+------+----------------------------+\n| NAME      | TYPE          | COST   | SIZE | STATS                      |\n+-----------+---------------+--------+------+----------------------------+\n| Doohickey | Miscellaneous | 250 GP | --   | +1 Knowledge (engineering) |\n+-----------+---------------+--------+------+----------------------------+```")
+
+    async def test_shop__misc_and_general_goods__happy_path(self):
+        # Given
+        bot = MagicMock()
+
+        def mock_get_mock_city(city_name):
+            return city(city_name, merchants=[merchant(merchant_name="Miss C", inventory=[item_misc()], sells_general_goods=InventoryType(True, None))], occupants=[1])
+
+        mock_city_dao = Mock()
+        mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
+
+        mock_inventory_dao = Mock()
+        mock_inventory_dao.get_general_goods.side_effect = mock_get_general_goods
+
+        build_table_use_case = BuildTableUseCase()
+        lookup_city_use_case = LookupCityUseCase(mock_city_dao)
+        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
+        build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
+
+        shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case, lookup_city_use_case=lookup_city_use_case, lookup_inventory_use_case=lookup_inventory_use_case, lookup_merchant_use_case=lookup_merchant_use_case, build_inventory_table_use_case=build_inventory_table_use_case))
+
+        ctx = MagicMock()
+        ctx.author = MagicMock()
+        ctx.author.id = 1
+        ctx.author.name = "fake_username_1"
+        ctx.send = AsyncMock()
+
+        # When
+        await ShopCog.shop(shop_cog, ctx, "Qeynos", "Miss", "C")
+
+        # Then
+        ctx.send.assert_called_once_with("```Miss C's Inventory:\n+-----------+---------------+--------+------+----------------------------+\n| NAME      | TYPE          | COST   | SIZE | STATS                      |\n+-----------+---------------+--------+------+----------------------------+\n| Doohickey | Miscellaneous | 250 GP | --   | +1 Knowledge (engineering) |\n| Widget    | General Good  | 100 GP | --   | --                         |\n+-----------+---------------+--------+------+----------------------------+```")
 
     async def test_shop__lookup_merchants__happy_path(self):
         # Given

@@ -4,17 +4,18 @@ from enum import Enum
 class ItemType(Enum):
     ARMOR = "Armor"
     GENERAL_GOOD = "General Good"
+    INSTRUMENT = "Instrument"
     JEWELRY = "Jewelry"
+    MISCELLANEOUS = "Miscellaneous"
     SPELL = "Spell"
     MELEE_WEAPON = "Weapon"
     RANGED_WEAPON = "Weapon"
-    UNKNOWN = "Unknown"
 
 def get_item_type_by_input(input_string):
     try:
         return ItemType[input_string.upper()]
     except KeyError:
-        return ItemType.UNKNOWN
+        return ItemType.MISCELLANEOUS
 
 class Item:
     def __init__(self, item_type, name, cost, size, armor_bonus, armor_check_penalty, damage, crit_range, delay, max_dexterity, stats, spell_level, spell_description):

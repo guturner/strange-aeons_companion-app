@@ -15,6 +15,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -68,6 +71,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -94,6 +100,9 @@
                 "enabled" : false
             },
             "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
                 "enabled" : false
             },
             "sellsJewelry" : {
@@ -129,6 +138,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -155,6 +167,9 @@
             },
             "sellsGeneralGoods" : {
                 "enabled" : true
+            },
+            "sellsInstruments" : {
+                "enabled" : false
             },
             "sellsJewelry" : {
                 "enabled": false
@@ -196,6 +211,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -220,6 +238,9 @@
                 "enabled" : false
             },
             "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
                 "enabled" : false
             },
             "sellsJewelry" : {
@@ -252,6 +273,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : true
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -262,18 +286,35 @@
                 "enabled" : false
             },
             "inventory" : [
-
+                {
+                    "type" : "instrument",
+                    "name" : "Gypsy Lute",
+                    "stats" : "+3 Perform (lute), +1 Perform (twisting, string), Magic Resistance (2)",
+                    "cost" : "600 GP"
+                },
+                {
+                    "type" : "instrument",
+                    "name" : "Sharkskin Drum",
+                    "stats" : "+2 Perform (drums) / Play Percussion, +3 Perform (twisting, percussion), Percussion Songs +3 Lvls",
+                    "cost" : "2400 GP"
+                },
+                {
+                    "type" : "bag",
+                    "name" : "Dusty Ransacker's Pack",
+                    "stats" : "Anything placed inside weighs 25%",
+                    "cost" : "1100 GP"
+                }
             ],
-            "tableRows" : 10
+            "tableRows" : 7
         }
     ],
     "occupants" : [
 
     ],
     "directions" : {
-        "question" : "You hear the snoring of a nearby sentry leaning against his spear.",
-        "answer" : "Sentry Boris: Wha..? Huh? You're looking for who now?",
-        "notFound" : "Sentry Boris: *snoring* Neva' heard of no {{merchant_name}}..."
+        "question" : "A cloaked figure approaches you quietly.",
+        "answer" : "Black Market Dealer: Psst, what d'ya need? Who are ya lookin' for?",
+        "notFound" : "Black Market Dealer: Get outta my face, there ain't no {{merchant_name}} around here."
     }
 }
 {
@@ -291,6 +332,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -301,7 +345,18 @@
                 "enabled" : false
             },
             "inventory" : [
-
+                {
+                    "type" : "armor",
+                    "name" : "Jilleo's Bracelet",
+                    "stats" : "Str +1, Int +1, Wis +1",
+                    "cost" : "6030 GP"
+                },
+                {
+                    "type" : "armor",
+                    "name" : "Blackened Iron Spaulders",
+                    "stats" : "Grants the 'Slam' Feat",
+                    "cost" : "1200 GP"
+                }
             ],
             "tableRows" : 8
         },
@@ -315,6 +370,9 @@
                 "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
             },
             "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
                 "enabled" : false
             },
             "sellsJewelry" : {
@@ -341,6 +399,9 @@
                 "enabled" : false
             },
             "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
                 "enabled" : false
             },
             "sellsJewelry" : {
@@ -373,6 +434,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -398,6 +462,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : true
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -417,9 +484,9 @@
 
     ],
     "directions" : {
-        "question" : "A cloaked figure approaches you quietly.",
-        "answer" : "Black Market Dealer: Psst, what d'ya need? Who are ya lookin' for?",
-        "notFound" : "Black Market Dealer: Get outta my face, there ain't no {{merchant_name}} around here."
+        "question" : "You hear the snoring of a nearby sentry leaning against his spear.",
+        "answer" : "Sentry Boris: Wha..? Huh? You're looking for who now?",
+        "notFound" : "Sentry Boris: *snoring* Neva' heard of no {{merchant_name}}..."
     }
 }
 {
@@ -435,6 +502,9 @@
                 "enabled" : true
             },
             "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
                 "enabled" : false
             },
             "sellsJewelry" : {
@@ -463,6 +533,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -487,6 +560,9 @@
                 "enabled" : false
             },
             "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
                 "enabled" : false
             },
             "sellsJewelry" : {
@@ -519,6 +595,9 @@
             "sellsGeneralGoods" : {
                 "enabled" : false
             },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
             "sellsJewelry" : {
                 "enabled": false
             },
@@ -543,6 +622,9 @@
             },
             "sellsGeneralGoods" : {
                 "enabled" : true
+            },
+            "sellsInstruments" : {
+                "enabled" : false
             },
             "sellsJewelry" : {
                 "enabled": false
