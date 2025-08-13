@@ -1088,7 +1088,7 @@
     "name" : "Burn",
     "cost" : "100 GP",
     "spell_level" : "Mag 2",
-    "spell_description" : "1D10 fire damage (1 creature)"
+    "spell_description" : "1D10 fire dmg (1 creature)"
 }
 {
     "type" : "spell",
@@ -1187,4 +1187,74 @@
     "cost" : "25 GP",
     "spell_level" : "Clr 4, Enc 5, Nec 1, Pal 3, Shd 1, Wiz 9",
     "spell_description" : "Invisibility (only undead) (self for Shd & Wiz; 1 creature for others)"
+}
+{
+    "type" : "spell",
+    "name" : "Flame Bolt",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "3D10 fire dmg (1 creature, ranged touch atk)"
+}
+{
+    "type" : "spell",
+    "name" : "Lesser Shielding",
+    "cost" : "225 GP",
+    "spell_level" : "Enc 3, Mag 3, Nec 3, Wiz 3",
+    "spell_description" : "+3 AC, +7 HP, magic resistance (4), magic save +1 (self)"
+}
+{
+    "type" : "spell",
+    "name" : "Renew Elements",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "Cures 3D10 HP (pet only)"
+}
+{
+    "type" : "spell",
+    "name" : "Shield of Fire",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "Fire resistance (4), fire save +1, damage shield (2) (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Shock of Blades",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "3D8 magic slashing dmg (ref half dmg, interrupts on fail)"
+}
+{
+    "type" : "spell",
+    "name" : "Staff of Tracing",
+    "cost" : "225 GP",
+    "spell_level" : "Mag 3",
+    "spell_description" : "Summons a magic quarterstaff with 2 charges of +2 Con (self, 1 min)"
+}
+{
+    "type" : "spell",
+    "name" : "Leering Corpse",
+    "cost" : "25 GP",
+    "spell_level" : "Nec 2, Shd 1",
+    "spell_description" : "Summons a Skeleton (Type 2)"
+}
+{
+    "type" : "spell",
+    "name" : "Lifetap",
+    "cost" : "25 GP",
+    "spell_level" : "Nec 1, Shd 1",
+    "spell_description" : "2 HP magic dmg (ref half dmg) (1 creature), cures 2 HP (self)"
+}
+{
+    "type" : "spell",
+    "name" : "Despair",
+    "cost" : "25 GP",
+    "spell_level" : "Shd 1",
+    "spell_description" : "-1 Atk (1 creature)"
+}
+{
+    "type" : "spell",
+    "name" : "Disease Cloud",
+    "cost" : "25 GP",
+    "spell_level" : "Nec 1, Shd 1",
+    "spell_description" : "1 HP disease dmg immediately, then every 2nd round (1 creature)"
 }
