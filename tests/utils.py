@@ -118,6 +118,7 @@ def item_general_good():
         delay=None,
         max_dexterity=None,
         stats=None,
+        song_instrument=None,
         spell_level=None,
         spell_description=None
     )
@@ -135,6 +136,7 @@ def item_general_jewelry():
         delay=None,
         max_dexterity=None,
         stats=None,
+        song_instrument=None,
         spell_level=None,
         spell_description=None
     )
@@ -152,8 +154,27 @@ def item_armor_jewelry():
         delay=None,
         max_dexterity=None,
         stats="Spell Haste IV",
+        song_instrument=None,
         spell_level=None,
         spell_description=None
+    )
+
+def item_song():
+    return Item(
+        item_type="song",
+        name="Kumbaya",
+        cost="1000 GP",
+        size=None,
+        armor_bonus=None,
+        armor_check_penalty=None,
+        damage=None,
+        crit_range=None,
+        delay=None,
+        max_dexterity=None,
+        stats=None,
+        song_instrument="String",
+        spell_level="Brd 30",
+        spell_description="Peace & Love!"
     )
 
 def item_spell():
@@ -169,6 +190,7 @@ def item_spell():
         delay=None,
         max_dexterity=None,
         stats=None,
+        song_instrument=None,
         spell_level="Mag 30",
         spell_description="It's over 9000!"
     )
@@ -186,6 +208,7 @@ def item_weapon():
         delay="Quick",
         max_dexterity=None,
         stats="magic resistance (5)",
+        song_instrument=None,
         spell_level=None,
         spell_description=None
     )
@@ -203,6 +226,7 @@ def item_custom_armor():
         delay=None,
         max_dexterity="+5",
         stats="magic resistance (5)",
+        song_instrument=None,
         spell_level=None,
         spell_description=None
     )
@@ -220,6 +244,7 @@ def item_custom_weapon():
         delay="Quick",
         max_dexterity=None,
         stats="magic resistance (5)",
+        song_instrument=None,
         spell_level=None,
         spell_description=None
     )
@@ -237,6 +262,7 @@ def item_instrument():
         delay=None,
         max_dexterity=None,
         stats="+100 Play String Instruments",
+        song_instrument=None,
         spell_level=None,
         spell_description=None
     )
@@ -253,12 +279,13 @@ def item_misc():
         crit_range=None,
         delay=None,
         max_dexterity=None,
+        song_instrument=None,
         stats="+1 Knowledge (engineering)",
         spell_level=None,
         spell_description=None
     )
 
-def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armor=InventoryType(False, None), sells_general_goods=InventoryType(False, None), sells_instruments=InventoryType(False, None), sells_jewelry=InventoryType(False, None), sells_spells=InventoryType(False, None), sells_weapons=InventoryType(False, None), table_rows=8):
+def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armor=InventoryType(False, None), sells_general_goods=InventoryType(False, None), sells_instruments=InventoryType(False, None), sells_jewelry=InventoryType(False, None), sells_songs=InventoryType(False, None), sells_spells=InventoryType(False, None), sells_weapons=InventoryType(False, None), table_rows=8):
     return Merchant(
         merchant_id=uuid.uuid4(),
         name=merchant_name,
@@ -268,6 +295,7 @@ def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armo
         sells_general_goods=sells_general_goods,
         sells_instruments=sells_instruments,
         sells_jewelry=sells_jewelry,
+        sells_songs=sells_songs,
         sells_spells=sells_spells,
         sells_weapons=sells_weapons,
         inventory=inventory,
@@ -309,13 +337,19 @@ def merchant_general_goods_and_custom_weapon():
         sells_general_goods=InventoryType(True, None)
     )
 
+def merchant_songs():
+    return merchant(
+        merchant_name="Song Mann",
+        merchant_type="Songs",
+        inventory=[],
+        sells_songs=InventoryType(True, None)
+    )
+
 def merchant_spells():
     return merchant(
         merchant_name="Spell Mann",
         merchant_type="Spells",
-        inventory=[
-            item_spell()
-        ],
+        inventory=[],
         sells_spells=InventoryType(True, None)
     )
 
@@ -361,13 +395,16 @@ def mock_update_user_by_username(username, user):
         return None
 
 def mock_get_city_by_city_name(city_name):
-    return city(city_name, merchants=[merchant_general_goods_and_weapons(), merchant_jewelry(), merchant_general_goods_and_custom_armor(), merchant_general_goods_and_custom_weapon(), merchant_spells()], occupants=[1])
+    return city(city_name, merchants=[merchant_general_goods_and_weapons(), merchant_jewelry(), merchant_general_goods_and_custom_armor(), merchant_general_goods_and_custom_weapon(), merchant_songs(), merchant_spells()], occupants=[1])
 
 def mock_get_general_goods(override_filter):
     return [item_general_good()]
 
 def mock_get_jewelry(override_filter):
     return [item_armor_jewelry(), item_general_jewelry()]
+
+def mock_get_songs(override_filter):
+    return [item_song()]
 
 def mock_get_spells(override_filter):
     return [item_spell()]

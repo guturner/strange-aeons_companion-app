@@ -21,6 +21,10 @@ class LookupInventoryUseCase:
         jewelry_inventory = self.__inventory_dao.get_jewelry(override_filter)
         return LookupInventorySuccess(jewelry_inventory)
 
+    def lookup_songs_inventory(self, override_filter):
+        songs_inventory = self.__inventory_dao.get_songs(override_filter)
+        return LookupInventorySuccess(songs_inventory)
+
     def lookup_spells_inventory(self, override_filter):
         spells_inventory = self.__inventory_dao.get_spells(override_filter)
         return LookupInventorySuccess(spells_inventory)

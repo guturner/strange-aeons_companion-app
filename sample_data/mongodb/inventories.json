@@ -1258,3 +1258,147 @@
     "spell_level" : "Nec 1, Shd 1",
     "spell_description" : "1 HP disease dmg immediately, then every 2nd round (1 creature)"
 }
+{
+    "type" : "song",
+    "name" : "Chant of Battle",
+    "cost" : "25 GP",
+    "song_instrument" : "Percussion",
+    "spell_level" : "Brd 1",
+    "spell_description" : "+1|+2 Str, +1|+2 Dex, +1|+2 AC (luck)"
+}
+{
+    "type" : "song",
+    "name" : "Chords of Dissonance",
+    "cost" : "25 GP",
+    "song_instrument" : "String",
+    "spell_level" : "Brd 1",
+    "spell_description" : "1D3|1D6 sonic dmg per round"
+}
+{
+    "type" : "song",
+    "name" : "Jaxan's Jig of Vigor",
+    "cost" : "25 GP",
+    "song_instrument" : "Percussion",
+    "spell_level" : "Brd 1",
+    "spell_description" : "Cures 1D4|2D4 Subdual (Non-Lethal) HP"
+}
+{
+    "type" : "song",
+    "name" : "Lyssa's Locating Lyric",
+    "cost" : "25 GP",
+    "song_instrument" : "None",
+    "spell_level" : "Brd 1",
+    "spell_description" : "Locates a corpse"
+}
+{
+    "type" : "song",
+    "name" : "Selo's Accelerando",
+    "cost" : "25 GP",
+    "song_instrument" : "Percussion",
+    "spell_level" : "Brd 1",
+    "spell_description" : "Increases base speed"
+}
+{
+    "type" : "song",
+    "name" : "Anthem De Arms",
+    "cost" : "100 GP",
+    "song_instrument" : "None",
+    "spell_level" : "Brd 2",
+    "spell_description" : "+2 Str, Haste (+1 AC, -1 Weapon Delay)"
+}
+{
+    "type" : "song",
+    "name" : "Elemental Rhythms",
+    "cost" : "100 GP",
+    "song_instrument" : "Percussion",
+    "spell_level" : "Brd 2",
+    "spell_description" : "Magic, Electrical, Fire, and Cold Resistance (4) and Saving Throw +2"
+}
+{
+    "type" : "song",
+    "name" : "Hymn of Restoration",
+    "cost" : "100 GP",
+    "song_instrument" : "String",
+    "spell_level" : "Brd 2",
+    "spell_description" : "Cures 1|2 HP (+1|+2 per 10 Bard Lvl) per round"
+}
+{
+    "type" : "song",
+    "name" : "Jonathan's Whistling Warsong",
+    "cost" : "100 GP",
+    "song_instrument" : "None",
+    "spell_level" : "Brd 2",
+    "spell_description" : "The Bard receives Haste (+2 AC, -2 Weapon Delay), +2 Str, +1 AC (luck)"
+}
+{
+    "type" : "song",
+    "name" : "Kellin's Lugubrious Lament",
+    "cost" : "100 GP",
+    "song_instrument" : "String",
+    "spell_level" : "Brd 2",
+    "spell_description" : "Creature sinks into a depression"
+}
+{
+    "type" : "song",
+    "name" : "Magical Monologue",
+    "cost" : "100 GP",
+    "song_instrument" : "None",
+    "spell_level" : "Brd 2",
+    "spell_description" : "The Bard's weapon becomes magical (+1 Atk, +1 Dmg)"
+}
+{
+    "type" : "song",
+    "name" : "Peaceful Rhythms",
+    "cost" : "100 GP",
+    "song_instrument" : "Percussion",
+    "spell_level" : "Brd 2",
+    "spell_description" : "Magic and Sonic Resistance (4) and Saving Throw +2"
+}
+{
+    "type" : "song",
+    "name" : "Brusco's Boastful Bellow",
+    "cost" : "225 GP",
+    "song_instrument" : "None",
+    "spell_level" : "Brd 3",
+    "spell_description" : "1D6 sonic dmg +1 per 3 Bard lvls"
+}
+{
+    "type" : "song",
+    "name" : "Cinda's Charismatic Carillon",
+    "cost" : "225 GP",
+    "song_instrument" : "Wind",
+    "spell_level" : "Brd 3",
+    "spell_description" : "Increases faction by +2|+4"
+}
+{
+    "type" : "song",
+    "name" : "Kellin's Lucid Lullaby",
+    "cost" : "225 GP",
+    "song_instrument" : "String",
+    "spell_level" : "Brd 3",
+    "spell_description" : "Mesmerizes target"
+}
+{
+    "type" : "song",
+    "name" : "Lyssa's Cataloging Libretto",
+    "cost" : "225 GP",
+    "song_instrument" : "None",
+    "spell_level" : "Brd 3",
+    "spell_description" : "Identify magic items"
+}
+{
+    "type" : "song",
+    "name" : "Purifying Rhythms",
+    "cost" : "225 GP",
+    "song_instrument" : "Percussion",
+    "spell_level" : "Brd 3",
+    "spell_description" : "Magic, Acid, Disease, Poison Resistance (4) and Saving Throw +2"
+}
+{
+    "type" : "song",
+    "name" : "Song of Sustenance",
+    "cost" : "225 GP",
+    "song_instrument" : "String",
+    "spell_level" : "Brd 3",
+    "spell_description" : "Creature is nourished as if they had just eaten and drank"
+}

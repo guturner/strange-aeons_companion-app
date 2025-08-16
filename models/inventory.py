@@ -7,6 +7,7 @@ class ItemType(Enum):
     INSTRUMENT = "Instrument"
     JEWELRY = "Jewelry"
     MISCELLANEOUS = "Miscellaneous"
+    SONG = "Song"
     SPELL = "Spell"
     MELEE_WEAPON = "Weapon"
     RANGED_WEAPON = "Weapon"
@@ -18,7 +19,7 @@ def get_item_type_by_input(input_string):
         return ItemType.MISCELLANEOUS
 
 class Item:
-    def __init__(self, item_type, name, cost, size, armor_bonus, armor_check_penalty, damage, crit_range, delay, max_dexterity, stats, spell_level, spell_description):
+    def __init__(self, item_type, name, cost, size, armor_bonus, armor_check_penalty, damage, crit_range, delay, max_dexterity, stats, song_instrument, spell_level, spell_description):
         self.item_type = get_item_type_by_input(item_type)
         self.name = name
         self.cost = cost
@@ -30,5 +31,6 @@ class Item:
         self.delay = delay if delay else "--"
         self.max_dexterity = max_dexterity if max_dexterity else "--"
         self.stats = stats if stats else "--"
+        self.song_instrument = song_instrument if song_instrument else "--"
         self.spell_level = spell_level if spell_level else "--"
         self.spell_description = spell_description if spell_description else "--"

@@ -21,6 +21,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -77,6 +80,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -108,6 +114,9 @@
             "sellsJewelry" : {
                 "enabled" : true,
                 "override_filter" : null
+            },
+            "sellsSongs" : {
+                "enabled": false
             },
             "sellsSpells" : {
                 "enabled": false
@@ -144,6 +153,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": true
             },
@@ -172,6 +184,9 @@
                 "enabled" : false
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
                 "enabled": false
             },
             "sellsSpells" : {
@@ -217,6 +232,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -245,6 +263,9 @@
             },
             "sellsJewelry" : {
                 "enabled" : true
+            },
+            "sellsSongs" : {
+                "enabled": false
             },
             "sellsSpells" : {
                 "enabled": false
@@ -277,6 +298,9 @@
                 "enabled" : false
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
                 "enabled": false
             },
             "sellsSpells" : {
@@ -338,6 +362,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -384,6 +411,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -413,6 +443,9 @@
             "sellsJewelry" : {
                 "enabled" : true
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -430,6 +463,37 @@
             "tableRows" : 10
         },
         {
+            "merchantId" : { "$uuid" : "af23f2de-d992-4ec5-a7c4-d3088a372857" },
+            "name" : "Lysric Loresinger",
+            "type" : "Songs",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
+                "enabled": true
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 4
+        },
+        {
             "merchantId" : { "$uuid" : "287cd547-fc7a-4eed-bfb4-5cde5c956419" },
             "name" : "Orex Nolus",
             "type" : "Spells",
@@ -444,6 +508,9 @@
                 "enabled" : false
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
                 "enabled": false
             },
             "sellsSpells" : {
@@ -472,6 +539,9 @@
                 "enabled" : false
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
                 "enabled": false
             },
             "sellsSpells" : {
@@ -521,6 +591,9 @@
             "sellsJewelry" : {
                 "enabled": false
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -548,6 +621,9 @@
                 "enabled" : false
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
                 "enabled": false
             },
             "sellsSpells" : {
@@ -579,6 +655,9 @@
             "sellsJewelry" : {
                 "enabled" : true
             },
+            "sellsSongs" : {
+                "enabled": false
+            },
             "sellsSpells" : {
                 "enabled": false
             },
@@ -602,6 +681,37 @@
             "tableRows" : 10
         },
         {
+            "merchantId" : { "$uuid" : "0c29619c-65fe-463d-81c0-61b3c7de309d" },
+            "name" : "Chalea Volesga",
+            "type" : "Songs",
+            "introductions" : [ ],
+            "sellsArmor" : {
+                "enabled" : false
+            },
+            "sellsGeneralGoods" : {
+                "enabled" : false
+            },
+            "sellsInstruments" : {
+                "enabled" : false
+            },
+            "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
+                "enabled": true
+            },
+            "sellsSpells" : {
+                "enabled": false
+            },
+            "sellsWeapons" : {
+                "enabled" : false
+            },
+            "inventory" : [
+
+            ],
+            "tableRows" : 4
+        },
+        {
             "merchantId" : { "$uuid" : "fc3a93a9-cc84-4cec-93c7-0406602454d9" },
             "name" : "Ladia Qursii",
             "type" : "Spells",
@@ -616,6 +726,9 @@
                 "enabled" : false
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
                 "enabled": false
             },
             "sellsSpells" : {
@@ -644,6 +757,9 @@
                 "enabled" : false
             },
             "sellsJewelry" : {
+                "enabled": false
+            },
+            "sellsSongs" : {
                 "enabled": false
             },
             "sellsSpells" : {

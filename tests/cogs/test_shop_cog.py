@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, MagicMock, Mock
 from cogs.shop_cog import ShopCog
 from models.city import InventoryType
 from tests.utils import mock_get_general_goods, mock_get_jewelry, mock_get_weapons, mock_get_city_by_city_name, \
-    recipe_book, city, merchant, mock_get_spells, item_misc, item_instrument
+    recipe_book, city, merchant, mock_get_songs, mock_get_spells, item_misc, item_instrument
 
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
 from use_cases.build_table_use_case import BuildTableUseCase
@@ -136,6 +136,36 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         # Then
         ctx.send.assert_called_once_with("```Custom On's Inventory:\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+\n| NAME          | TYPE         | COST    | DMG  | CRIT       | DELAY | SIZE           | STATS                |\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+\n| Customizer II | Weapon       | 1000 GP | 1D10 | 10-20, x10 | Quick | Large, Martial | magic resistance (5) |\n| Widget        | General Good | 100 GP  | --   | --         | --    | --             | --                   |\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+```")
 
+    async def test_shop__songs__happy_path(self):
+        # Given
+        bot = MagicMock()
+
+        mock_city_dao = Mock()
+        mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
+
+        mock_inventory_dao = Mock()
+        mock_inventory_dao.get_songs.side_effect = mock_get_songs
+
+        build_table_use_case = BuildTableUseCase()
+        lookup_city_use_case = LookupCityUseCase(mock_city_dao)
+        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
+        build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
+
+        shop_cog = ShopCog(bot, recipe_book(build_table_use_case=build_table_use_case, lookup_city_use_case=lookup_city_use_case, lookup_inventory_use_case=lookup_inventory_use_case, lookup_merchant_use_case=lookup_merchant_use_case, build_inventory_table_use_case=build_inventory_table_use_case))
+
+        ctx = MagicMock()
+        ctx.author = MagicMock()
+        ctx.author.id = 1
+        ctx.author.name = "fake_username_1"
+        ctx.send = AsyncMock()
+
+        # When
+        await ShopCog.shop(shop_cog, ctx, "Qeynos", "Song", "Mann")
+
+        # Then
+        ctx.send.assert_called_once_with("```Song Mann's Inventory:\n+---------+------+---------+------------+--------+---------------+\n| NAME    | TYPE | COST    | INSTRUMENT | LVL    | DESCRIPTION   |\n+---------+------+---------+------------+--------+---------------+\n| Kumbaya | Song | 1000 GP | String     | Brd 30 | Peace & Love! |\n+---------+------+---------+------------+--------+---------------+```")
+
     async def test_shop__spells__happy_path(self):
         # Given
         bot = MagicMock()
@@ -164,7 +194,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         await ShopCog.shop(shop_cog, ctx, "Qeynos", "Spell", "Mann")
 
         # Then
-        ctx.send.assert_called_once_with("```Spell Mann's Inventory:\n+------------+-------+---------+-----------+-----------------+\n| NAME       | TYPE  | COST    | SPELL LVL | DESCRIPTION     |\n+------------+-------+---------+-----------+-----------------+\n| Kamehameha | Spell | 1000 GP | Mag 30    | It's over 9000! |\n| Kamehameha | Spell | 1000 GP | Mag 30    | It's over 9000! |\n+------------+-------+---------+-----------+-----------------+```")
+        ctx.send.assert_called_once_with("```Spell Mann's Inventory:\n+------------+-------+---------+--------+-----------------+\n| NAME       | TYPE  | COST    | LVL    | DESCRIPTION     |\n+------------+-------+---------+--------+-----------------+\n| Kamehameha | Spell | 1000 GP | Mag 30 | It's over 9000! |\n+------------+-------+---------+--------+-----------------+```")
 
     async def test_shop__instruments__happy_path(self):
         # Given
@@ -294,7 +324,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         await ShopCog.shop(shop_cog, ctx, "Qeynos")
 
         # Then
-        ctx.send.assert_called_once_with("Where are the merchants?\n\nHere are the merchants.\n    Custom On (Weaponer)\n    Custom Or (Armorer)\n    Ensign Chant (General Goods)\n    Mr. Chant (General Goods)\n    Spell Mann (Spells)")
+        ctx.send.assert_called_once_with("Where are the merchants?\n\nHere are the merchants.\n    Custom On (Weaponer)\n    Custom Or (Armorer)\n    Ensign Chant (General Goods)\n    Mr. Chant (General Goods)\n    Song Mann (Songs)\n    Spell Mann (Spells)")
 
     async def test_shop__invalid_city(self):
         # Given

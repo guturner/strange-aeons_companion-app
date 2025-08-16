@@ -19,6 +19,7 @@ class MerchantMapper:
             sells_general_goods=InventoryTypeMapper(self.database_result["sellsGeneralGoods"]).map_to_inventory_type(),
             sells_instruments=InventoryTypeMapper(self.database_result["sellsInstruments"]).map_to_inventory_type(),
             sells_jewelry=InventoryTypeMapper(self.database_result["sellsJewelry"]).map_to_inventory_type(),
+            sells_songs=InventoryTypeMapper(self.database_result["sellsSongs"]).map_to_inventory_type(),
             sells_spells=InventoryTypeMapper(self.database_result["sellsSpells"]).map_to_inventory_type(),
             sells_weapons=InventoryTypeMapper(self.database_result["sellsWeapons"]).map_to_inventory_type(),
             inventory=list(map(lambda i: InventoryMapper(i).map_to_item(), inventory_result)),
