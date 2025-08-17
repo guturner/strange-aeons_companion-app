@@ -34,3 +34,8 @@ class Item:
         self.song_instrument = song_instrument if song_instrument else "--"
         self.spell_level = spell_level if spell_level else "--"
         self.spell_description = spell_description if spell_description else "--"
+
+class SellsItemType:
+    def __init__(self, item_type, and_filter):
+        self.item_type = get_item_type_by_input(item_type)
+        self.and_filter = and_filter

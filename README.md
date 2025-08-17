@@ -54,26 +54,26 @@ the schema below:
 * `users` collection:
   * ```json
     {
-      "userId" : [null, NumberLong],
+      "userId" : NumberLong?,
         "player" : {
             "name" : {
-                "first" : [String],
-                "last" : [String]
+                "first" : String,
+                "last" : String
             },
-            "gm" : [Boolean]
+            "gm" : Boolean
         },
         "discord" : {
-            "username" : [String]
+            "username" : String
         },
         "character" : { // if "gm" is true, then "character" is null
             "name" : {
-                "first" : [String],
-                "last" : [String]
+                "first" : String,
+                "last" : String
             },
-            "race" : [String],
-            "class" : [String],
-            "level" : [NumberInt],
-            "alignment" : [String]
+            "race" : String,
+            "class" : String,
+            "level" : NumberInt,
+            "alignment" : String
         }
     }
     ```
@@ -81,63 +81,51 @@ the schema below:
 * `cities` collection:
   * ```json
     {
-      "cityId" : [UUID],
-      "name" : [String],
+      "cityId" : UUID,
+      "name" : String,
       "merchants" : [
           {
-              "merchantId" : [UUID],
-              "name" : [String],
-              "type" : [String],
-              "introductions" : [
-                  [String]
+              "merchantId" : UUID,
+              "name" : String,
+              "description" : String,
+              "sellsItemTypes" : [
+                  {
+                      "item_type" : String,
+                      "andFilter" : String?
+                  }
               ],
-              "sellsArmor" : {
-                  "enabled" : [Boolean],
-                  "filter" : [null, String]
-              },
-              "sellsGeneralGoods" : {
-                  "enabled" : [Boolean],
-                  "filter" : [null, String]
-              },
-              "sellsJewelry" : {
-                  "enabled" : [Boolean],
-                  "filter" : [null, String]
-              },
-              "sellsWeapons" : {
-                  "enabled" : [Boolean],
-                  "filter" : [null, String]
-              },
-              "inventory" : [
-                  // see "inventories" below
-              ]
+              "custom_items" : [
+                  // see "items" below
+              ],
+              "number_of_table_rows" : NumberLong
           }
       ],
       "occupants" : [
-          [NumberLong]
+          NumberLong
       ],
       "directions" : {
-          "question" : [String],
-          "answer" : [String],
-          "notFound" : [String]
+          "question" : String,
+          "answer" : String,
+          "notFound" : String
       }
     }
     ```
     
-* `inventories` collection:
+* `items` collection:
   * ```json
     {
-      "type" : [String],
-      "masterwork" : [Boolean],
-      "name" : [String],
-      "armor_bonus" : [null, String],
-      "armor_check_penalty" : [null, String],
-      "damage" : [null, String],
-      "crit_range" : [null, String],
-      "delay" : [null, String],
-      "max_dexterity" : [null, String],
-      "size" : [null, String],
-      "stats" : [null, String],
-      "cost" : [String]
+      "type" : String,
+      "masterwork" : Boolean,
+      "name" : String,
+      "armor_bonus" : String?,
+      "armor_check_penalty" : String?,
+      "damage" : String?,
+      "crit_range" : String?,
+      "delay" : String?,
+      "max_dexterity" : String?,
+      "size" : String?,
+      "stats" : String?,
+      "cost" : String?
     }
     ```
     

@@ -3,8 +3,7 @@ import unittest
 from unittest.mock import AsyncMock, MagicMock, Mock
 
 from cogs.shop_cog import ShopCog
-from models.city import InventoryType
-from models.item import ItemType
+from models.item import ItemType, SellsItemType
 from tests.utils import city, item_armor_jewelry, item_custom_armor, item_custom_weapon, item_general_good, \
     item_general_jewelry, item_instrument, item_melee_weapon, item_misc, item_song, item_spell, merchant, \
     mock_get_city_by_city_name, recipe_book
@@ -225,7 +224,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         bot = MagicMock()
 
         def mock_get_mock_city(city_name):
-            return city(city_name, merchants=[merchant(merchant_name="Miss C", inventory=[item_instrument()])], occupants=[1])
+            return city(city_name, merchants=[merchant(name="Miss C", custom_items=[item_instrument()])], occupants=[1])
 
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
@@ -257,7 +256,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         bot = MagicMock()
 
         def mock_get_mock_city(city_name):
-            return city(city_name, merchants=[merchant(merchant_name="Miss C", inventory=[item_misc()])], occupants=[1])
+            return city(city_name, merchants=[merchant(name="Miss C", custom_items=[item_misc()])], occupants=[1])
 
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
@@ -289,7 +288,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         bot = MagicMock()
 
         def mock_get_mock_city(city_name):
-            return city(city_name, merchants=[merchant(merchant_name="Miss C", inventory=[item_misc()], sells_general_goods=InventoryType(True, None))], occupants=[1])
+            return city(city_name, merchants=[merchant(name="Miss C", sells_item_types=[SellsItemType("general_good", None)], custom_items=[item_misc()])], occupants=[1])
 
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
@@ -356,7 +355,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         await ShopCog.shop(shop_cog, ctx, "Qeynos")
 
         # Then
-        ctx.send.assert_called_once_with("Where are the merchants?\n\nHere are the merchants.\n    Custom On (Weaponer)\n    Custom Or (Armorer)\n    Ensign Chant (General Goods)\n    Mr. Chant (General Goods)\n    Song Mann (Songs)\n    Spell Mann (Spells)")
+        ctx.send.assert_called_once_with("Where are the merchants?\n\nHere are the merchants.\n    Custom On (Weaponer)\n    Custom Or (Armorer)\n    Ensign Chant (Jeweler)\n    Mr. Chant (General Goods)\n    Song Mann (Songs)\n    Spell Mann (Spells)")
 
     async def test_shop__invalid_city(self):
         # Given
@@ -390,7 +389,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
 
         def mock_get_city_by_city_name(city_name):
-            return city(city_name, merchants=[merchant(merchant_name="Mr. Chant", inventory=[], sells_general_goods=InventoryType(True, None))], occupants=[1])
+            return city(city_name, merchants=[merchant(name="Mr. Chant", sells_item_types=[SellsItemType("general_good", None)])], occupants=[1])
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)

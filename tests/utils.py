@@ -1,8 +1,8 @@
 import uuid
 from unittest.mock import Mock
 
-from models.city import City, Directions, InventoryType, Merchant
-from models.item import Item, ItemType
+from models.city import City, Directions, Merchant
+from models.item import Item, SellsItemType, ItemType
 from models.user import Character, DiscordAccount, Player, Name, User
 from use_cases.recipe_book import RecipeBook
 
@@ -285,72 +285,59 @@ def item_misc():
         spell_description=None
     )
 
-def merchant(merchant_name, inventory, merchant_type="General Goods", sells_armor=InventoryType(False, None), sells_general_goods=InventoryType(False, None), sells_instruments=InventoryType(False, None), sells_jewelry=InventoryType(False, None), sells_songs=InventoryType(False, None), sells_spells=InventoryType(False, None), sells_weapons=InventoryType(False, None), table_rows=8):
+def merchant(name="Merchant", description="General Goods", sells_item_types=None, custom_items=None, number_of_table_rows=8):
+    if sells_item_types is None:
+        sells_item_types = []
     return Merchant(
         merchant_id=uuid.uuid4(),
-        name=merchant_name,
-        merchant_type=merchant_type,
-        introductions=[],
-        sells_armor=sells_armor,
-        sells_general_goods=sells_general_goods,
-        sells_instruments=sells_instruments,
-        sells_jewelry=sells_jewelry,
-        sells_songs=sells_songs,
-        sells_spells=sells_spells,
-        sells_weapons=sells_weapons,
-        inventory=inventory,
-        table_rows=table_rows
+        name=name,
+        description=description,
+        sells_item_types=sells_item_types if sells_item_types is not None else [],
+        custom_items=custom_items if custom_items is not None else [],
+        number_of_table_rows=number_of_table_rows,
     )
 
 def merchant_general_goods_and_weapons():
     return merchant(
-        merchant_name="Mr. Chant",
-        inventory=[],
-        sells_general_goods=InventoryType(True, None),
-        sells_weapons=InventoryType(True, None)
+        name="Mr. Chant",
+        sells_item_types=[SellsItemType("general_good", None), SellsItemType("melee_weapon", None)]
     )
 
 def merchant_jewelry():
     return merchant(
-        merchant_name="Ensign Chant",
-        inventory=[],
-        sells_jewelry=InventoryType(True, None)
+        name="Ensign Chant",
+        description="Jeweler",
+        sells_item_types=[SellsItemType("jewelry", None)]
     )
 
 def merchant_general_goods_and_custom_armor():
     return merchant(
-        merchant_name="Custom Or",
-        merchant_type="Armorer",
-        inventory=[
-            item_custom_armor()
-        ],
-        sells_general_goods=InventoryType(True, None)
+        name="Custom Or",
+        description="Armorer",
+        sells_item_types=[SellsItemType("general_good", None)],
+        custom_items=[item_custom_armor()]
     )
 
 def merchant_general_goods_and_custom_weapon():
     return merchant(
-        merchant_name="Custom On",
-        merchant_type="Weaponer",
-        inventory=[
-            item_custom_weapon()
-        ],
-        sells_general_goods=InventoryType(True, None)
+        name="Custom On",
+        description="Weaponer",
+        sells_item_types=[SellsItemType("general_good", None)],
+        custom_items=[item_custom_weapon()]
     )
 
 def merchant_songs():
     return merchant(
-        merchant_name="Song Mann",
-        merchant_type="Songs",
-        inventory=[],
-        sells_songs=InventoryType(True, None)
+        name="Song Mann",
+        description="Songs",
+        sells_item_types=[SellsItemType("song", None)]
     )
 
 def merchant_spells():
     return merchant(
-        merchant_name="Spell Mann",
-        merchant_type="Spells",
-        inventory=[],
-        sells_spells=InventoryType(True, None)
+        name="Spell Mann",
+        description="Spells",
+        sells_item_types=[SellsItemType("spell", None)]
     )
 
 def recipe_book(build_inventory_table_use_case=Mock(), build_table_use_case=Mock(), lookup_city_use_case=Mock(), lookup_inventory_use_case=Mock(), lookup_merchant_use_case=Mock(), lookup_user_use_case=Mock(), update_user_use_case=Mock()):

@@ -1,5 +1,6 @@
-from mappers.item_mapper import ItemMapper, ItemTypeMapper
+from mappers.item_mapper import ItemMapper, SellsItemTypeMapper
 from models.city import Merchant
+from models.item import ItemType
 
 
 class MerchantMapper:
@@ -7,21 +8,24 @@ class MerchantMapper:
         self.database_result = database_result
 
     def map_to_merchant(self):
-        introductions_result = self.database_result.get("introductions", [])
-        inventory_result = self.database_result.get("inventory", [])
+        sells_item_types_result = self.database_result.get("sellsItemTypes", [])
+        custom_items_result = self.database_result.get("customItems", [])
 
         return Merchant(
             merchant_id=self.database_result["merchantId"],
             name=self.database_result["name"],
-            merchant_type=self.database_result["type"],
-            introductions=introductions_result,
-            sells_armor=ItemTypeMapper(self.database_result["sellsArmor"]).map_to_inventory_type(),
-            sells_general_goods=ItemTypeMapper(self.database_result["sellsGeneralGoods"]).map_to_inventory_type(),
-            sells_instruments=ItemTypeMapper(self.database_result["sellsInstruments"]).map_to_inventory_type(),
-            sells_jewelry=ItemTypeMapper(self.database_result["sellsJewelry"]).map_to_inventory_type(),
-            sells_songs=ItemTypeMapper(self.database_result["sellsSongs"]).map_to_inventory_type(),
-            sells_spells=ItemTypeMapper(self.database_result["sellsSpells"]).map_to_inventory_type(),
-            sells_weapons=ItemTypeMapper(self.database_result["sellsWeapons"]).map_to_inventory_type(),
-            inventory=list(map(lambda i: ItemMapper(i).map_to_item(), inventory_result)),
-            table_rows=self.database_result["tableRows"]
+            description=self.database_result["description"],
+            sells_item_types=set(
+                # Filter out unknown item types:
+                filter(
+                    lambda sit: sit.item_type is not ItemType.MISCELLANEOUS,
+                    # Map each database result to a SellsItemType DTO:
+                    map(
+                        lambda sit: SellsItemTypeMapper(sit).map_to_sells_item_type(),
+                        sells_item_types_result
+                    )
+                )
+            ),
+            custom_items=list(map(lambda i: ItemMapper(i).map_to_item(), custom_items_result)),
+            number_of_table_rows=self.database_result["numberOfTableRows"]
         )

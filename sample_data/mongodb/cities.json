@@ -5,32 +5,13 @@
         {
             "merchantId" : { "$uuid" : "12c66999-ecf4-4b54-95e4-96dd9c402500" },
             "name" : "Clockwork Armorer IV",
-            "type" : "Armorer",
-            "introductions" : [
-                "Greetings, adventurer! I am a merchant, automaton series A."
+            "description" : "Armorer",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor"
+                }
             ],
-            "sellsArmor" : {
-                "enabled" : true
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "customItems" : [
                 {
                     "type" : "armor",
                     "name" : "Cloak of the Ice Bear",
@@ -58,73 +39,34 @@
                     "cost" : "1950 GP"
                 }
             ],
-            "tableRows" : 8
+            "numberOfTableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "70a6d2b4-25e4-4183-8de6-b969b312d671" },
             "name" : "Clockwork Blacksmith II",
-            "type" : "Blacksmith",
-            "introductions" : [
-                "Greetings, adventurer! I am a merchant, automaton series B."
+            "description" : "Blacksmith",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor",
+                    "andFilter" : "{\"size\" : \"Heavy\"}"
+                },
+                {
+                    "itemType" : "melee_weapon"
+                }
             ],
-            "sellsArmor" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"melee_weapon\"}"
-            },
-            "inventory" : [
-
-            ],
-            "tableRows" : 8
+            "customItems" : [ ],
+            "numberOfTableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "ff36f4f3-7355-4b7e-904e-fec0ed530507" },
             "name" : "Clockwork Jeweler I",
-            "type" : "Jeweler",
-            "introductions" : [
-                "Greetings, adventurer! I am a jeweler, automaton series J."
+            "description" : "Jeweler",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "jewelry"
+                }
             ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled" : true,
-                "override_filter" : null
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "customItems" : [
                 {
                     "type" : "armor",
                     "name" : "Golden Ear Stud",
@@ -132,73 +74,33 @@
                     "cost" : "4500 GP"
                 }
             ],
-            "tableRows" : 10
+            "numberOfTableRows" : 10
         },
         {
             "merchantId" : { "$uuid" : "37debb93-c24c-40e6-ae61-0baab48a53dc" },
             "name" : "Clockwork Merchant XVI",
-            "type" : "Spells",
-            "introductions" : [
-                "Greetings, adventurer! I am a merchant, automaton series M."
+            "description" : "Spells",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "spell"
+                }
             ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": true
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "customItems" : [
 
             ],
-            "tableRows" : 4
+            "numberOfTableRows" : 4
         },
         {
             "merchantId" : { "$uuid" : "345ff13a-f412-4aa6-8ce9-5172aba49a18" },
             "name" : "Clockwork Merchant XXIII",
-            "type" : "General Goods",
-            "introductions" : [
-                "Greetings, adventurer! I am a merchant, automaton series M."
+            "description" : "General Goods",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "general_good"
+                }
             ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : true
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
-
-            ],
-            "tableRows" : 10
+            "customItems" : [ ],
+            "numberOfTableRows" : 10
         }
     ],
     "occupants" : [
@@ -217,63 +119,29 @@
         {
             "merchantId" : { "$uuid" : "9594c1f6-eb8a-4ae6-ac51-1056038e9c78" },
             "name" : "Parus the Strong",
-            "type" : "Blacksmith",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"melee_weapon\"}"
-            },
-            "inventory" : [
-
+            "description" : "Blacksmith",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor",
+                    "andFilter" : "{\"size\" : \"Heavy\"}"
+                },
+                {
+                    "itemType" : "melee_weapon"
+                }
             ],
-            "tableRows" : 8
+            "customItems" : [ ],
+            "numberOfTableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "4d83a605-63bd-4e84-9179-1719f28b6a56" },
             "name" : "Shady Swashbuckler",
-            "type" : "Jeweler",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled" : true
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "description" : "Jeweler",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "jewelry"
+                }
+            ],
+            "customItems" : [
                 {
                     "type" : "armor",
                     "name" : "Golden Ear Stud",
@@ -281,35 +149,18 @@
                     "cost" : "4500 GP"
                 }
             ],
-            "tableRows" : 10
+            "numberOfTableRows" : 10
         },
         {
             "merchantId" : { "$uuid" : "7356d36f-bd2d-462b-a07d-5888bad5e570" },
             "name" : "Slea Pinewhisper",
-            "type" : "General Goods",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : true
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "description" : "General Goods",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "general_good"
+                }
+            ],
+            "customItems" : [
                 {
                     "type" : "instrument",
                     "name" : "Gypsy Lute",
@@ -329,7 +180,7 @@
                     "cost" : "1100 GP"
                 }
             ],
-            "tableRows" : 7
+            "numberOfTableRows" : 7
         }
     ],
     "occupants" : [
@@ -348,30 +199,13 @@
         {
             "merchantId" : { "$uuid" : "5a4b87ff-97d1-4d4f-983e-ea3ad938392f" },
             "name" : "Erista Tidius",
-            "type" : "Armorer",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : true
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "description" : "Armorer",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor"
+                }
+            ],
+            "customItems" : [
                 {
                     "type" : "armor",
                     "name" : "Jilleo's Bracelet",
@@ -391,68 +225,34 @@
                     "cost" : "1500 GP"
                 }
             ],
-            "tableRows" : 8
+            "numberOfTableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "ec71d712-6526-4f39-8fe4-a1e8db179d6e" },
             "name" : "Kyrin Steelbone",
-            "type" : "Blacksmith",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"melee_weapon\"}"
-            },
-            "inventory" : [
-
+            "description" : "Blacksmith",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor",
+                    "andFilter" : "{\"size\" : \"Heavy\"}"
+                },
+                {
+                    "itemType" : "melee_weapon"
+                }
             ],
-            "tableRows" : 8
+            "customItems" : [ ],
+            "numberOfTableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "2cb10328-b2e4-414e-b1cf-0e6f45438bbe" },
             "name" : "Aimie Moonspin",
-            "type" : "Jeweler",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled" : true
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "description" : "Jeweler",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "jewelry"
+                }
+            ],
+            "customItems" : [
                 {
                     "type" : "armor",
                     "name" : "Golden Ear Stud",
@@ -460,97 +260,42 @@
                     "cost" : "4500 GP"
                 }
             ],
-            "tableRows" : 10
+            "numberOfTableRows" : 10
         },
         {
             "merchantId" : { "$uuid" : "af23f2de-d992-4ec5-a7c4-d3088a372857" },
             "name" : "Lysric Loresinger",
-            "type" : "Songs",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": true
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
-
+            "description" : "Songs",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "song"
+                }
             ],
-            "tableRows" : 6
+            "customItems" : [ ],
+            "numberOfTableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "287cd547-fc7a-4eed-bfb4-5cde5c956419" },
             "name" : "Orex Nolus",
-            "type" : "Spells",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": true
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
-
+            "description" : "Spells",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "spell"
+                }
             ],
-            "tableRows" : 6
+            "customItems" : [ ],
+            "numberOfTableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "5baf770d-eb5f-4a53-8424-fa064c44b2c7" },
             "name" : "Slan O'Donner",
-            "type" : "General Goods",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : true
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "description" : "General Goods",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "general_good"
+                }
+            ],
+            "customItems" : [
                 {
                     "type" : "armor",
                     "name" : "Bloodstained Mantle",
@@ -558,7 +303,7 @@
                     "cost" : "2500 GP"
                 }
             ],
-            "tableRows" : 10
+            "numberOfTableRows" : 10
         }
     ],
     "occupants" : [
@@ -577,94 +322,41 @@
         {
             "merchantId" : { "$uuid" : "26df9318-0ca0-4300-ad2e-7606b39114f4" },
             "name" : "Gerault Takenmaul",
-            "type" : "Armorer",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : true
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
-
+            "description" : "Armorer",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor"
+                }
             ],
-            "tableRows" : 8
+            "customItems" : [ ],
+            "numberOfTableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "033a5c09-d8b5-4a8b-9e99-59b3647142ba" },
             "name" : "Dren Ironforge",
-            "type" : "Blacksmith",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"armor\", \"size\" : \"Heavy\"}"
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : true,
-                "override_filter" : "{\"type\" : \"melee_weapon\"}"
-            },
-            "inventory" : [
-
+            "description" : "Blacksmith",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor",
+                    "andFilter" : "{\"size\" : \"Heavy\"}"
+                },
+                {
+                    "itemType" : "melee_weapon"
+                }
             ],
-            "tableRows" : 8
+            "customItems" : [ ],
+            "numberOfTableRows" : 8
         },
         {
             "merchantId" : { "$uuid" : "38c6d221-44fc-4855-a996-86b68ded8042" },
             "name" : "Ziska Ironforge",
-            "type" : "Jeweler",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled" : true
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
+            "description" : "Jeweler",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "jewelry"
+                }
+            ],
+            "customItems" : [
                 {
                     "type" : "armor",
                     "name" : "Golden Ear Stud",
@@ -678,100 +370,43 @@
                     "cost" : "2750 GP"
                 }
             ],
-            "tableRows" : 10
+            "numberOfTableRows" : 10
         },
         {
             "merchantId" : { "$uuid" : "0c29619c-65fe-463d-81c0-61b3c7de309d" },
             "name" : "Chalea Volesga",
-            "type" : "Songs",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": true
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
-
+            "description" : "Songs",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "song"
+                }
             ],
-            "tableRows" : 6
+            "customItems" : [ ],
+            "numberOfTableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "fc3a93a9-cc84-4cec-93c7-0406602454d9" },
             "name" : "Ladia Qursii",
-            "type" : "Spells",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : false
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": true
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
-
+            "description" : "Spells",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "spell"
+                }
             ],
-            "tableRows" : 6
+            "customItems" : [ ],
+            "numberOfTableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "35c822d9-ea9c-4fc4-809e-02fcbbe9108d" },
             "name" : "Ghil Starn",
-            "type" : "General Goods",
-            "introductions" : [ ],
-            "sellsArmor" : {
-                "enabled" : false
-            },
-            "sellsGeneralGoods" : {
-                "enabled" : true
-            },
-            "sellsInstruments" : {
-                "enabled" : false
-            },
-            "sellsJewelry" : {
-                "enabled": false
-            },
-            "sellsSongs" : {
-                "enabled": false
-            },
-            "sellsSpells" : {
-                "enabled": false
-            },
-            "sellsWeapons" : {
-                "enabled" : false
-            },
-            "inventory" : [
-
+            "description" : "General Goods",
+            "sellsItemTypes" : [
+                {
+                    "itemType": "general_good"
+                }
             ],
-            "tableRows" : 10
+            "customItems" : [ ],
+            "numberOfTableRows" : 10
         }
     ],
     "occupants" : [
