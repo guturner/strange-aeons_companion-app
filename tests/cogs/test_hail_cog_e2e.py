@@ -7,7 +7,7 @@ from daos.user_dao import UserDAO
 from models.database import Database
 from tests.e2e_test import E2ETest
 from tests.utils import recipe_book
-from use_cases.lookup_user_use_case import LookupUserUseCase
+from use_cases.user_use_case import UserUseCase
 
 
 class TestHailCogE2E(E2ETest):
@@ -28,9 +28,9 @@ class TestHailCogE2E(E2ETest):
             db = Database(uri, db_name)
             user_dao = UserDAO(db)
 
-            lookup_user_use_case = LookupUserUseCase(user_dao)
+            user_use_case = UserUseCase(user_dao)
 
-            hail_cog = HailCog(bot, recipe_book(lookup_user_use_case=lookup_user_use_case))
+            hail_cog = HailCog(bot, recipe_book(user_use_case=user_use_case))
 
             ctx = MagicMock()
             ctx.author = MagicMock()
@@ -60,9 +60,9 @@ class TestHailCogE2E(E2ETest):
             db = Database(uri, db_name)
             user_dao = UserDAO(db)
 
-            lookup_user_use_case = LookupUserUseCase(user_dao)
+            user_use_case = UserUseCase(user_dao)
 
-            hail_cog = HailCog(bot, recipe_book(lookup_user_use_case=lookup_user_use_case))
+            hail_cog = HailCog(bot, recipe_book(user_use_case=user_use_case))
 
             ctx = MagicMock()
             ctx.author = MagicMock()

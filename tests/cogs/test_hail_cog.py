@@ -3,8 +3,7 @@ from unittest.mock import AsyncMock, MagicMock, Mock
 
 from cogs.hail_cog import HailCog
 from tests.utils import mock_get_user_by_user_id, recipe_book, mock_get_user_by_username, mock_update_user_by_username
-from use_cases.lookup_user_use_case import LookupUserUseCase
-from use_cases.update_user_use_case import UpdateUserUseCase
+from use_cases.user_use_case import UserUseCase
 
 
 class TestHailCog(unittest.IsolatedAsyncioTestCase):
@@ -15,9 +14,9 @@ class TestHailCog(unittest.IsolatedAsyncioTestCase):
         mock_user_dao = Mock()
         mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id
 
-        lookup_user_use_case = LookupUserUseCase(mock_user_dao)
+        user_use_case = UserUseCase(mock_user_dao)
 
-        hail_cog = HailCog(bot, recipe_book(lookup_user_use_case=lookup_user_use_case))
+        hail_cog = HailCog(bot, recipe_book(user_use_case=user_use_case))
 
         ctx = MagicMock()
         ctx.author = MagicMock()
@@ -38,9 +37,9 @@ class TestHailCog(unittest.IsolatedAsyncioTestCase):
         mock_user_dao = Mock()
         mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id
 
-        lookup_user_use_case = LookupUserUseCase(mock_user_dao)
+        user_use_case = UserUseCase(mock_user_dao)
 
-        hail_cog = HailCog(bot, recipe_book(lookup_user_use_case=lookup_user_use_case))
+        hail_cog = HailCog(bot, recipe_book(user_use_case=user_use_case))
 
         ctx = MagicMock()
         ctx.author = MagicMock()
@@ -59,75 +58,67 @@ class TestHailCog(unittest.IsolatedAsyncioTestCase):
         bot = MagicMock()
 
         mock_user_dao = Mock()
-        def mock_get_user_by_user_id_not_registered(user_id):
-            return None
-        mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id_not_registered
+        mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id
         mock_user_dao.get_user_by_username.side_effect = mock_get_user_by_username
         mock_user_dao.update_user_by_username.side_effect = mock_update_user_by_username
 
-        lookup_user_use_case = LookupUserUseCase(mock_user_dao)
-        update_user_use_case = UpdateUserUseCase(lookup_user_use_case, mock_user_dao)
+        user_use_case = UserUseCase(mock_user_dao)
 
-        hail_cog = HailCog(bot, recipe_book(lookup_user_use_case=lookup_user_use_case, update_user_use_case=update_user_use_case))
+        hail_cog = HailCog(bot, recipe_book(user_use_case=user_use_case))
 
         ctx = MagicMock()
         ctx.author = MagicMock()
-        ctx.author.id = 1
-        ctx.author.name = "fake_username_1"
+        ctx.author.id = 4
+        ctx.author.name = "fake_username_4"
         ctx.send = AsyncMock()
 
         # When
         await HailCog.hail(hail_cog, ctx)
 
         # Then
-        ctx.send.assert_called_once_with("Hail Game Master Turner! You're all set, now let's get started.")
+        ctx.send.assert_called_once_with("Hail Game Master GM! You're all set, now let's get started.")
 
     async def test_hail__player__not_registered(self):
         # Given
         bot = MagicMock()
 
         mock_user_dao = Mock()
-        def mock_get_user_by_user_id_not_registered(user_id):
-            return None
-        mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id_not_registered
+        mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id
         mock_user_dao.get_user_by_username.side_effect = mock_get_user_by_username
         mock_user_dao.update_user_by_username.side_effect = mock_update_user_by_username
 
-        lookup_user_use_case = LookupUserUseCase(mock_user_dao)
-        update_user_use_case = UpdateUserUseCase(lookup_user_use_case, mock_user_dao)
+        user_use_case = UserUseCase(mock_user_dao)
 
-        hail_cog = HailCog(bot, recipe_book(lookup_user_use_case=lookup_user_use_case, update_user_use_case=update_user_use_case))
+        hail_cog = HailCog(bot, recipe_book(user_use_case=user_use_case))
 
         ctx = MagicMock()
         ctx.author = MagicMock()
-        ctx.author.id = 3
-        ctx.author.name = "fake_username_3"
+        ctx.author.id = 5
+        ctx.author.name = "fake_username_5"
         ctx.send = AsyncMock()
 
         # When
         await HailCog.hail(hail_cog, ctx)
 
         # Then
-        ctx.send.assert_called_once_with("Hail Keir, and welcome to Strange Aeons! You are all set.")
+        ctx.send.assert_called_once_with("Hail The, and welcome to Strange Aeons! You are all set.")
 
     async def test_hail__not_found(self):
         # Given
         bot = MagicMock()
 
         mock_user_dao = Mock()
-        def mock_get_user_by_user_id_not_registered(user_id):
-            return None
-        mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id_not_registered
+        mock_user_dao.get_user_by_user_id.side_effect = mock_get_user_by_user_id
         mock_user_dao.get_user_by_username.side_effect = mock_get_user_by_username
 
-        lookup_user_use_case = LookupUserUseCase(mock_user_dao)
+        user_use_case = UserUseCase(mock_user_dao)
 
-        hail_cog = HailCog(bot, recipe_book(lookup_user_use_case=lookup_user_use_case))
+        hail_cog = HailCog(bot, recipe_book(user_use_case=user_use_case))
 
         ctx = MagicMock()
         ctx.author = MagicMock()
         ctx.author.id = 4
-        ctx.author.name = "fake_username_4"
+        ctx.author.name = "fake_username_6"
         ctx.send = AsyncMock()
 
         # When

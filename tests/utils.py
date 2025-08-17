@@ -92,6 +92,57 @@ def user_eli():
         discord_account=discord_account
     )
 
+def gm_not_registered():
+    player = Player(
+        name=Name(
+            first="The",
+            last="GM",
+        ),
+        is_gm=True
+    )
+
+    discord_account = DiscordAccount(
+        user_id=None,
+        username="fake_username_4"
+    )
+
+    return User(
+        player=player,
+        character=None,
+        discord_account=discord_account
+    )
+
+def player_not_registered():
+    player = Player(
+        name=Name(
+            first="Not",
+            last="Registered",
+        ),
+        is_gm=False
+    )
+
+    character = Character(
+        name=Name(
+            first="The",
+            last="Hero",
+        ),
+        level=4,
+        race_name="Human",
+        class_name="Warrior",
+        alignment="NG"
+    )
+
+    discord_account = DiscordAccount(
+        user_id=None,
+        username="fake_username_5"
+    )
+
+    return User(
+        player=player,
+        character=character,
+        discord_account=discord_account
+    )
+
 def city(city_name, merchants, occupants):
     return City(
         city_id=uuid.uuid4(),
@@ -340,15 +391,14 @@ def merchant_spells():
         sells_item_types=[SellsItemType("spell", None)]
     )
 
-def recipe_book(build_inventory_table_use_case=Mock(), build_table_use_case=Mock(), lookup_city_use_case=Mock(), lookup_inventory_use_case=Mock(), lookup_merchant_use_case=Mock(), lookup_user_use_case=Mock(), update_user_use_case=Mock()):
+def recipe_book(build_inventory_table_use_case=Mock(), build_table_use_case=Mock(), lookup_city_use_case=Mock(), lookup_inventory_use_case=Mock(), lookup_merchant_use_case=Mock(), user_use_case=Mock()):
     return RecipeBook(
         build_inventory_table_use_case=build_inventory_table_use_case,
         build_table_use_case=build_table_use_case,
         lookup_city_use_case=lookup_city_use_case,
         lookup_inventory_use_case=lookup_inventory_use_case,
         lookup_merchant_use_case=lookup_merchant_use_case,
-        lookup_user_use_case=lookup_user_use_case,
-        update_user_use_case=update_user_use_case
+        user_use_cases=user_use_case
     )
 
 def mock_get_user_by_user_id(user_id):
@@ -364,20 +414,28 @@ def mock_get_user_by_user_id(user_id):
 def mock_get_user_by_username(username):
     if username == "fake_username_1":
         return user_guy()
-    if username == "fake_username_2":
+    elif username == "fake_username_2":
         return user_todd()
-    if username == "fake_username_3":
+    elif username == "fake_username_3":
         return user_eli()
+    elif username == "fake_username_4":
+        return gm_not_registered()
+    elif username == "fake_username_5":
+        return player_not_registered()
     else:
         return None
 
 def mock_update_user_by_username(username, user):
     if username == "fake_username_1":
         return user_guy()
-    if username == "fake_username_2":
+    elif username == "fake_username_2":
         return user_todd()
-    if username == "fake_username_3":
+    elif username == "fake_username_3":
         return user_eli()
+    elif username == "fake_username_4":
+        return gm_not_registered()
+    elif username == "fake_username_5":
+        return player_not_registered()
     else:
         return None
 

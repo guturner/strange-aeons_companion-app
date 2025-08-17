@@ -1,6 +1,3 @@
-from results import BuildTableSuccess, BuildTableChunksSuccess
-
-
 def _determine_col_width(headers, rows):
     all_rows = (headers,) + rows
     columns = list(zip(*all_rows))
@@ -23,20 +20,20 @@ class BuildTableUseCase:
         # Add border above and below:
         table = [border] + [lines[0], border] + lines[1:] + [border]
 
-        return BuildTableSuccess(table="\n".join(table))
+        return "\n".join(table)
 
-    def build_ascii_table_chunks(self, headers, rows, max_rows=None):
+    def build_ascii_tables(self, headers, rows, max_rows=None):
         if max_rows is None:
-            return BuildTableChunksSuccess(table_chunks=[self.build_ascii_table(headers, rows)])
+            return [self.build_ascii_table(headers, rows)]
 
         else:
             # Determine col_width once for longest value in whole table, this makes the chunks a consistent width:
             col_width = _determine_col_width(headers, rows)
 
-            table_chunks = []
+            tables = []
             for i in range(0, len(rows), max_rows):
                 chunk = rows[i:i + max_rows]
-                build_table_result = self.build_ascii_table(headers, chunk, col_width)
-                table_chunks.append(build_table_result.table)
+                table = self.build_ascii_table(headers, chunk, col_width)
+                tables.append(table)
 
-            return BuildTableChunksSuccess(table_chunks=table_chunks)
+            return tables

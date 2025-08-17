@@ -4,9 +4,8 @@ from unittest.mock import AsyncMock, MagicMock, Mock
 
 from cogs.shop_cog import ShopCog
 from models.item import ItemType, SellsItemType
-from tests.utils import city, item_armor_jewelry, item_custom_armor, item_custom_weapon, item_general_good, \
-    item_general_jewelry, item_instrument, item_melee_weapon, item_misc, item_song, item_spell, merchant, \
-    mock_get_city_by_city_name, recipe_book
+from tests.utils import city, item_armor_jewelry, item_general_good, item_general_jewelry, item_instrument, \
+    item_melee_weapon, item_misc, item_song, item_spell, merchant, mock_get_city_by_city_name, recipe_book
 
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
 from use_cases.build_table_use_case import BuildTableUseCase

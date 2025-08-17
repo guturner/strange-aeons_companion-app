@@ -17,9 +17,8 @@ from use_cases.build_table_use_case import BuildTableUseCase
 from use_cases.lookup_city_use_case import LookupCityUseCase
 from use_cases.lookup_inventory_use_case import LookupItemsUseCase
 from use_cases.lookup_merchant_use_case import LookupMerchantUseCase
-from use_cases.lookup_user_use_case import LookupUserUseCase
 from use_cases.recipe_book import RecipeBook
-from use_cases.update_user_use_case import UpdateUserUseCase
+from use_cases.user_use_case import UserUseCase
 
 
 def __configure_logger():
@@ -94,9 +93,8 @@ def __main():
     lookup_city_use_case = LookupCityUseCase(city_dao)
     lookup_inventory_use_case = LookupItemsUseCase(inventory_dao)
     lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
-    lookup_user_use_case = LookupUserUseCase(user_dao)
     build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
-    update_user_use_case = UpdateUserUseCase(lookup_user_use_case, user_dao)
+    user_use_case = UserUseCase(user_dao)
 
     recipe_book = RecipeBook(
         build_inventory_table_use_case=build_inventory_table_use_case,
@@ -104,8 +102,7 @@ def __main():
         lookup_city_use_case=lookup_city_use_case,
         lookup_inventory_use_case=lookup_inventory_use_case,
         lookup_merchant_use_case=lookup_merchant_use_case,
-        lookup_user_use_case=lookup_user_use_case,
-        update_user_use_case=update_user_use_case
+        user_use_cases=user_use_case
     )
 
     __configure_bot(bot)
