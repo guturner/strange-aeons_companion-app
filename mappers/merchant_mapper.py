@@ -1,4 +1,4 @@
-from mappers.inventory_mapper import InventoryMapper, InventoryTypeMapper
+from mappers.item_mapper import ItemMapper, ItemTypeMapper
 from models.city import Merchant
 
 
@@ -15,13 +15,13 @@ class MerchantMapper:
             name=self.database_result["name"],
             merchant_type=self.database_result["type"],
             introductions=introductions_result,
-            sells_armor=InventoryTypeMapper(self.database_result["sellsArmor"]).map_to_inventory_type(),
-            sells_general_goods=InventoryTypeMapper(self.database_result["sellsGeneralGoods"]).map_to_inventory_type(),
-            sells_instruments=InventoryTypeMapper(self.database_result["sellsInstruments"]).map_to_inventory_type(),
-            sells_jewelry=InventoryTypeMapper(self.database_result["sellsJewelry"]).map_to_inventory_type(),
-            sells_songs=InventoryTypeMapper(self.database_result["sellsSongs"]).map_to_inventory_type(),
-            sells_spells=InventoryTypeMapper(self.database_result["sellsSpells"]).map_to_inventory_type(),
-            sells_weapons=InventoryTypeMapper(self.database_result["sellsWeapons"]).map_to_inventory_type(),
-            inventory=list(map(lambda i: InventoryMapper(i).map_to_item(), inventory_result)),
+            sells_armor=ItemTypeMapper(self.database_result["sellsArmor"]).map_to_inventory_type(),
+            sells_general_goods=ItemTypeMapper(self.database_result["sellsGeneralGoods"]).map_to_inventory_type(),
+            sells_instruments=ItemTypeMapper(self.database_result["sellsInstruments"]).map_to_inventory_type(),
+            sells_jewelry=ItemTypeMapper(self.database_result["sellsJewelry"]).map_to_inventory_type(),
+            sells_songs=ItemTypeMapper(self.database_result["sellsSongs"]).map_to_inventory_type(),
+            sells_spells=ItemTypeMapper(self.database_result["sellsSpells"]).map_to_inventory_type(),
+            sells_weapons=ItemTypeMapper(self.database_result["sellsWeapons"]).map_to_inventory_type(),
+            inventory=list(map(lambda i: ItemMapper(i).map_to_item(), inventory_result)),
             table_rows=self.database_result["tableRows"]
         )

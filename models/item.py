@@ -9,8 +9,8 @@ class ItemType(Enum):
     MISCELLANEOUS = "Miscellaneous"
     SONG = "Song"
     SPELL = "Spell"
-    MELEE_WEAPON = "Weapon"
-    RANGED_WEAPON = "Weapon"
+    MELEE_WEAPON = "Melee Weapon"
+    RANGED_WEAPON = "Ranged Weapon"
 
 def get_item_type_by_input(input_string):
     try:

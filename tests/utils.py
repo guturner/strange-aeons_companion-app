@@ -2,7 +2,7 @@ import uuid
 from unittest.mock import Mock
 
 from models.city import City, Directions, InventoryType, Merchant
-from models.inventory import Item
+from models.item import Item, ItemType
 from models.user import Character, DiscordAccount, Player, Name, User
 from use_cases.recipe_book import RecipeBook
 
@@ -195,7 +195,7 @@ def item_spell():
         spell_description="It's over 9000!"
     )
 
-def item_weapon():
+def item_melee_weapon():
     return Item(
         item_type="melee_weapon",
         name="Wabbajack",
@@ -396,18 +396,3 @@ def mock_update_user_by_username(username, user):
 
 def mock_get_city_by_city_name(city_name):
     return city(city_name, merchants=[merchant_general_goods_and_weapons(), merchant_jewelry(), merchant_general_goods_and_custom_armor(), merchant_general_goods_and_custom_weapon(), merchant_songs(), merchant_spells()], occupants=[1])
-
-def mock_get_general_goods(override_filter):
-    return [item_general_good()]
-
-def mock_get_jewelry(override_filter):
-    return [item_armor_jewelry(), item_general_jewelry()]
-
-def mock_get_songs(override_filter):
-    return [item_song()]
-
-def mock_get_spells(override_filter):
-    return [item_spell()]
-
-def mock_get_weapons(override_filter):
-    return [item_weapon()]

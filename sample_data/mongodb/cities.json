@@ -491,7 +491,7 @@
             "inventory" : [
 
             ],
-            "tableRows" : 4
+            "tableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "287cd547-fc7a-4eed-bfb4-5cde5c956419" },
@@ -522,7 +522,7 @@
             "inventory" : [
 
             ],
-            "tableRows" : 4
+            "tableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "5baf770d-eb5f-4a53-8424-fa064c44b2c7" },
@@ -709,7 +709,7 @@
             "inventory" : [
 
             ],
-            "tableRows" : 4
+            "tableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "fc3a93a9-cc84-4cec-93c7-0406602454d9" },
@@ -740,7 +740,7 @@
             "inventory" : [
 
             ],
-            "tableRows" : 4
+            "tableRows" : 6
         },
         {
             "merchantId" : { "$uuid" : "35c822d9-ea9c-4fc4-809e-02fcbbe9108d" },

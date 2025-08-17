@@ -4,13 +4,15 @@ from unittest.mock import AsyncMock, MagicMock, Mock
 
 from cogs.shop_cog import ShopCog
 from models.city import InventoryType
-from tests.utils import mock_get_general_goods, mock_get_jewelry, mock_get_weapons, mock_get_city_by_city_name, \
-    recipe_book, city, merchant, mock_get_songs, mock_get_spells, item_misc, item_instrument
+from models.item import ItemType
+from tests.utils import city, item_armor_jewelry, item_custom_armor, item_custom_weapon, item_general_good, \
+    item_general_jewelry, item_instrument, item_melee_weapon, item_misc, item_song, item_spell, merchant, \
+    mock_get_city_by_city_name, recipe_book
 
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
 from use_cases.build_table_use_case import BuildTableUseCase
 from use_cases.lookup_city_use_case import LookupCityUseCase
-from use_cases.lookup_inventory_use_case import LookupInventoryUseCase
+from use_cases.lookup_inventory_use_case import LookupItemsUseCase
 from use_cases.lookup_merchant_use_case import LookupMerchantUseCase
 
 
@@ -22,13 +24,20 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
-        mock_inventory_dao = Mock()
-        mock_inventory_dao.get_general_goods.side_effect = mock_get_general_goods
-        mock_inventory_dao.get_weapons.side_effect = mock_get_weapons
+        def mock_get_items_by_item_type(item_type, override_filter):
+            if item_type == ItemType.GENERAL_GOOD:
+                return [item_general_good()]
+            elif item_type == ItemType.MELEE_WEAPON:
+                return [item_melee_weapon()]
+            else:
+                return []
+
+        mock_item_dao = Mock()
+        mock_item_dao.get_items_by_item_type.side_effect = mock_get_items_by_item_type
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -44,7 +53,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         await ShopCog.shop(shop_cog, ctx, "Qeynos", "Mr.", "Chant")
 
         # Then
-        ctx.send.assert_called_once_with("```Mr. Chant's Inventory:\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| NAME      | TYPE         | COST     | DMG  | CRIT       | DELAY | SIZE           | STATS                |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| Wabbajack | Weapon       | 10000 GP | 1D10 | 10-20, x10 | Quick | Large, Martial | magic resistance (5) |\n| Widget    | General Good | 100 GP   | --   | --         | --    | --             | --                   |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+```")
+        ctx.send.assert_called_once_with("```Mr. Chant's Inventory:\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| NAME      | TYPE         | COST     | DMG  | CRIT       | DELAY | SIZE           | STATS                |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+\n| Wabbajack | Melee Weapon | 10000 GP | 1D10 | 10-20, x10 | Quick | Large, Martial | magic resistance (5) |\n| Widget    | General Good | 100 GP   | --   | --         | --    | --             | --                   |\n+-----------+--------------+----------+------+------------+-------+----------------+----------------------+```")
 
     async def test_shop__jewelry__happy_path(self):
         # Given
@@ -53,12 +62,15 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
-        mock_inventory_dao = Mock()
-        mock_inventory_dao.get_jewelry.side_effect = mock_get_jewelry
+        def mock_get_items_by_item_type(item_type, override_filter):
+            return [item_armor_jewelry(), item_general_jewelry()]
+
+        mock_item_dao = Mock()
+        mock_item_dao.get_items_by_item_type.side_effect = mock_get_items_by_item_type
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -83,12 +95,15 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
-        mock_inventory_dao = Mock()
-        mock_inventory_dao.get_general_goods.side_effect = mock_get_general_goods
+        def mock_get_items_by_item_type(item_type, override_filter):
+            return [item_general_good()]
+
+        mock_item_dao = Mock()
+        mock_item_dao.get_items_by_item_type.side_effect = mock_get_items_by_item_type
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -113,12 +128,15 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
-        mock_inventory_dao = Mock()
-        mock_inventory_dao.get_general_goods.side_effect = mock_get_general_goods
+        def mock_get_items_by_item_type(item_type, override_filter):
+            return [item_general_good()]
+
+        mock_item_dao = Mock()
+        mock_item_dao.get_items_by_item_type.side_effect = mock_get_items_by_item_type
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -134,7 +152,7 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         await ShopCog.shop(shop_cog, ctx, "Qeynos", "Custom", "On")
 
         # Then
-        ctx.send.assert_called_once_with("```Custom On's Inventory:\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+\n| NAME          | TYPE         | COST    | DMG  | CRIT       | DELAY | SIZE           | STATS                |\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+\n| Customizer II | Weapon       | 1000 GP | 1D10 | 10-20, x10 | Quick | Large, Martial | magic resistance (5) |\n| Widget        | General Good | 100 GP  | --   | --         | --    | --             | --                   |\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+```")
+        ctx.send.assert_called_once_with("```Custom On's Inventory:\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+\n| NAME          | TYPE         | COST    | DMG  | CRIT       | DELAY | SIZE           | STATS                |\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+\n| Customizer II | Melee Weapon | 1000 GP | 1D10 | 10-20, x10 | Quick | Large, Martial | magic resistance (5) |\n| Widget        | General Good | 100 GP  | --   | --         | --    | --             | --                   |\n+---------------+--------------+---------+------+------------+-------+----------------+----------------------+```")
 
     async def test_shop__songs__happy_path(self):
         # Given
@@ -143,12 +161,15 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
-        mock_inventory_dao = Mock()
-        mock_inventory_dao.get_songs.side_effect = mock_get_songs
+        def mock_get_items_by_item_type(item_type, override_filter):
+            return [item_song()]
+
+        mock_item_dao = Mock()
+        mock_item_dao.get_items_by_item_type.side_effect = mock_get_items_by_item_type
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -173,12 +194,15 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
-        mock_inventory_dao = Mock()
-        mock_inventory_dao.get_spells.side_effect = mock_get_spells
+        def mock_get_items_by_item_type(item_type, override_filter):
+            return [item_spell()]
+
+        mock_item_dao = Mock()
+        mock_item_dao.get_items_by_item_type.side_effect = mock_get_items_by_item_type
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -206,11 +230,11 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
 
-        mock_inventory_dao = Mock()
+        mock_item_dao = Mock()
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -238,11 +262,11 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
 
-        mock_inventory_dao = Mock()
+        mock_item_dao = Mock()
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -270,12 +294,20 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_mock_city
 
-        mock_inventory_dao = Mock()
-        mock_inventory_dao.get_general_goods.side_effect = mock_get_general_goods
+        def mock_get_items_by_item_type(item_type, override_filter):
+            if item_type == ItemType.GENERAL_GOOD:
+                return [item_general_good()]
+            elif item_type == ItemType.MISCELLANEOUS:
+                return [item_misc()]
+            else:
+                return []
+
+        mock_item_dao = Mock()
+        mock_item_dao.get_items_by_item_type.side_effect = mock_get_items_by_item_type
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 
@@ -300,11 +332,11 @@ class TestShopCog(unittest.IsolatedAsyncioTestCase):
         mock_city_dao = Mock()
         mock_city_dao.get_city_by_city_name.side_effect = mock_get_city_by_city_name
 
-        mock_inventory_dao = Mock()
+        mock_item_dao = Mock()
 
         build_table_use_case = BuildTableUseCase()
         lookup_city_use_case = LookupCityUseCase(mock_city_dao)
-        lookup_inventory_use_case = LookupInventoryUseCase(mock_inventory_dao)
+        lookup_inventory_use_case = LookupItemsUseCase(mock_item_dao)
         lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
         build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
 

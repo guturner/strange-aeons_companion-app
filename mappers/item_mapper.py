@@ -1,5 +1,5 @@
 from models.city import InventoryType
-from models.inventory import Item
+from models.item import Item
 
 
 def _get_or_none(database_result, key):
@@ -8,7 +8,7 @@ def _get_or_none(database_result, key):
     except KeyError:
         return None
 
-class InventoryTypeMapper:
+class ItemTypeMapper:
     def __init__(self, database_result):
         self.database_result = database_result
 
@@ -18,7 +18,7 @@ class InventoryTypeMapper:
             override_filter=_get_or_none(self.database_result, "override_filter")
         )
 
-class InventoryMapper:
+class ItemMapper:
     def __init__(self, database_result):
         self.database_result = database_result
 

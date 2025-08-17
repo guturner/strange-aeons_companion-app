@@ -1,4 +1,4 @@
-from results import LookupMerchantSuccess, LookupMerchantFailure, LookupInventorySuccess, BuildInventoryTableSuccess, \
+from results import LookupMerchantSuccess, LookupMerchantFailure, LookupItemsSuccess, BuildInventoryTableSuccess, \
     BuildInventoryTableChunksSuccess
 
 
@@ -62,8 +62,8 @@ def _get_inventory_data(should_lookup: bool, lookup_fn, armor=False, instruments
         return ()
 
     result = lookup_fn()
-    if isinstance(result, LookupInventorySuccess):
-        return _generate_inventory_tuples(items=result.inventory, armor=armor, instruments=instruments, songs=songs, spells=spells, weapons=weapons, misc_items=misc_items)
+    if isinstance(result, LookupItemsSuccess):
+        return _generate_inventory_tuples(items=result.items, armor=armor, instruments=instruments, songs=songs, spells=spells, weapons=weapons, misc_items=misc_items)
     return ()
 
 def _has_custom_item_type(inventory, item_type):

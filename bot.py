@@ -9,13 +9,13 @@ from nextcord.ext import commands
 
 from cogs import hail_cog, help_cog, shop_cog, whoami_cog
 from daos.city_dao import CityDAO
-from daos.inventory_dao import InventoryDAO
+from daos.item_dao import ItemDAO
 from daos.user_dao import UserDAO
 from models.database import Database
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
 from use_cases.build_table_use_case import BuildTableUseCase
 from use_cases.lookup_city_use_case import LookupCityUseCase
-from use_cases.lookup_inventory_use_case import LookupInventoryUseCase
+from use_cases.lookup_inventory_use_case import LookupItemsUseCase
 from use_cases.lookup_merchant_use_case import LookupMerchantUseCase
 from use_cases.lookup_user_use_case import LookupUserUseCase
 from use_cases.recipe_book import RecipeBook
@@ -87,12 +87,12 @@ def __main():
     database = __configure_database(mongo_uri, database_name)
 
     city_dao = CityDAO(database)
-    inventory_dao = InventoryDAO(database)
+    inventory_dao = ItemDAO(database)
     user_dao = UserDAO(database)
 
     build_table_use_case = BuildTableUseCase()
     lookup_city_use_case = LookupCityUseCase(city_dao)
-    lookup_inventory_use_case = LookupInventoryUseCase(inventory_dao)
+    lookup_inventory_use_case = LookupItemsUseCase(inventory_dao)
     lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
     lookup_user_use_case = LookupUserUseCase(user_dao)
     build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)

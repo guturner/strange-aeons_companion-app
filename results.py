@@ -22,13 +22,13 @@ class LookupCityFailure:
     def __init__(self, city_name):
         self.message = f"City with city_name: {city_name} was not found."
 
-class LookupInventorySuccess:
-    def __init__(self, inventory):
-        self.inventory = inventory
+class LookupItemsSuccess:
+    def __init__(self, items):
+        self.items = items
 
-class LookupInventoryFailure:
-    def __init__(self, inventory_type):
-        self.message = f"Inventory with inventory_type: {inventory_type} was not found."
+class LookupItemsFailure:
+    def __init__(self, items):
+        self.message = f"Items with item_type: {items} were not found."
 
 class LookupMerchantSuccess:
     def __init__(self, merchant):

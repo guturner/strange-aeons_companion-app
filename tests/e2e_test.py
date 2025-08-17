@@ -60,8 +60,8 @@ class E2ETest(unittest.IsolatedAsyncioTestCase):
     def load_cities_data(self, mongo):
         self.__load_data(mongo, "cities", "cities.json")
 
-    def load_inventories_data(self, mongo):
-        self.__load_data(mongo, "inventories", "inventories.json")
+    def load_items_data(self, mongo):
+        self.__load_data(mongo, "items", "items.json")
 
     def load_users_data(self, mongo):
         self.__load_data(mongo, "users", "users.json")
