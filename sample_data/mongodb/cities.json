@@ -22,9 +22,9 @@
                     "type" : "armor",
                     "name" : "Gnomish Environmental Suit",
                     "size" : "Light",
-                    "armor_bonus" : "+3",
-                    "max_dexterity" : "+6",
-                    "armor_check_penalty" : "+0",
+                    "armorBonus" : "+3",
+                    "maxDexterity" : "+6",
+                    "armorCheckPenalty" : "+0",
                     "stats" : "Acid, Cold, Electricity, Fire, Poison, Sonic Resistance (4) and Save +1",
                     "cost" : "5160 GP"
                 },
@@ -32,9 +32,9 @@
                     "type" : "armor",
                     "name" : "Truesilver Mail",
                     "size" : "Heavy",
-                    "armor_bonus" : "+8",
-                    "max_dexterity" : "+1",
-                    "armor_check_penalty" : "-5",
+                    "armorBonus" : "+8",
+                    "maxDexterity" : "+1",
+                    "armorCheckPenalty" : "-5",
                     "stats" : "Exceedingly lightweight at only 24.5 lbs.",
                     "cost" : "1950 GP"
                 }

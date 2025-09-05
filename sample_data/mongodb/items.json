@@ -611,9 +611,9 @@
     "type" : "armor",
     "name" : "Banded Mail",
     "size" : "Heavy",
-    "armor_bonus" : "+6",
-    "max_dexterity" : "+1",
-    "armor_check_penalty" : "-6",
+    "armorBonus" : "+6",
+    "maxDexterity" : "+1",
+    "armorCheckPenalty" : "-6",
     "stats" : null,
     "cost" : "250 GP"
 }
@@ -621,9 +621,9 @@
     "type" : "armor",
     "name" : "Breastplate",
     "size" : "Medium",
-    "armor_bonus" : "+5",
-    "max_dexterity" : "+3",
-    "armor_check_penalty" : "-4",
+    "armorBonus" : "+5",
+    "maxDexterity" : "+3",
+    "armorCheckPenalty" : "-4",
     "stats" : null,
     "cost" : "200 GP"
 }
@@ -632,9 +632,9 @@
     "masterwork" : true,
     "name" : "Breastplate (Masterwork)",
     "size" : "Medium",
-    "armor_bonus" : "+5",
-    "max_dexterity" : "+3",
-    "armor_check_penalty" : "-3",
+    "armorBonus" : "+5",
+    "maxDexterity" : "+3",
+    "armorCheckPenalty" : "-3",
     "stats" : null,
     "cost" : "350 GP"
 }
@@ -644,9 +644,9 @@
     "magic" : true,
     "name" : "Breastplate, +1",
     "size" : "Medium",
-    "armor_bonus" : "+6",
-    "max_dexterity" : "+3",
-    "armor_check_penalty" : "-3",
+    "armorBonus" : "+6",
+    "maxDexterity" : "+3",
+    "armorCheckPenalty" : "-3",
     "stats" : null,
     "cost" : "1350 GP"
 }
@@ -654,9 +654,9 @@
     "type" : "armor",
     "name" : "Chainmail",
     "size" : "Medium",
-    "armor_bonus" : "+5",
-    "max_dexterity" : "+2",
-    "armor_check_penalty" : "-5",
+    "armorBonus" : "+5",
+    "maxDexterity" : "+2",
+    "armorCheckPenalty" : "-5",
     "stats" : null,
     "cost" : "150 GP"
 }
@@ -665,9 +665,9 @@
     "masterwork" : true,
     "name" : "Chainmail (Masterwork)",
     "size" : "Medium",
-    "armor_bonus" : "+5",
-    "max_dexterity" : "+2",
-    "armor_check_penalty" : "-4",
+    "armorBonus" : "+5",
+    "maxDexterity" : "+2",
+    "armorCheckPenalty" : "-4",
     "stats" : null,
     "cost" : "300 GP"
 }
@@ -677,9 +677,9 @@
     "magic" : true,
     "name" : "Chainmail, +1",
     "size" : "Medium",
-    "armor_bonus" : "+6",
-    "max_dexterity" : "+2",
-    "armor_check_penalty" : "-4",
+    "armorBonus" : "+6",
+    "maxDexterity" : "+2",
+    "armorCheckPenalty" : "-4",
     "stats" : null,
     "cost" : "1300 GP"
 }
@@ -687,9 +687,9 @@
     "type" : "armor",
     "name" : "Chain Shirt",
     "size" : "Light",
-    "armor_bonus" : "+4",
-    "max_dexterity" : "+4",
-    "armor_check_penalty" : "-2",
+    "armorBonus" : "+4",
+    "maxDexterity" : "+4",
+    "armorCheckPenalty" : "-2",
     "stats" : null,
     "cost" : "100 GP"
 }
@@ -698,9 +698,9 @@
     "masterwork" : true,
     "name" : "Chain Shirt (Masterwork)",
     "size" : "Light",
-    "armor_bonus" : "+4",
-    "max_dexterity" : "+4",
-    "armor_check_penalty" : "-1",
+    "armorBonus" : "+4",
+    "maxDexterity" : "+4",
+    "armorCheckPenalty" : "-1",
     "stats" : null,
     "cost" : "250 GP"
 }
@@ -710,9 +710,9 @@
     "magic" : true,
     "name" : "Chain Shirt, +1",
     "size" : "Light",
-    "armor_bonus" : "+5",
-    "max_dexterity" : "+4",
-    "armor_check_penalty" : "-1",
+    "armorBonus" : "+5",
+    "maxDexterity" : "+4",
+    "armorCheckPenalty" : "-1",
     "stats" : null,
     "cost" : "1250 GP"
 }
@@ -720,9 +720,9 @@
     "type" : "armor",
     "name" : "Cloth",
     "size" : "Light",
-    "armor_bonus" : "+1",
-    "max_dexterity" : "+8",
-    "armor_check_penalty" : "0",
+    "armorBonus" : "+1",
+    "maxDexterity" : "+8",
+    "armorCheckPenalty" : "0",
     "stats" : null,
     "cost" : "5 GP"
 }
@@ -730,9 +730,9 @@
     "type" : "armor",
     "name" : "Full Plate",
     "size" : "Heavy",
-    "armor_bonus" : "+8",
-    "max_dexterity" : "+1",
-    "armor_check_penalty" : "-6",
+    "armorBonus" : "+8",
+    "maxDexterity" : "+1",
+    "armorCheckPenalty" : "-6",
     "stats" : null,
     "cost" : "1500 GP"
 }
@@ -741,9 +741,9 @@
     "masterwork" : true,
     "name" : "Full Plate (Masterwork)",
     "size" : "Heavy",
-    "armor_bonus" : "+8",
-    "max_dexterity" : "+1",
-    "armor_check_penalty" : "-5",
+    "armorBonus" : "+8",
+    "maxDexterity" : "+1",
+    "armorCheckPenalty" : "-5",
     "stats" : null,
     "cost" : "1650 GP"
 }
@@ -753,9 +753,9 @@
     "magic" : true,
     "name" : "Full Plate, +1",
     "size" : "Heavy",
-    "armor_bonus" : "+9",
-    "max_dexterity" : "+1",
-    "armor_check_penalty" : "-5",
+    "armorBonus" : "+9",
+    "maxDexterity" : "+1",
+    "armorCheckPenalty" : "-5",
     "stats" : null,
     "cost" : "2650 GP"
 }
@@ -763,9 +763,9 @@
     "type" : "armor",
     "name" : "Half-Plate",
     "size" : "Heavy",
-    "armor_bonus" : "+7",
-    "max_dexterity" : "+0",
-    "armor_check_penalty" : "-7",
+    "armorBonus" : "+7",
+    "maxDexterity" : "+0",
+    "armorCheckPenalty" : "-7",
     "stats" : null,
     "cost" : "600 GP"
 }
@@ -774,9 +774,9 @@
     "masterwork" : true,
     "name" : "Half-Plate (Masterwork)",
     "size" : "Heavy",
-    "armor_bonus" : "+7",
-    "max_dexterity" : "+0",
-    "armor_check_penalty" : "-6",
+    "armorBonus" : "+7",
+    "maxDexterity" : "+0",
+    "armorCheckPenalty" : "-6",
     "stats" : null,
     "cost" : "750 GP"
 }
@@ -786,9 +786,9 @@
     "magic" : true,
     "name" : "Half-Plate, +1",
     "size" : "Heavy",
-    "armor_bonus" : "+8",
-    "max_dexterity" : "+0",
-    "armor_check_penalty" : "-6",
+    "armorBonus" : "+8",
+    "maxDexterity" : "+0",
+    "armorCheckPenalty" : "-6",
     "stats" : null,
     "cost" : "1750 GP"
 }
@@ -796,9 +796,9 @@
     "type" : "armor",
     "name" : "Hide",
     "size" : "Medium",
-    "armor_bonus" : "+3",
-    "max_dexterity" : "+4",
-    "armor_check_penalty" : "-3",
+    "armorBonus" : "+3",
+    "maxDexterity" : "+4",
+    "armorCheckPenalty" : "-3",
     "stats" : null,
     "cost" : "15 GP"
 }
@@ -806,9 +806,9 @@
     "type" : "armor",
     "name" : "Leather",
     "size" : "Light",
-    "armor_bonus" : "+2",
-    "max_dexterity" : "+6",
-    "armor_check_penalty" : "0",
+    "armorBonus" : "+2",
+    "maxDexterity" : "+6",
+    "armorCheckPenalty" : "0",
     "stats" : null,
     "cost" : "10 GP"
 }
@@ -816,9 +816,9 @@
     "type" : "armor",
     "name" : "Raw Silk",
     "size" : "Light",
-    "armor_bonus" : "+2",
-    "max_dexterity" : "+9",
-    "armor_check_penalty" : "0",
+    "armorBonus" : "+2",
+    "maxDexterity" : "+9",
+    "armorCheckPenalty" : "0",
     "stats" : null,
     "cost" : "500 GP"
 }
@@ -826,9 +826,9 @@
     "type" : "armor",
     "name" : "Scale Mail",
     "size" : "Medium",
-    "armor_bonus" : "+4",
-    "max_dexterity" : "+3",
-    "armor_check_penalty" : "-4",
+    "armorBonus" : "+4",
+    "maxDexterity" : "+3",
+    "armorCheckPenalty" : "-4",
     "stats" : null,
     "cost" : "50 GP"
 }
@@ -837,9 +837,9 @@
     "masterwork" : true,
     "name" : "Scale Mail (Masterwork)",
     "size" : "Medium",
-    "armor_bonus" : "+4",
-    "max_dexterity" : "+3",
-    "armor_check_penalty" : "-3",
+    "armorBonus" : "+4",
+    "maxDexterity" : "+3",
+    "armorCheckPenalty" : "-3",
     "stats" : null,
     "cost" : "200 GP"
 }
@@ -849,9 +849,9 @@
     "magic" : true,
     "name" : "Scale Mail, +1",
     "size" : "Medium",
-    "armor_bonus" : "+5",
-    "max_dexterity" : "+3",
-    "armor_check_penalty" : "-3",
+    "armorBonus" : "+5",
+    "maxDexterity" : "+3",
+    "armorCheckPenalty" : "-3",
     "stats" : null,
     "cost" : "1200 GP"
 }
@@ -859,9 +859,9 @@
     "type" : "armor",
     "name" : "Splint Mail",
     "size" : "Heavy",
-    "armor_bonus" : "+6",
-    "max_dexterity" : "+0",
-    "armor_check_penalty" : "-7",
+    "armorBonus" : "+6",
+    "maxDexterity" : "+0",
+    "armorCheckPenalty" : "-7",
     "stats" : null,
     "cost" : "200 GP"
 }
@@ -870,9 +870,9 @@
     "masterwork" : true,
     "name" : "Splint Mail (Masterwork)",
     "size" : "Heavy",
-    "armor_bonus" : "+6",
-    "max_dexterity" : "+0",
-    "armor_check_penalty" : "-6",
+    "armorBonus" : "+6",
+    "maxDexterity" : "+0",
+    "armorCheckPenalty" : "-6",
     "stats" : null,
     "cost" : "350 GP"
 }
@@ -882,9 +882,9 @@
     "magic" : true,
     "name" : "Splint Mail, +1",
     "size" : "Heavy",
-    "armor_bonus" : "+7",
-    "max_dexterity" : "+0",
-    "armor_check_penalty" : "-6",
+    "armorBonus" : "+7",
+    "maxDexterity" : "+0",
+    "armorCheckPenalty" : "-6",
     "stats" : null,
     "cost" : "1350 GP"
 }
@@ -892,9 +892,9 @@
     "type" : "armor",
     "name" : "Studded Leather",
     "size" : "Light",
-    "armor_bonus" : "+3",
-    "max_dexterity" : "+5",
-    "armor_check_penalty" : "-1",
+    "armorBonus" : "+3",
+    "maxDexterity" : "+5",
+    "armorCheckPenalty" : "-1",
     "stats" : null,
     "cost" : "25 GP"
 }
@@ -903,9 +903,9 @@
     "masterwork" : true,
     "name" : "Studded Leather (Masterwork)",
     "size" : "Light",
-    "armor_bonus" : "+3",
-    "max_dexterity" : "+5",
-    "armor_check_penalty" : "+0",
+    "armorBonus" : "+3",
+    "maxDexterity" : "+5",
+    "armorCheckPenalty" : "+0",
     "stats" : null,
     "cost" : "175 GP"
 }
@@ -915,9 +915,9 @@
     "magic" : true,
     "name" : "Studded Leather, +1",
     "size" : "Light",
-    "armor_bonus" : "+4",
-    "max_dexterity" : "+5",
-    "armor_check_penalty" : "+0",
+    "armorBonus" : "+4",
+    "maxDexterity" : "+5",
+    "armorCheckPenalty" : "+0",
     "stats" : null,
     "cost" : "1175 GP"
 }
@@ -1080,325 +1080,325 @@
     "type" : "spell",
     "name" : "Minor Shielding",
     "cost" : "25 GP",
-    "spell_level" : "Enc 1, Mag 1, Nec 1, Wiz 1",
-    "spell_description" : "+2 AC, +2 HP (self)"
+    "spellLevel" : "Enc 1, Mag 1, Nec 1, Wiz 1",
+    "spellDescription" : "+2 AC, +2 HP (self)"
 }
 {
     "type" : "spell",
     "name" : "Burn",
     "cost" : "100 GP",
-    "spell_level" : "Mag 2",
-    "spell_description" : "1D10 fire dmg (1 creature)"
+    "spellLevel" : "Mag 2",
+    "spellDescription" : "1D10 fire dmg (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Elementalkin: Air",
     "cost" : "100 GP",
-    "spell_level" : "Mag 2",
-    "spell_description" : "Summons an Air Elemental (Type 1)"
+    "spellLevel" : "Mag 2",
+    "spellDescription" : "Summons an Air Elemental (Type 1)"
 }
 {
     "type" : "spell",
     "name" : "Elementalkin: Earth",
     "cost" : "100 GP",
-    "spell_level" : "Mag 2",
-    "spell_description" : "Summons an Earth Elemental (Type 1)"
+    "spellLevel" : "Mag 2",
+    "spellDescription" : "Summons an Earth Elemental (Type 1)"
 }
 {
     "type" : "spell",
     "name" : "Elementalkin: Fire",
     "cost" : "100 GP",
-    "spell_level" : "Mag 2",
-    "spell_description" : "Summons a Fire Elemental (Type 1)"
+    "spellLevel" : "Mag 2",
+    "spellDescription" : "Summons a Fire Elemental (Type 1)"
 }
 {
     "type" : "spell",
     "name" : "Elementalkin: Water",
     "cost" : "100 GP",
-    "spell_level" : "Mag 2",
-    "spell_description" : "Summons a Water Elemental (Type 1)"
+    "spellLevel" : "Mag 2",
+    "spellDescription" : "Summons a Water Elemental (Type 1)"
 }
 {
     "type" : "spell",
     "name" : "Elementaling: Air",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "Summons an Air Elemental (Type 2)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "Summons an Air Elemental (Type 2)"
 }
 {
     "type" : "spell",
     "name" : "Elementaling: Earth",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "Summons an Earth Elemental (Type 2)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "Summons an Earth Elemental (Type 2)"
 }
 {
     "type" : "spell",
     "name" : "Elementaling: Fire",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "Summons a Fire Elemental (Type 2)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "Summons a Fire Elemental (Type 2)"
 }
 {
     "type" : "spell",
     "name" : "Elementaling: Water",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "Summons a Water Elemental (Type 2)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "Summons a Water Elemental (Type 2)"
 }
 {
     "type" : "spell",
     "name" : "Invisibility",
     "cost" : "225 GP",
-    "spell_level" : "Bst 6, Enc 2, Mag 3, Shm 8, Wiz 5",
-    "spell_description" : "Invisibility (excluding undead) (1 creature)"
+    "spellLevel" : "Bst 6, Enc 2, Mag 3, Shm 8, Wiz 5",
+    "spellDescription" : "Invisibility (excluding undead) (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Cure Disease",
     "cost" : "25 GP",
-    "spell_level" : "Bst 1, Clr 2, Dru 2, Nec 5, Pal 2, Shm 1",
-    "spell_description" : "Removes 1 [disease] effect (1 creature)"
+    "spellLevel" : "Bst 1, Clr 2, Dru 2, Nec 5, Pal 2, Shm 1",
+    "spellDescription" : "Removes 1 [disease] effect (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Cure Poison",
     "cost" : "25 GP",
-    "spell_level" : "Bst 2, Clr 1, Dru 2, Pal 1, Rng 2, Shm 2",
-    "spell_description" : "Removes 1 [poison] effect (1 creature)"
+    "spellLevel" : "Bst 2, Clr 1, Dru 2, Pal 1, Rng 2, Shm 2",
+    "spellDescription" : "Removes 1 [poison] effect (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Minor Healing",
     "cost" : "25 GP",
-    "spell_level" : "Bst 1, Clr 1, Dru 1, Pal 1, Rng 1, Shm 1",
-    "spell_description" : "Cures 1D10 HP (1 creature)"
+    "spellLevel" : "Bst 1, Clr 1, Dru 1, Pal 1, Rng 1, Shm 1",
+    "spellDescription" : "Cures 1D10 HP (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Endure Cold",
     "cost" : "25 GP",
-    "spell_level" : "Bst 1, Clr 4, Dru 3, Nec 1, Rng 3, Shd 2, Shm 1",
-    "spell_description" : "Cold Resistance (8), Cold Save +2 (1 creature)"
+    "spellLevel" : "Bst 1, Clr 4, Dru 3, Nec 1, Rng 3, Shd 2, Shm 1",
+    "spellDescription" : "Cold Resistance (8), Cold Save +2 (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Invisibility to Undead",
     "cost" : "25 GP",
-    "spell_level" : "Clr 4, Enc 5, Nec 1, Pal 3, Shd 1, Wiz 9",
-    "spell_description" : "Invisibility (only undead) (self for Shd & Wiz; 1 creature for others)"
+    "spellLevel" : "Clr 4, Enc 5, Nec 1, Pal 3, Shd 1, Wiz 9",
+    "spellDescription" : "Invisibility (only undead) (self for Shd & Wiz; 1 creature for others)"
 }
 {
     "type" : "spell",
     "name" : "Flame Bolt",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "3D10 fire dmg (1 creature, ranged touch atk)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "3D10 fire dmg (1 creature, ranged touch atk)"
 }
 {
     "type" : "spell",
     "name" : "Lesser Shielding",
     "cost" : "225 GP",
-    "spell_level" : "Enc 3, Mag 3, Nec 3, Wiz 3",
-    "spell_description" : "+3 AC, +7 HP, magic resistance (4), magic save +1 (self)"
+    "spellLevel" : "Enc 3, Mag 3, Nec 3, Wiz 3",
+    "spellDescription" : "+3 AC, +7 HP, magic resistance (4), magic save +1 (self)"
 }
 {
     "type" : "spell",
     "name" : "Renew Elements",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "Cures 3D10 HP (pet only)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "Cures 3D10 HP (pet only)"
 }
 {
     "type" : "spell",
     "name" : "Shield of Fire",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "Fire resistance (4), fire save +1, damage shield (2) (1 creature)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "Fire resistance (4), fire save +1, damage shield (2) (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Shock of Blades",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "3D8 magic slashing dmg (ref half dmg, interrupts on fail)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "3D8 magic slashing dmg (ref half dmg, interrupts on fail)"
 }
 {
     "type" : "spell",
     "name" : "Staff of Tracing",
     "cost" : "225 GP",
-    "spell_level" : "Mag 3",
-    "spell_description" : "Summons a magic quarterstaff with 2 charges of +2 Con (self, 1 min)"
+    "spellLevel" : "Mag 3",
+    "spellDescription" : "Summons a magic quarterstaff with 2 charges of +2 Con (self, 1 min)"
 }
 {
     "type" : "spell",
     "name" : "Leering Corpse",
     "cost" : "25 GP",
-    "spell_level" : "Nec 2, Shd 1",
-    "spell_description" : "Summons a Skeleton (Type 2)"
+    "spellLevel" : "Nec 2, Shd 1",
+    "spellDescription" : "Summons a Skeleton (Type 2)"
 }
 {
     "type" : "spell",
     "name" : "Lifetap",
     "cost" : "25 GP",
-    "spell_level" : "Nec 1, Shd 1",
-    "spell_description" : "2 HP magic dmg (ref half dmg) (1 creature), cures 2 HP (self)"
+    "spellLevel" : "Nec 1, Shd 1",
+    "spellDescription" : "2 HP magic dmg (ref half dmg) (1 creature), cures 2 HP (self)"
 }
 {
     "type" : "spell",
     "name" : "Despair",
     "cost" : "25 GP",
-    "spell_level" : "Shd 1",
-    "spell_description" : "-1 Atk (1 creature)"
+    "spellLevel" : "Shd 1",
+    "spellDescription" : "-1 Atk (1 creature)"
 }
 {
     "type" : "spell",
     "name" : "Disease Cloud",
     "cost" : "25 GP",
-    "spell_level" : "Nec 1, Shd 1",
-    "spell_description" : "1 HP disease dmg immediately, then every 2nd round (1 creature)"
+    "spellLevel" : "Nec 1, Shd 1",
+    "spellDescription" : "1 HP disease dmg immediately, then every 2nd round (1 creature)"
 }
 {
     "type" : "song",
     "name" : "Chant of Battle",
     "cost" : "25 GP",
-    "song_instrument" : "Percussion",
-    "spell_level" : "Brd 1",
-    "spell_description" : "+1|+2 Str, +1|+2 Dex, +1|+2 AC (luck)"
+    "songInstrument" : "Percussion",
+    "spellLevel" : "Brd 1",
+    "spellDescription" : "+1|+2 Str, +1|+2 Dex, +1|+2 AC (luck)"
 }
 {
     "type" : "song",
     "name" : "Chords of Dissonance",
     "cost" : "25 GP",
-    "song_instrument" : "String",
-    "spell_level" : "Brd 1",
-    "spell_description" : "1D3|1D6 sonic dmg per round"
+    "songInstrument" : "String",
+    "spellLevel" : "Brd 1",
+    "spellDescription" : "1D3|1D6 sonic dmg per round"
 }
 {
     "type" : "song",
     "name" : "Jaxan's Jig of Vigor",
     "cost" : "25 GP",
-    "song_instrument" : "Percussion",
-    "spell_level" : "Brd 1",
-    "spell_description" : "Cures 1D4|2D4 Subdual (Non-Lethal) HP"
+    "songInstrument" : "Percussion",
+    "spellLevel" : "Brd 1",
+    "spellDescription" : "Cures 1D4|2D4 Subdual (Non-Lethal) HP"
 }
 {
     "type" : "song",
     "name" : "Lyssa's Locating Lyric",
     "cost" : "25 GP",
-    "song_instrument" : "None",
-    "spell_level" : "Brd 1",
-    "spell_description" : "Locates a corpse"
+    "songInstrument" : "None",
+    "spellLevel" : "Brd 1",
+    "spellDescription" : "Locates a corpse"
 }
 {
     "type" : "song",
     "name" : "Selo's Accelerando",
     "cost" : "25 GP",
-    "song_instrument" : "Percussion",
-    "spell_level" : "Brd 1",
-    "spell_description" : "Increases base speed"
+    "songInstrument" : "Percussion",
+    "spellLevel" : "Brd 1",
+    "spellDescription" : "Increases base speed"
 }
 {
     "type" : "song",
     "name" : "Anthem De Arms",
     "cost" : "100 GP",
-    "song_instrument" : "None",
-    "spell_level" : "Brd 2",
-    "spell_description" : "+2 Str, Haste (+1 AC, -1 Weapon Delay)"
+    "songInstrument" : "None",
+    "spellLevel" : "Brd 2",
+    "spellDescription" : "+2 Str, Haste (+1 AC, -1 Weapon Delay)"
 }
 {
     "type" : "song",
     "name" : "Elemental Rhythms",
     "cost" : "100 GP",
-    "song_instrument" : "Percussion",
-    "spell_level" : "Brd 2",
-    "spell_description" : "Magic, Electrical, Fire, and Cold Resistance (4) and Saving Throw +2"
+    "songInstrument" : "Percussion",
+    "spellLevel" : "Brd 2",
+    "spellDescription" : "Magic, Electrical, Fire, and Cold Resistance (4) and Saving Throw +2"
 }
 {
     "type" : "song",
     "name" : "Hymn of Restoration",
     "cost" : "100 GP",
-    "song_instrument" : "String",
-    "spell_level" : "Brd 2",
-    "spell_description" : "Cures 1|2 HP (+1|+2 per 10 Bard Lvl) per round"
+    "songInstrument" : "String",
+    "spellLevel" : "Brd 2",
+    "spellDescription" : "Cures 1|2 HP (+1|+2 per 10 Bard Lvl) per round"
 }
 {
     "type" : "song",
     "name" : "Jonathan's Whistling Warsong",
     "cost" : "100 GP",
-    "song_instrument" : "None",
-    "spell_level" : "Brd 2",
-    "spell_description" : "The Bard receives Haste (+2 AC, -2 Weapon Delay), +2 Str, +1 AC (luck)"
+    "songInstrument" : "None",
+    "spellLevel" : "Brd 2",
+    "spellDescription" : "The Bard receives Haste (+2 AC, -2 Weapon Delay), +2 Str, +1 AC (luck)"
 }
 {
     "type" : "song",
     "name" : "Kellin's Lugubrious Lament",
     "cost" : "100 GP",
-    "song_instrument" : "String",
-    "spell_level" : "Brd 2",
-    "spell_description" : "Creature sinks into a depression"
+    "songInstrument" : "String",
+    "spellLevel" : "Brd 2",
+    "spellDescription" : "Creature sinks into a depression"
 }
 {
     "type" : "song",
     "name" : "Magical Monologue",
     "cost" : "100 GP",
-    "song_instrument" : "None",
-    "spell_level" : "Brd 2",
-    "spell_description" : "The Bard's weapon becomes magical (+1 Atk, +1 Dmg)"
+    "songInstrument" : "None",
+    "spellLevel" : "Brd 2",
+    "spellDescription" : "The Bard's weapon becomes magical (+1 Atk, +1 Dmg)"
 }
 {
     "type" : "song",
     "name" : "Peaceful Rhythms",
     "cost" : "100 GP",
-    "song_instrument" : "Percussion",
-    "spell_level" : "Brd 2",
-    "spell_description" : "Magic and Sonic Resistance (4) and Saving Throw +2"
+    "songInstrument" : "Percussion",
+    "spellLevel" : "Brd 2",
+    "spellDescription" : "Magic and Sonic Resistance (4) and Saving Throw +2"
 }
 {
     "type" : "song",
     "name" : "Brusco's Boastful Bellow",
     "cost" : "225 GP",
-    "song_instrument" : "None",
-    "spell_level" : "Brd 3",
-    "spell_description" : "1D6 sonic dmg +1 per 3 Bard lvls"
+    "songInstrument" : "None",
+    "spellLevel" : "Brd 3",
+    "spellDescription" : "1D6 sonic dmg +1 per 3 Bard lvls"
 }
 {
     "type" : "song",
     "name" : "Cinda's Charismatic Carillon",
     "cost" : "225 GP",
-    "song_instrument" : "Wind",
-    "spell_level" : "Brd 3",
-    "spell_description" : "Increases faction by +2|+4"
+    "songInstrument" : "Wind",
+    "spellLevel" : "Brd 3",
+    "spellDescription" : "Increases faction by +2|+4"
 }
 {
     "type" : "song",
     "name" : "Kellin's Lucid Lullaby",
     "cost" : "225 GP",
-    "song_instrument" : "String",
-    "spell_level" : "Brd 3",
-    "spell_description" : "Mesmerizes target"
+    "songInstrument" : "String",
+    "spellLevel" : "Brd 3",
+    "spellDescription" : "Mesmerizes target"
 }
 {
     "type" : "song",
     "name" : "Lyssa's Cataloging Libretto",
     "cost" : "225 GP",
-    "song_instrument" : "None",
-    "spell_level" : "Brd 3",
-    "spell_description" : "Identify magic items"
+    "songInstrument" : "None",
+    "spellLevel" : "Brd 3",
+    "spellDescription" : "Identify magic items"
 }
 {
     "type" : "song",
     "name" : "Purifying Rhythms",
     "cost" : "225 GP",
-    "song_instrument" : "Percussion",
-    "spell_level" : "Brd 3",
-    "spell_description" : "Magic, Acid, Disease, Poison Resistance (4) and Saving Throw +2"
+    "songInstrument" : "Percussion",
+    "spellLevel" : "Brd 3",
+    "spellDescription" : "Magic, Acid, Disease, Poison Resistance (4) and Saving Throw +2"
 }
 {
     "type" : "song",
     "name" : "Song of Sustenance",
     "cost" : "225 GP",
-    "song_instrument" : "String",
-    "spell_level" : "Brd 3",
-    "spell_description" : "Creature is nourished as if they had just eaten and drank"
+    "songInstrument" : "String",
+    "spellLevel" : "Brd 3",
+    "spellDescription" : "Creature is nourished as if they had just eaten and drank"
 }
