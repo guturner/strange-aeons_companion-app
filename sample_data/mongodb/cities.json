@@ -316,6 +316,117 @@
     }
 }
 {
+    "cityId" : { "$uuid" : "c15bb6cd-726c-4a98-abb6-c9bb99512683" },
+    "name" : "Kelethin",
+    "merchants" : [
+        {
+            "merchantId" : { "$uuid" : "056b4578-890b-4fb9-afe1-f12cea4525b4" },
+            "name" : "Aluwenae Silverlake",
+            "description" : "Armorer",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "armor",
+                    "andFilter" : "{\"$or\" : [{\"size\" : \"Light\"}, {\"size\" : \"Medium\"}]}"
+                }
+            ],
+            "customItems" : [
+                {
+                    "type" : "armor",
+                    "name" : "Dwarven Ringmail Tunic",
+                    "armorBonus" : "+6",
+                    "maxDexterity" : "+3",
+                    "armorCheckPenalty" : "+0",
+                    "stats" : "Acid, Cold, Fire, Magic, and Sonic Resistance (3)",
+                    "cost" : "6350 GP"
+                }
+            ],
+            "numberOfTableRows" : 8
+        },
+        {
+            "merchantId" : { "$uuid" : "06ae434b-0be3-4e52-96f7-5f3bfb95b6ab" },
+            "name" : "Laedar Bloodbriar",
+            "description" : "Jeweler",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "jewelry"
+                }
+            ],
+            "customItems" : [
+                {
+                    "type" : "armor",
+                    "name" : "Brass Earring",
+                    "stats" : "AC +2",
+                    "cost" : "8500 GP"
+                },
+                {
+                    "type" : "armor",
+                    "name" : "Goblineye Ring",
+                    "stats" : "Keeps watch while the wearer sleeps",
+                    "cost" : "8750 GP"
+                },
+                {
+                    "type" : "armor",
+                    "name" : "Golden Ear Stud",
+                    "stats" : "Int +1, Extended Affliction I",
+                    "cost" : "4500 GP"
+                }
+            ],
+            "numberOfTableRows" : 10
+        },
+        {
+            "merchantId" : { "$uuid" : "de9d76ec-a7b8-44b6-9232-db2590781d06" },
+            "name" : "Serilia Whistlewind",
+            "description" : "Songs",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "song"
+                }
+            ],
+            "customItems" : [ ],
+            "numberOfTableRows" : 6
+        },
+        {
+            "merchantId" : { "$uuid" : "341ed9b2-f3ec-4cb8-b1f2-3ab373fb9da0" },
+            "name" : "Verth Mistwielder",
+            "description" : "Spells",
+            "sellsItemTypes" : [
+                {
+                    "itemType" : "spell"
+                }
+            ],
+            "customItems" : [ ],
+            "numberOfTableRows" : 6
+        },
+        {
+            "merchantId" : { "$uuid" : "f4cc461f-c685-4e5b-8b08-6bc9cea9bb8a" },
+            "name" : "Weaolanae Oakstout",
+            "description" : "General Goods",
+            "sellsItemTypes" : [
+                {
+                    "itemType": "general_good"
+                }
+            ],
+            "customItems" : [
+                {
+                    "type" : "armor",
+                    "name" : "Eagle Talisman",
+                    "stats" : "Cha +2",
+                    "cost" : "3750 GP"
+                }
+            ],
+            "numberOfTableRows" : 10
+        }
+    ],
+    "occupants" : [
+
+    ],
+    "directions" : {
+        "question" : "An Elf in gold plate looks your way.",
+        "answer" : "Captain Silverwind: You'll find who you're looking for on one of Kelethin's many platforms.",
+        "notFound" : "Captain Silverwind: I'm sorry, adventurer, I haven't heard of anyone named {{merchant_name}}."
+    }
+}
+{
     "cityId" : { "$uuid" : "1901897f-99db-4b9b-9921-4a0b2e04defd" },
     "name" : "Qeynos",
     "merchants" : [
