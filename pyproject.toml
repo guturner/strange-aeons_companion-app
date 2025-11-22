@@ -3,6 +3,7 @@ name = "strange-aeons"
 version = "0.1.0"
 description = "The companion app for the EverQuest: Strange Aeons tabletop campaign."
 authors = ["Guy Turner"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.13.3"

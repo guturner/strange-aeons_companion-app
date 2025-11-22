@@ -48,7 +48,7 @@ def __configure_bot(bot):
 
     @bot.event
     async def on_message(message: nextcord.Message):
-        logging.info(f"Received message: {message.content} from author: {message.author}.")
+        logging.info(f"Received message: {repr(message.content)} from author: {message.author}.")
         # Ignore messages from the bot itself
         if message.author == bot.user:
             return
@@ -63,6 +63,7 @@ def __configure_bot(bot):
                 await bot.get_command("hail").invoke(ctx)
 
             else:
+                logging.info(f"Expected command_prefix: {repr(bot.command_prefix)}")
                 username = message.author.name
                 await message.channel.send(
                     f"Hi {username}, if this is your first time using the EverQuest: Strange Aeons companion app, then try to "
@@ -75,10 +76,12 @@ def __main():
 
     __configure_logger()
 
-    command_prefix = os.getenv("COMMAND_PREFIX")
-    discord_token = os.getenv("DISCORD_TOKEN")
-    mongo_uri = os.getenv("MONGO_URI")
-    database_name = os.getenv("DB_NAME")
+    command_prefix = os.getenv("COMMAND_PREFIX").strip()
+    discord_token = os.getenv("DISCORD_TOKEN").strip()
+    mongo_uri = os.getenv("MONGO_URI").strip()
+    database_name = os.getenv("DB_NAME").strip()
+
+    logging.info(f"Connecting to database: {database_name}")
 
     intents = __configure_intents()
     bot = commands.Bot(command_prefix=command_prefix, intents=intents)
