@@ -415,6 +415,45 @@
                 }
             ],
             "numberOfTableRows" : 10
+        },
+        {
+            "merchantId" : { "$uuid" : "76c09946-9e22-4730-9448-9915952744bb" },
+            "name" : "Eldin Trueshot",
+            "description" : "Bowyer",
+            "sellsItemTypes" : [
+                {
+                    "itemType": "ranged_weapon"
+                }
+            ],
+            "customItems" : [
+                {
+                    "type" : "ranged_weapon",
+                    "name" : "LarkTwitter Arrow",
+                    "stats" : "Atk & Dmg +2; +20-ft range",
+                    "cost" : "167 GP"
+                },
+                {
+                    "type" : "ranged_weapon",
+                    "name" : "LarkTwitter Bow",
+                    "size" : "Medium, Martial",
+                    "damage" : "1D6 +1",
+                    "critRange" : "x3",
+                    "delay" : "Quick",
+                    "stats" : "Silk Shortbow; Atk +1",
+                    "cost" : "8320 GP"
+                },
+                {
+                    "type" : "ranged_weapon",
+                    "name" : "Runed Oak Bow",
+                    "size" : "Medium, Martial",
+                    "damage" : "1D6 +2",
+                    "critRange" : "19-20, x3",
+                    "delay" : "Standard",
+                    "stats" : "Composite Shortbow; Atk +2; Keen",
+                    "cost" : "15,630 GP GP"
+                }
+            ],
+            "numberOfTableRows" : 10
         }
     ],
     "occupants" : [
