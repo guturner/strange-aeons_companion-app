@@ -9,6 +9,7 @@ First, hail the bot by either typing `Hail` or running the `!hail` command. This
 Then, ask your GM what commands to run during gameplay; for example, you might use `!shop` to browse a merchant's inventory.
 
 ### Commands
+* `!faction`: Calculate NPC reactions.
 * `!help`: Get help.
 * `!hail`: Initialize your character profile.
 * `!shop [city_name]`: Look for merchants in a city.

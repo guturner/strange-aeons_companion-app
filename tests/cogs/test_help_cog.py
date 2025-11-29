@@ -19,6 +19,7 @@ class TestHelpCog(unittest.IsolatedAsyncioTestCase):
         # Then
         ctx.send.assert_called_once_with("""
         ```Available Commands:
+  !faction                           Calculate NPC reaction(s).
   !hail                              Setup your account.
   !shop [city_name]                  Search for merchants in a city.
   !shop [city_name] [merchant_name]  Browse a merchant's inventory.

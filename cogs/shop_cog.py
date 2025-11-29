@@ -1,21 +1,10 @@
 from nextcord.ext import commands
-from nextcord.ext.commands import MissingRequiredArgument
 
 
 class ShopCog(commands.Cog):
     def __init__(self, bot, recipe_book):
         self.bot = bot
         self.__recipe_book = recipe_book
-
-        @bot.event
-        async def on_command_error(ctx, error):
-            if isinstance(error, MissingRequiredArgument):
-                await ctx.send(
-                    f"You're missing a command argument: `{error.param.name}`\n"
-                    f"Command Usage: `!shop [city_name] [merchant_name]`"
-                )
-            else:
-                raise error
 
     @commands.command()
     async def shop(self, ctx, city_name, *merchant_name):

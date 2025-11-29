@@ -391,10 +391,21 @@ def merchant_spells():
         sells_item_types=[SellsItemType("spell", None)]
     )
 
-def recipe_book(build_inventory_table_use_case=Mock(), build_table_use_case=Mock(), lookup_city_use_case=Mock(), lookup_inventory_use_case=Mock(), lookup_merchant_use_case=Mock(), user_use_case=Mock()):
+def recipe_book(
+    build_faction_table_use_case=Mock(),
+    build_inventory_table_use_case=Mock(),
+    build_table_use_case=Mock(),
+    faction_use_case=Mock(),
+    lookup_city_use_case=Mock(),
+    lookup_inventory_use_case=Mock(),
+    lookup_merchant_use_case=Mock(),
+    user_use_case=Mock()
+):
     return RecipeBook(
+        build_faction_table_use_case=build_faction_table_use_case,
         build_inventory_table_use_case=build_inventory_table_use_case,
         build_table_use_case=build_table_use_case,
+        faction_use_cases=faction_use_case,
         lookup_city_use_case=lookup_city_use_case,
         lookup_inventory_use_case=lookup_inventory_use_case,
         lookup_merchant_use_case=lookup_merchant_use_case,

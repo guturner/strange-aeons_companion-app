@@ -7,13 +7,16 @@ import re
 from dotenv import load_dotenv
 from nextcord.ext import commands
 
-from cogs import hail_cog, help_cog, shop_cog, whoami_cog
+from cogs import faction_cog, hail_cog, help_cog, shop_cog, whoami_cog
+from error_handlers import error_handler
 from daos.city_dao import CityDAO
 from daos.item_dao import ItemDAO
 from daos.user_dao import UserDAO
 from models.database import Database
+from use_cases.build_faction_table_use_case import BuildFactionTableUseCase
 from use_cases.build_inventory_table_use_case import BuildInventoryTableUseCase
 from use_cases.build_table_use_case import BuildTableUseCase
+from use_cases.faction_use_case import FactionUseCase
 from use_cases.lookup_city_use_case import LookupCityUseCase
 from use_cases.lookup_inventory_use_case import LookupItemsUseCase
 from use_cases.lookup_merchant_use_case import LookupMerchantUseCase
@@ -93,6 +96,8 @@ def __main():
     user_dao = UserDAO(database)
 
     build_table_use_case = BuildTableUseCase()
+    faction_use_case = FactionUseCase()
+    build_faction_table_use_case = BuildFactionTableUseCase(build_table_use_case, faction_use_case)
     lookup_city_use_case = LookupCityUseCase(city_dao)
     lookup_inventory_use_case = LookupItemsUseCase(inventory_dao)
     lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
@@ -100,8 +105,10 @@ def __main():
     user_use_case = UserUseCase(user_dao)
 
     recipe_book = RecipeBook(
+        build_faction_table_use_case=build_faction_table_use_case,
         build_inventory_table_use_case=build_inventory_table_use_case,
         build_table_use_case=build_table_use_case,
+        faction_use_cases=faction_use_case,
         lookup_city_use_case=lookup_city_use_case,
         lookup_inventory_use_case=lookup_inventory_use_case,
         lookup_merchant_use_case=lookup_merchant_use_case,
@@ -114,10 +121,13 @@ def __main():
     bot.remove_command("help")
 
     # Load Commands
-    help_cog.setup(bot)
+    faction_cog.setup(bot, recipe_book)
     hail_cog.setup(bot, recipe_book)
+    help_cog.setup(bot)
     shop_cog.setup(bot, recipe_book)
     whoami_cog.setup(bot, recipe_book)
+
+    error_handler.setup(bot)
 
     bot.run(discord_token)
 

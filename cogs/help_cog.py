@@ -8,6 +8,7 @@ class HelpCog(commands.Cog):
     async def help(self, ctx):
         help_message = """
         ```Available Commands:
+  !faction                           Calculate NPC reaction(s).
   !hail                              Setup your account.
   !shop [city_name]                  Search for merchants in a city.
   !shop [city_name] [merchant_name]  Browse a merchant's inventory.

@@ -1,5 +1,3 @@
-import copy
-
 from nextcord.ext import commands
 
 
