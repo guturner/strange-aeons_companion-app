@@ -450,7 +450,7 @@
                     "critRange" : "19-20, x3",
                     "delay" : "Standard",
                     "stats" : "Composite Shortbow; Atk +2; Keen",
-                    "cost" : "15,630 GP GP"
+                    "cost" : "15,630 GP"
                 }
             ],
             "numberOfTableRows" : 10

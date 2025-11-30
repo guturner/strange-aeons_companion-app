@@ -1,3 +1,6 @@
+import re
+
+
 def _opposite_alignment_letter(alignment_letter):
     match alignment_letter.upper():
         case "D":
@@ -12,6 +15,27 @@ def _opposite_alignment_letter(alignment_letter):
 
 def _is_one_step_from_neutral(alignment_letter):
     return alignment_letter.upper() in ["D", "O", "E", "G"]
+
+def _capitalize_faction_name(faction_name):
+    def capitalize(match):
+        w = match.group(0).lower()
+        chars = list(w)
+
+        # Capitalize the first character
+        chars[0] = chars[0].upper()
+
+        # For each apostrophe, decide whether to capitalize the next character
+        for i, char in enumerate(chars):
+            if char == "'" and i + 1 < len(chars):
+                # Capitalize possessive "'s" at end of words
+                if chars[i + 1] == 's' and i + 2 == len(chars):
+                    chars[i + 1] = 's'
+                else:
+                    chars[i + 1] = chars[i + 1].upper()
+        return "".join(chars)
+
+    pattern = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)*")
+    return pattern.sub(capitalize, faction_name)
 
 class FactionUseCase:
     def __init__(self):
@@ -40,7 +64,7 @@ class FactionUseCase:
             if not self.validate_alignment(faction_alignment):
                 raise ValueError(f"You must provide valid faction alignments, '{faction_alignment}' is invalid.")
 
-            faction_pairs = faction_pairs + ((faction_name.title(), faction_alignment.upper()),)
+            faction_pairs = faction_pairs + ((_capitalize_faction_name(faction_name), faction_alignment.upper()),)
 
         return faction_pairs
 

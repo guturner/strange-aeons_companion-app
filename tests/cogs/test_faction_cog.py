@@ -55,4 +55,27 @@ class TestFactionCog(unittest.IsolatedAsyncioTestCase):
         # Then
         ctx.send.assert_called_once_with("```\n+------------------+--------------------+-------------------+----------------------+------------------+\n| PLAYER ALIGNMENT | FACTION NAME       | FACTION ALIGNMENT | ALIGNMENT COMPARISON | FACTION REACTION |\n+------------------+--------------------+-------------------+----------------------+------------------+\n| N                | Some Faction       | N                 | Same                 | Kind (+2)        |\n| N                | Some Other Faction | OG                | Dissimilar           | Dubious (-4)     |\n+------------------+--------------------+-------------------+----------------------+------------------+```")
 
+    async def test_faction__apostrophe_faction_names(self):
+        # Given
+        bot = MagicMock()
+
+        build_table_use_case = BuildTableUseCase()
+        faction_use_case = FactionUseCase()
+        build_faction_table_use_case = BuildFactionTableUseCase(build_table_use_case, faction_use_case)
+
+        faction_cog = FactionCog(bot, recipe_book(build_faction_table_use_case=build_faction_table_use_case,
+                                                  build_table_use_case=build_table_use_case,
+                                                  faction_use_case=faction_use_case))
+
+        ctx = MagicMock()
+        ctx.author = MagicMock()
+        ctx.author.id = 1
+        ctx.author.name = "fake_username_1"
+        ctx.send = AsyncMock()
+
+        # When
+        await FactionCog.faction(faction_cog, ctx, "N", faction_pair_input="\"Faydark's Champions\" N \"Ry'Gorr Orcs\" DE")
+
+        # Then
+        ctx.send.assert_called_once_with("```\n+------------------+---------------------+-------------------+----------------------+------------------+\n| PLAYER ALIGNMENT | FACTION NAME        | FACTION ALIGNMENT | ALIGNMENT COMPARISON | FACTION REACTION |\n+------------------+---------------------+-------------------+----------------------+------------------+\n| N                | Faydark's Champions | N                 | Same                 | Kind (+2)        |\n| N                | Ry'Gorr Orcs        | DE                | Dissimilar           | Dubious (-4)     |\n+------------------+---------------------+-------------------+----------------------+------------------+```")
 
