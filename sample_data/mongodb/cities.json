@@ -113,6 +113,112 @@
     }
 }
 {
+  "cityId": {
+    "$uuid": "a3f7c821-5d4e-4b9a-8e16-2f3d9c104a77"
+  },
+  "name": "Blackwater",
+  "merchants": [
+    {
+      "merchantId": {
+        "$uuid": "b8e24d63-1a7f-4c85-9d02-7e5f8b3c6a91"
+      },
+      "name": "Leofric",
+      "description": "Blacksmith",
+      "sellsItemTypes": [
+        {
+          "itemType": "armor",
+          "andFilter": "{\"$and\" : [{\"size\" : \"Heavy\"}, {\"name\": { \"$not\": { \"$regex\": \"(Masterwork|\\\\+1)\" } }}]}"
+        },
+        {
+          "itemType": "melee_weapon",
+          "andFilter": "{\"stats\": { \"$not\": { \"$regex\": \"\\\\+1\" } }}"
+        }
+      ],
+      "customItems": [
+        {
+          "type": "melee_weapon",
+          "name": "Combine Dagger",
+          "size": "Tiny, Simple",
+          "damage": "1D3",
+          "critRange": "19-20, x2",
+          "delay": "Quick",
+          "stats": "Atk +1, Dmg +1 (magical)",
+          "cost": "500 GP"
+        },
+        {
+          "type": "melee_weapon",
+          "name": "Combine Morningstar",
+          "size": "Medium, Simple",
+          "damage": "1D10",
+          "critRange": "x2",
+          "delay": "Slow",
+          "stats": "Atk +1, Dmg +1 (magical)",
+          "cost": "500 GP"
+        },
+        {
+          "type": "melee_weapon",
+          "name": "Combine Short Sword",
+          "size": "Small, Martial",
+          "damage": "1D6",
+          "critRange": "19-20, x2",
+          "delay": "Standard",
+          "stats": "Atk +1, Dmg +1 (magical)",
+          "cost": "500 GP"
+        },
+        {
+          "type": "melee_weapon",
+          "name": "Combine Longsword",
+          "size": "Medium, Martial",
+          "damage": "1D8",
+          "critRange": "19-20, x2",
+          "delay": "Standard",
+          "stats": "Atk +1, Dmg +1 (magical)",
+          "cost": "500 GP"
+        },
+        {
+          "type": "melee_weapon",
+          "name": "Combine Scimitar",
+          "size": "Medium, Martial",
+          "damage": "1D6",
+          "critRange": "18-20, x2",
+          "delay": "Quick",
+          "stats": "Atk +1, Dmg +1 (magical)",
+          "cost": "500 GP"
+        },
+        {
+          "type": "melee_weapon",
+          "name": "Combine Claymore",
+          "size": "Large, Martial",
+          "damage": "2D6",
+          "critRange": "19-20, x2",
+          "delay": "Slow",
+          "stats": "Atk +1, Dmg +1 (magical)",
+          "cost": "500 GP"
+        }
+      ],
+      "numberOfTableRows": 8
+    },
+      {
+            "merchantId" : { "$uuid" : "f4cc461f-c685-4e5b-8b08-6bc9cea9bb8a" },
+            "name" : "Aldrin",
+            "description" : "General Goods",
+            "sellsItemTypes" : [
+                {
+                    "itemType": "general_good"
+                }
+            ],
+            "customItems" : [],
+            "numberOfTableRows" : 10
+        }
+  ],
+  "occupants": [],
+  "directions": {
+    "question": "You wander the foreign streets looking for someone who may know the settlement.",
+    "answer": "Guard: Aye, I'm watchin' you, stranger. State yer business and who it is yer seekin'.",
+    "notFound": "Guard: {{merchant_name}}? Never heard of 'em. *narrows eyes* And I know everyone in this town."
+  }
+}
+{
     "cityId" : { "$uuid" : "371880e8-820a-4e4a-a895-6b97cad9b4aa" },
     "name" : "Commonlands",
     "merchants" : [
