@@ -422,6 +422,178 @@
     }
 }
 {
+  "cityId": {
+    "$uuid": "ddef062b-fe6e-41e1-8563-8c9a16bbd2a9"
+  },
+  "name": "Kirathas",
+  "merchants": [
+    {
+      "merchantId": {
+        "$uuid": "f27a2548-fe17-48ab-b548-1792909220bc"
+      },
+      "name": "Aluwenae Silverlake",
+      "description": "Armorer",
+      "sellsItemTypes": [
+        {
+          "itemType": "armor",
+          "andFilter": "{\"$or\" : [{\"size\" : \"Light\"}, {\"size\" : \"Medium\"}]}"
+        }
+      ],
+      "customItems": [
+        {
+          "type": "armor",
+          "name": "Dwarven Ringmail Tunic",
+          "armorBonus": "+6",
+          "maxDexterity": "+3",
+          "armorCheckPenalty": "+0",
+          "stats": "Acid, Cold, Fire, Magic, and Sonic Resistance (3)",
+          "cost": "6350 GP"
+        }
+      ],
+      "numberOfTableRows": 8
+    },
+    {
+      "merchantId": {
+        "$uuid": "288d0a3e-c228-4959-b4a4-aeaee00153a6"
+      },
+      "name": "Laedar Bloodbriar",
+      "description": "Jeweler",
+      "sellsItemTypes": [
+        {
+          "itemType": "jewelry"
+        }
+      ],
+      "customItems": [
+        {
+          "type": "armor",
+          "name": "Brass Earring",
+          "stats": "AC +2",
+          "cost": "8500 GP"
+        },
+        {
+          "type": "armor",
+          "name": "Goblineye Ring",
+          "stats": "Keeps watch while the wearer sleeps",
+          "cost": "8750 GP"
+        },
+        {
+          "type": "armor",
+          "name": "Golden Ear Stud",
+          "stats": "Int +1, Extended Affliction I",
+          "cost": "4500 GP"
+        }
+      ],
+      "numberOfTableRows": 10
+    },
+    {
+      "merchantId": {
+        "$uuid": "d30fd32f-a6d3-44a6-b52d-c6eb626b1d9e"
+      },
+      "name": "Serilia Whistlewind",
+      "description": "Songs",
+      "sellsItemTypes": [
+        {
+          "itemType": "song"
+        }
+      ],
+      "customItems": [],
+      "numberOfTableRows": 6
+    },
+    {
+      "merchantId": {
+        "$uuid": "43ba8998-307d-414c-9756-1c224df19fe3"
+      },
+      "name": "Verth Mistwielder",
+      "description": "Spells",
+      "sellsItemTypes": [
+        {
+          "itemType": "spell"
+        }
+      ],
+      "customItems": [],
+      "numberOfTableRows": 6
+    },
+    {
+      "merchantId": {
+        "$uuid": "13735cb5-4c08-4427-a454-6d366d6069ee"
+      },
+      "name": "Weaolanae Oakstout",
+      "description": "General Goods",
+      "sellsItemTypes": [
+        {
+          "itemType": "general_good"
+        }
+      ],
+      "customItems": [
+        {
+          "type": "armor",
+          "name": "Eagle Talisman",
+          "stats": "Cha +2",
+          "cost": "3750 GP"
+        }
+      ],
+      "numberOfTableRows": 10
+    },
+    {
+      "merchantId": {
+        "$uuid": "76557848-4e9d-4585-a5ca-59decd90eeac"
+      },
+      "name": "Eldin Trueshot",
+      "description": "Bowyer",
+      "sellsItemTypes": [
+        {
+          "itemType": "ranged_weapon"
+        }
+      ],
+      "customItems": [
+        {
+          "type": "ranged_weapon",
+          "name": "LarkTwitter Arrow",
+          "stats": "Atk & Dmg +2; +20-ft range",
+          "cost": "167 GP"
+        },
+        {
+          "type": "ranged_weapon",
+          "name": "LarkTwitter Bow",
+          "size": "Medium, Martial",
+          "damage": "1D6 +1",
+          "critRange": "x3",
+          "delay": "Quick",
+          "stats": "Silk Shortbow; Atk +1",
+          "cost": "8320 GP"
+        },
+        {
+          "type": "ranged_weapon",
+          "name": "Runed Oak Bow",
+          "size": "Medium, Martial",
+          "damage": "1D6 +2",
+          "critRange": "19-20, x3",
+          "delay": "Standard",
+          "stats": "Composite Shortbow; Atk +2; Keen",
+          "cost": "15,630 GP"
+        },
+        {
+          "type": "ranged_weapon",
+          "name": "Trueshot Longbow",
+          "size": "Large, Martial",
+          "damage": "1D8 +1",
+          "critRange": "19-20, x4",
+          "delay": "Quick",
+          "stats": "Double-Cam Longbow; Atk +1; Keen",
+          "cost": "8,730 GP"
+        }
+      ],
+      "numberOfTableRows": 10
+    }
+  ],
+  "occupants": [],
+  "directions": {
+    "question": "An Elf in gold plate looks your way.",
+    "answer": "Captain Silverwind: You'll find who you're looking for on one of Kirathas' many platforms.",
+    "notFound": "Captain Silverwind: I'm sorry, adventurer, I haven't heard of anyone named {{merchant_name}}."
+  }
+}
+{
     "cityId" : { "$uuid" : "c15bb6cd-726c-4a98-abb6-c9bb99512683" },
     "name" : "Kelethin",
     "merchants" : [
