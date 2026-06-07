@@ -10,3 +10,6 @@ class LookupMerchantUseCase:
                 )
         else:
             return None
+
+    def lookup_city_by_name(self, city_name: str):
+        return self.__lookup_city_use_case.lookup_city_by_name(city_name)
