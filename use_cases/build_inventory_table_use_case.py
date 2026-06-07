@@ -376,3 +376,10 @@ class BuildInventoryTableUseCase:
 
         else:
             return None
+
+    def lookup_cities_by_discord_user_id(self, discord_user_id: int):
+        """
+        Delegates to LookupCityUseCase for the autocomplete callback in shop_cog.
+        Returns a list of City objects the user occupies, or [] if none.
+        """
+        return self.__lookup_city_use_case.lookup_cities_by_discord_user_id(discord_user_id)

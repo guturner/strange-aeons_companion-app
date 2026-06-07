@@ -50,6 +50,11 @@ def __configure_bot(bot):
         logging.error(f"Error in command {ctx.command}, error: {error}")
 
     @bot.event
+    async def on_ready():
+        await bot.sync_all_application_commands()
+        logging.info(f"Synced slash commands. Logged in as {bot.user}")
+
+    @bot.event
     async def on_message(message: nextcord.Message):
         logging.info(f"Received message: {repr(message.content)} from author: {message.author}.")
         # Ignore messages from the bot itself

@@ -4,6 +4,12 @@ import nextcord
 from nextcord import Interaction, SlashOption
 from nextcord.ext import commands
 
+# ---------------------------------------------------------------------------
+# Guild IDs — set by setup() before the cog class body is evaluated.
+# This is the standard nextcord pattern for guild-scoped cog commands.
+# ---------------------------------------------------------------------------
+_GUILD_IDS: list[int] = []
+
 
 # ---------------------------------------------------------------------------
 # Pagination View
@@ -22,10 +28,6 @@ class InventoryView(nextcord.ui.View):
         self.index = 0
         self._sync_buttons()
 
-    # ------------------------------------------------------------------
-    # Helpers
-    # ------------------------------------------------------------------
-
     def _sync_buttons(self):
         self.prev_button.disabled = self.index == 0
         self.next_button.disabled = self.index >= len(self.pages) - 1
@@ -35,10 +37,6 @@ class InventoryView(nextcord.ui.View):
         if len(self.pages) > 1:
             embed.set_footer(text=f"Page {self.index + 1} of {len(self.pages)}")
         return embed
-
-    # ------------------------------------------------------------------
-    # Buttons
-    # ------------------------------------------------------------------
 
     @nextcord.ui.button(label="◀  Prev", style=nextcord.ButtonStyle.secondary)
     async def prev_button(self, _button: nextcord.ui.Button, interaction: Interaction):
@@ -52,10 +50,6 @@ class InventoryView(nextcord.ui.View):
         self._sync_buttons()
         await interaction.response.edit_message(embed=self._current_embed(), view=self)
 
-    # ------------------------------------------------------------------
-    # Timeout — disable buttons so the embed doesn't show dead controls
-    # ------------------------------------------------------------------
-
     async def on_timeout(self):
         self.prev_button.disabled = True
         self.next_button.disabled = True
@@ -66,18 +60,35 @@ class InventoryView(nextcord.ui.View):
 # Cog
 # ---------------------------------------------------------------------------
 
-GUILD_IDS_ENV_KEY = "GUILD_ID"  # set in .env as a comma-separated list if needed
-
-
 class ShopCog(commands.Cog):
     def __init__(self, bot: commands.Bot, recipe_book, guild_ids: list[int]):
         self.__bot = bot
         self.__recipe_book = recipe_book
-        self.__guild_ids = guild_ids
+        self._guild_ids = guild_ids
 
     # ------------------------------------------------------------------
-    # /shop  (city_name only) — list merchants
-    # /shop  (city_name + merchant_name) — show paginated inventory
+    # Autocomplete — city dropdown filtered to cities the user occupies
+    # ------------------------------------------------------------------
+
+    async def _autocomplete_city(self, interaction: Interaction, data: str):
+        discord_user_id = interaction.user.id
+        cities = self.__recipe_book.build_inventory_table.lookup_cities_by_discord_user_id(discord_user_id)
+
+        if not cities:
+            await interaction.response.send_autocomplete([])
+            return
+
+        typed = data.strip().lower()
+        matches = [
+            city.name for city in cities
+            if not typed or typed in city.name.lower()
+        ]
+
+        await interaction.response.send_autocomplete(matches[:25])
+
+    # ------------------------------------------------------------------
+    # /shop — guild_ids comes from the module-level _GUILD_IDS list,
+    # which setup() populates before add_cog() is called.
     # ------------------------------------------------------------------
 
     @nextcord.slash_command(
@@ -89,8 +100,9 @@ class ShopCog(commands.Cog):
         interaction: Interaction,
         city_name: str = SlashOption(
             name="city",
-            description="Name of the city (e.g. Kelethin)",
+            description="Your city (autocompletes to cities you occupy)",
             required=True,
+            autocomplete=True,
         ),
         merchant_name: str = SlashOption(
             name="merchant",
@@ -99,12 +111,11 @@ class ShopCog(commands.Cog):
             default=None,
         ),
     ):
-        # Defer immediately — embed builds can take a moment with DB calls.
-        # ephemeral=True means only the invoking user sees the response.
         await interaction.response.defer(ephemeral=True)
 
         logging.info(
-            f"/shop invoked by {interaction.user} | city={city_name!r} merchant={merchant_name!r}"
+            f"/shop invoked by {interaction.user} (id={interaction.user.id}) "
+            f"| city={city_name!r} merchant={merchant_name!r}"
         )
 
         try:
@@ -119,12 +130,15 @@ class ShopCog(commands.Cog):
                 "Something went wrong. Please try again.", ephemeral=True
             )
 
+    @shop.on_autocomplete("city_name")
+    async def autocomplete_city_name(self, interaction: Interaction, data: str):
+        await self._autocomplete_city(interaction, data)
+
     # ------------------------------------------------------------------
     # Internal handlers
     # ------------------------------------------------------------------
 
     async def _handle_city(self, interaction: Interaction, city_name: str):
-        """Show the merchant list for a city."""
         embed = self.__recipe_book.build_inventory_table.build_city_merchants_embed(city_name)
         if embed is None:
             await interaction.followup.send(
@@ -136,7 +150,6 @@ class ShopCog(commands.Cog):
     async def _handle_inventory(
         self, interaction: Interaction, city_name: str, merchant_name: str
     ):
-        """Show paginated inventory for a specific merchant."""
         pages = self.__recipe_book.build_inventory_table.build_merchant_inventory_embeds(
             city_name, merchant_name
         )
@@ -154,8 +167,12 @@ class ShopCog(commands.Cog):
 
 
 # ---------------------------------------------------------------------------
-# Setup — matches the existing pattern used by all other cogs in the repo
+# Setup — populate _GUILD_IDS before add_cog so the decorator picks them up.
+# ShopCog no longer takes guild_ids in __init__ since the decorator reads
+# the module-level list at class definition time.
 # ---------------------------------------------------------------------------
 
 def setup(bot: commands.Bot, recipe_book, guild_ids: list[int]):
+    global _GUILD_IDS
+    _GUILD_IDS.extend(guild_ids)
     bot.add_cog(ShopCog(bot, recipe_book, guild_ids))
