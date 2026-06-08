@@ -50,6 +50,11 @@ def __configure_bot(bot):
         logging.error(f"Error in command {ctx.command}, error: {error}")
 
     @bot.event
+    async def on_ready():
+        await bot.sync_all_application_commands()
+        logging.info(f"Synced slash commands. Logged in as {bot.user}")
+
+    @bot.event
     async def on_message(message: nextcord.Message):
         logging.info(f"Received message: {repr(message.content)} from author: {message.author}.")
         # Ignore messages from the bot itself
@@ -83,6 +88,8 @@ def __main():
     discord_token = os.getenv("DISCORD_TOKEN").strip()
     mongo_uri = os.getenv("MONGO_URI").strip()
     database_name = os.getenv("DB_NAME").strip()
+    guild_id = int(os.getenv("GUILD_ID").strip())
+    guild_ids = [guild_id]
 
     logging.info(f"Connecting to database: {database_name}")
 
@@ -101,7 +108,7 @@ def __main():
     lookup_city_use_case = LookupCityUseCase(city_dao)
     lookup_inventory_use_case = LookupItemsUseCase(inventory_dao)
     lookup_merchant_use_case = LookupMerchantUseCase(lookup_city_use_case)
-    build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
+    build_inventory_table_use_case = BuildInventoryTableUseCase(lookup_city_use_case, lookup_merchant_use_case, lookup_inventory_use_case, build_table_use_case)
     user_use_case = UserUseCase(user_dao)
 
     recipe_book = RecipeBook(
@@ -124,7 +131,7 @@ def __main():
     faction_cog.setup(bot, recipe_book)
     hail_cog.setup(bot, recipe_book)
     help_cog.setup(bot)
-    shop_cog.setup(bot, recipe_book)
+    shop_cog.setup(bot, recipe_book, guild_ids)
     whoami_cog.setup(bot, recipe_book)
 
     error_handler.setup(bot)
