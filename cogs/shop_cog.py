@@ -4,9 +4,10 @@ import nextcord
 from nextcord import Interaction, SlashOption
 from nextcord.ext import commands
 
+from utils.autocomplete import filter_choices, filter_labelled_choices, city_choices_for_user, merchant_choices_for_city
+
 # ---------------------------------------------------------------------------
-# Guild IDs — set by setup() before the cog class body is evaluated.
-# This is the standard nextcord pattern for guild-scoped cog commands.
+# Guild IDs — populated by setup() before add_cog() so the decorator sees them.
 # ---------------------------------------------------------------------------
 _GUILD_IDS: list[int] = []
 
@@ -17,8 +18,8 @@ _GUILD_IDS: list[int] = []
 
 class InventoryView(nextcord.ui.View):
     """
-    A paginated embed view with Prev / Next buttons.
-    Sent ephemerally so only the requesting user sees it.
+    Paginated embed view with Prev / Next buttons.
+    Ephemeral — only the requesting user sees it.
     Times out after 3 minutes of inactivity.
     """
 
@@ -61,61 +62,41 @@ class InventoryView(nextcord.ui.View):
 # ---------------------------------------------------------------------------
 
 class ShopCog(commands.Cog):
-    def __init__(self, bot: commands.Bot, recipe_book, guild_ids: list[int]):
+    def __init__(self, bot: commands.Bot, recipe_book):
         self.__bot = bot
         self.__recipe_book = recipe_book
-        self._guild_ids = guild_ids
 
     # ------------------------------------------------------------------
-    # Autocomplete — city dropdown filtered to cities the user occupies
-    # ------------------------------------------------------------------
-
-    async def _autocomplete_city(self, interaction: Interaction, data: str):
-        discord_user_id = interaction.user.id
-        cities = self.__recipe_book.build_inventory_table.lookup_cities_by_discord_user_id(discord_user_id)
-
-        if not cities:
-            await interaction.response.send_autocomplete([])
-            return
-
-        typed = data.strip().lower()
-        matches = [
-            city.name for city in cities
-            if not typed or typed in city.name.lower()
-        ]
-
-        await interaction.response.send_autocomplete(matches[:25])
-
-    # ------------------------------------------------------------------
-    # /shop — guild_ids comes from the module-level _GUILD_IDS list,
-    # which setup() populates before add_cog() is called.
+    # /shop
     # ------------------------------------------------------------------
 
     @nextcord.slash_command(
         name="shop",
         description="Browse merchants or a merchant's inventory in a city.",
+        guild_ids=_GUILD_IDS,
     )
     async def shop(
         self,
         interaction: Interaction,
         city_name: str = SlashOption(
             name="city",
-            description="Your city (autocompletes to cities you occupy)",
+            description="Your city (shows cities you occupy)",
             required=True,
             autocomplete=True,
         ),
         merchant_name: str = SlashOption(
             name="merchant",
-            description="Name of the merchant (leave blank to list all merchants)",
+            description="Merchant name (leave blank to list all merchants)",
             required=False,
             default=None,
+            autocomplete=True,
         ),
     ):
         await interaction.response.defer(ephemeral=True)
 
         logging.info(
-            f"/shop invoked by {interaction.user} (id={interaction.user.id}) "
-            f"| city={city_name!r} merchant={merchant_name!r}"
+            f"/shop | user={interaction.user} (id={interaction.user.id}) "
+            f"city={city_name!r} merchant={merchant_name!r}"
         )
 
         try:
@@ -130,9 +111,33 @@ class ShopCog(commands.Cog):
                 "Something went wrong. Please try again.", ephemeral=True
             )
 
+    # ------------------------------------------------------------------
+    # Autocomplete callbacks
+    # ------------------------------------------------------------------
+
     @shop.on_autocomplete("city_name")
-    async def autocomplete_city_name(self, interaction: Interaction, data: str):
-        await self._autocomplete_city(interaction, data)
+    async def autocomplete_city(self, interaction: Interaction, data: str):
+        """Dropdown: cities the invoking user is an occupant of."""
+        choices = city_choices_for_user(self.__recipe_book, interaction.user.id)
+        await interaction.response.send_autocomplete(filter_choices(choices, data))
+
+    @shop.on_autocomplete("merchant_name")
+    async def autocomplete_merchant(self, interaction: Interaction, data: str):
+        """
+        Dropdown: merchants in the city the user has already filled in.
+        nextcord passes the current value of every sibling option in
+        interaction.data["options"], so we can read city_name even while
+        the user is still typing in the merchant field.
+        """
+        # Pull whatever city the user has typed/selected so far
+        options = {
+            opt["name"]: opt.get("value", "")
+            for opt in interaction.data.get("options", [])
+        }
+        city_name = options.get("city", "")
+
+        choices = merchant_choices_for_city(self.__recipe_book, city_name)
+        await interaction.response.send_autocomplete(filter_labelled_choices(choices, data))
 
     # ------------------------------------------------------------------
     # Internal handlers
@@ -167,12 +172,10 @@ class ShopCog(commands.Cog):
 
 
 # ---------------------------------------------------------------------------
-# Setup — populate _GUILD_IDS before add_cog so the decorator picks them up.
-# ShopCog no longer takes guild_ids in __init__ since the decorator reads
-# the module-level list at class definition time.
+# Setup
 # ---------------------------------------------------------------------------
 
 def setup(bot: commands.Bot, recipe_book, guild_ids: list[int]):
     global _GUILD_IDS
     _GUILD_IDS.extend(guild_ids)
-    bot.add_cog(ShopCog(bot, recipe_book, guild_ids))
+    bot.add_cog(ShopCog(bot, recipe_book))
