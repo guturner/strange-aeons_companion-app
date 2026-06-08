@@ -6,9 +6,7 @@ from nextcord.ext import commands
 
 from utils.autocomplete import filter_choices, filter_labelled_choices, city_choices_for_user, merchant_choices_for_city
 
-# ---------------------------------------------------------------------------
-# Guild IDs — populated by setup() before add_cog() so the decorator sees them.
-# ---------------------------------------------------------------------------
+
 _GUILD_IDS: list[int] = []
 
 
@@ -66,10 +64,6 @@ class ShopCog(commands.Cog):
         self.__bot = bot
         self.__recipe_book = recipe_book
 
-    # ------------------------------------------------------------------
-    # /shop
-    # ------------------------------------------------------------------
-
     @nextcord.slash_command(
         name="shop",
         description="Browse merchants or a merchant's inventory in a city.",
@@ -93,11 +87,6 @@ class ShopCog(commands.Cog):
         ),
     ):
         await interaction.response.defer(ephemeral=True)
-
-        logging.info(
-            f"/shop | user={interaction.user} (id={interaction.user.id}) "
-            f"city={city_name!r} merchant={merchant_name!r}"
-        )
 
         try:
             if merchant_name:
@@ -125,9 +114,6 @@ class ShopCog(commands.Cog):
     async def autocomplete_merchant(self, interaction: Interaction, data: str):
         """
         Dropdown: merchants in the city the user has already filled in.
-        nextcord passes the current value of every sibling option in
-        interaction.data["options"], so we can read city_name even while
-        the user is still typing in the merchant field.
         """
         # Pull whatever city the user has typed/selected so far
         options = {
@@ -170,10 +156,6 @@ class ShopCog(commands.Cog):
             embed=view._current_embed(), view=view, ephemeral=True
         )
 
-
-# ---------------------------------------------------------------------------
-# Setup
-# ---------------------------------------------------------------------------
 
 def setup(bot: commands.Bot, recipe_book, guild_ids: list[int]):
     global _GUILD_IDS

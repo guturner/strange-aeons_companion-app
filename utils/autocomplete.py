@@ -1,7 +1,3 @@
-# ---------------------------------------------------------------------------
-# Filtering
-# ---------------------------------------------------------------------------
-
 def filter_choices(choices: list[str], typed: str, max_results: int = 25) -> list[str]:
     """
     Filter a flat list of strings by case-insensitive substring match.
@@ -13,16 +9,14 @@ def filter_choices(choices: list[str], typed: str, max_results: int = 25) -> lis
     return [c for c in choices if typed in c.lower()][:max_results]
 
 
-def filter_labelled_choices(
-        choices: list[tuple[str, str]], typed: str, max_results: int = 25
-) -> dict[str, str]:
+def filter_labelled_choices(choices: list[tuple[str, str]], typed: str, max_results: int = 25) -> dict[str, str]:
     """
     Filter a list of (display_label, submitted_value) tuples by substring match
     against the display label, then return as {label: value} dict ready for
     interaction.response.send_autocomplete().
 
     Matching is done against the label (which includes the description suffix)
-    so typing "bow" matches "Eldin Trueshot — Bowyer".
+    so typing "bow" matches "Eldin Trueshot (Bowyer)".
     """
     typed = typed.strip().lower()
     matched = (
@@ -33,10 +27,6 @@ def filter_labelled_choices(
     return {label: value for label, value in list(matched)[:max_results]}
 
 
-# ---------------------------------------------------------------------------
-# Choice builders
-# ---------------------------------------------------------------------------
-
 def city_choices_for_user(recipe_book, discord_user_id: int) -> list[str]:
     """
     Returns city names the given Discord user is an occupant of.
@@ -46,18 +36,12 @@ def city_choices_for_user(recipe_book, discord_user_id: int) -> list[str]:
     return [city.name for city in cities] if cities else []
 
 
-def merchant_choices_for_city(
-        recipe_book, city_name: str
-) -> list[tuple[str, str]]:
+def merchant_choices_for_city(recipe_book, city_name: str) -> list[tuple[str, str]]:
     """
     Returns (display_label, submitted_value) tuples for each merchant in the city.
 
     Display label:    "Eldin Trueshot (Bowyer)"
     Submitted value:  "Eldin Trueshot"
-
-    The description suffix lets players identify the right merchant at a glance
-    without having to memorise names. Filtering works against the full label so
-    typing a description word (e.g. "spell", "jewel") also narrows the list.
 
     Returns [] if city_name is empty or the city is not found.
     """

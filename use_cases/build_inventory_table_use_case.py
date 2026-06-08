@@ -4,7 +4,8 @@ from models.item import ItemType
 
 
 # ---------------------------------------------------------------------------
-# Existing ASCII helpers (unchanged)
+# ASCII helpers
+# TODO: remove these once all tables have been updated to use embed
 # ---------------------------------------------------------------------------
 
 def _generate_inventory_header(armor=False, instruments=False, songs=False, spells=False, weapons=False, misc_items=False):
@@ -40,18 +41,9 @@ def _get_inventory_data(should_lookup: bool, lookup_fn, armor=False, instruments
     return ()
 
 
-# ---------------------------------------------------------------------------
-# Embed helpers
-# ---------------------------------------------------------------------------
+_EMBED_COLOR = 0xC8A96E
+_ITEMS_PER_PAGE = 6
 
-_EMBED_COLOR = 0xC8A96E  # Parchment gold
-
-_ITEMS_PER_PAGE = 6  # Full-width fields are taller, so 6 is a comfortable page
-
-
-# ------------------------------------------------------------------
-# Icon maps
-# ------------------------------------------------------------------
 
 # Icon shown in the embed title based on merchant description
 _MERCHANT_ICON: dict[str, str] = {
@@ -101,17 +93,14 @@ def _field_value_for_item(item) -> str:
     Layout:
         🏹  **Runed Oak Bow**
         `Medium, Martial`  ·  ⚔️ 1D6 +2  ·  🎯 19-20, x3  ·  ⏱️ Standard
-        Composite Shortbow; Atk +2; Keen
+        Unique Stats: Composite Shortbow; Atk +2; Keen
         ─────────────────────────────
         💰 **15,630 GP**
-
-    The separator line (─────) visually closes each card without needing
-    Discord features that don't exist (background color, borders).
     """
     icon = _item_icon(item.item_type)
     lines = []
 
-    # ── Item name (bold, with type icon) ──────────────────────────
+    # ── Item Name ──────────────────────────
     lines.append(f"{icon}  **{item.name}**")
 
     # ── Compact stat line ─────────────────────────────────────────
@@ -149,7 +138,7 @@ def _field_value_for_item(item) -> str:
     if hasattr(item, "spell_description") and not _skip(item.spell_description):
         lines.append(f"*{item.spell_description}*")
 
-    # ── Stats (free-text flavour line) ────────────────────────────
+    # ── Stats ────────────────────────────
     if not _skip(item.stats):
         lines.append(f"Unique Stats: _{item.stats}_")
 
@@ -170,8 +159,7 @@ def _field_value_for_item(item) -> str:
 def _build_embed_pages(merchant, items: list) -> list[nextcord.Embed]:
     """
     One full-width field per item. Full-width (inline=False) fields stack
-    vertically on both desktop and mobile — no awkward side-by-side layout
-    that collapses oddly on narrow screens.
+    vertically on both desktop and mobile.
     """
     icon = _merchant_icon(merchant.description)
     pages = []
@@ -314,7 +302,8 @@ class BuildInventoryTableUseCase:
         return self.__lookup_city_use_case.lookup_cities_by_discord_user_id(discord_user_id)
 
     # ------------------------------------------------------------------
-    # ASCII table method (kept intact)
+    # ASCII table
+    # TODO: remove once all tables use embed
     # ------------------------------------------------------------------
 
     def build_merchant_inventory_tables(self, city_name, merchant_name):
