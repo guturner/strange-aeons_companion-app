@@ -32,7 +32,7 @@ def city_choices_for_user(recipe_book, discord_user_id: int) -> list[str]:
     Returns city names the given Discord user is an occupant of.
     Used by the 'city' parameter autocomplete.
     """
-    cities = recipe_book.build_inventory_table.lookup_cities_by_discord_user_id(discord_user_id)
+    cities = recipe_book.lookup_city.lookup_cities_by_discord_user_id(discord_user_id)
     return [city.name for city in cities] if cities else []
 
 
