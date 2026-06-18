@@ -1,97 +1,145 @@
 import re
 
 
-def _opposite_alignment_letter(alignment_letter):
-    match alignment_letter.upper():
-        case "D":
-            return "O"
-        case "O":
-            return "D"
-        case "E":
-            return "G"
-        case "G":
-            return "E"
+# ---------------------------------------------------------------------------
+# Private alignment helpers
+# ---------------------------------------------------------------------------
+
+def _opposite_alignment_letter(letter: str) -> str:
+    """Returns the axis-opposite of a single alignment letter.
+
+    D ↔ O  (Discord ↔ Order)
+    E ↔ G  (Evil ↔ Good)
+    N → N  (Neutral has no opposite)
+    """
+    match letter.upper():
+        case "D": return "O"
+        case "O": return "D"
+        case "E": return "G"
+        case "G": return "E"
     return "N"
 
-def _is_one_step_from_neutral(alignment_letter):
-    return alignment_letter.upper() in ["D", "O", "E", "G"]
 
-def _capitalize_faction_name(faction_name):
-    def capitalize(match):
-        w = match.group(0).lower()
-        chars = list(w)
+def _to_alignment_pair(alignment: str) -> tuple[str, str]:
+    """Normalises an alignment code to a (order_axis, good_axis) pair.
 
-        # Capitalize the first character
-        chars[0] = chars[0].upper()
+    "N"  → ("N", "N")
+    "NG" → ("N", "G")
+    "DE" → ("D", "E")
+    """
+    a = alignment.upper()
+    if a == "N":
+        return ("N", "N")
+    return (a[0], a[1])
 
-        # For each apostrophe, decide whether to capitalize the next character
-        for i, char in enumerate(chars):
-            if char == "'" and i + 1 < len(chars):
-                # Capitalize possessive "'s" at end of words
-                if chars[i + 1] == 's' and i + 2 == len(chars):
-                    chars[i + 1] = 's'
-                else:
-                    chars[i + 1] = chars[i + 1].upper()
-        return "".join(chars)
 
-    pattern = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)*")
-    return pattern.sub(capitalize, faction_name)
+def _capitalize_faction_name(name: str) -> str:
+    """Title-cases a faction name, preserving apostrophe handling.
+
+    - First letter of every word is capitalised.
+    - ``'s`` possessive suffixes are left lower-case (e.g. "Faydark's Champions").
+    - Other post-apostrophe letters are capitalised (e.g. "Ry'Gorr").
+    """
+    def _cap_word(match: re.Match) -> str:
+        w = list(match.group(0).lower())
+        w[0] = w[0].upper()
+        for i, ch in enumerate(w):
+            if ch == "'" and i + 1 < len(w):
+                is_possessive_s = w[i + 1] == "s" and i + 2 == len(w)
+                if not is_possessive_s:
+                    w[i + 1] = w[i + 1].upper()
+        return "".join(w)
+
+    return re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)*").sub(_cap_word, name)
+
+
+# ---------------------------------------------------------------------------
+# FactionUseCase
+# ---------------------------------------------------------------------------
+
+_ALLOWED_ALIGNMENTS = frozenset(["n", "dn", "on", "ng", "ne", "oe", "de", "og", "dg"])
+
+# Fully-opposed diagonal pairs on the 3×3 alignment grid.
+_FULLY_OPPOSED = frozenset([
+    (("D", "N"), ("O", "N")),
+    (("O", "N"), ("D", "N")),
+    (("N", "G"), ("N", "E")),
+    (("N", "E"), ("N", "G")),
+    (("O", "G"), ("D", "E")),
+    (("D", "E"), ("O", "G")),
+    (("O", "E"), ("D", "G")),
+    (("D", "G"), ("O", "E")),
+])
+
+# Alignments considered "extreme" (two axes away from N) for the Dissimilar check.
+_EXTREME_ALIGNMENTS = frozenset([("O", "G"), ("D", "G"), ("O", "E"), ("D", "E")])
+
 
 class FactionUseCase:
-    def __init__(self):
-        self.__allowed_alignments = ["n", "dn", "on", "ng", "ne", "oe", "de", "og", "dg"]
+    """
+    Domain logic for faction alignment reactions.
 
-    def validate_alignment(self, alignment_user_input):
-        return alignment_user_input.lower() in self.__allowed_alignments
+    Reaction rules: https://strange-aeons.info/doku.php?id=ttrpg:gameplay:faction
 
-    def parse_faction_pairs(self, faction_pairs_user_input_tokens):
+    This class owns:
+      - alignment validation
+      - faction name normalisation
+      - reaction calculation
+
+    It does NOT own text parsing (that belonged to the old prefix-command path,
+    which has been removed now that /faction is a slash command with structured
+    inputs).
+    """
+
+    def validate_alignment(self, alignment: str) -> bool:
+        """Returns True if *alignment* is a legal alignment code."""
+        return alignment.lower() in _ALLOWED_ALIGNMENTS
+
+    def normalize_faction_name(self, name: str) -> str:
+        """Applies consistent title-casing to a faction name."""
+        return _capitalize_faction_name(name)
+
+    def calculate_faction_reaction(
+        self,
+        player_alignment: str,
+        faction_pair: tuple[str, str],
+    ) -> tuple[str, str]:
         """
-        Given a list of user input tokens, parse them into (faction_name, faction_alignment) pairs.
+        Returns ``(comparison_label, reaction_label)`` describing how a faction
+        with *faction_pair[1]* reacts to a player whose alignment is
+        *player_alignment*.
 
-        Example single-word input tokens:
-            ["Bruisers", "NE", "Armada", "OG"]
+        :param player_alignment: One- or two-character code ("N", "NG", "DE", …).
+        :param faction_pair: ``(faction_name, faction_alignment)`` tuple.
+                             Only ``faction_pair[1]`` (the alignment) is used.
+        :returns: e.g. ``("Completely Opposed", "Ready to Attack (-10)")``
 
-        Example quoted input:
-            ['"The Thieves Guild"', "DE", '"The Guards"', "NG"]
+        Reaction priority (highest wins):
+          1. Same               → Kind (+2)
+          2. Completely Opposed → Ready to Attack (-10)
+          3. Opposed Good/Evil  → Threatening (-6)
+          4. Opposed Order/Discord → Amiable (+1)
+          5. Dissimilar         → Dubious (-4)   [N vs extreme, or extreme vs N]
+          6. One Step Removed   → Indifferent (+0)
         """
-        if len(faction_pairs_user_input_tokens) % 2 != 0:
-            raise ValueError("You must provide faction data in faction name/faction alignment pairs.")
+        pp = _to_alignment_pair(player_alignment)
+        fp = _to_alignment_pair(faction_pair[1])
 
-        faction_pairs = ()
-        for i in range(0, len(faction_pairs_user_input_tokens), 2):
-            faction_name = faction_pairs_user_input_tokens[i]
-            faction_alignment = faction_pairs_user_input_tokens[i + 1]
-            if not self.validate_alignment(faction_alignment):
-                raise ValueError(f"You must provide valid faction alignments, '{faction_alignment}' is invalid.")
-
-            faction_pairs = faction_pairs + ((_capitalize_faction_name(faction_name), faction_alignment.upper()),)
-
-        return faction_pairs
-
-    def calculate_faction_reaction(self, player_alignment, faction_pair):
-        """
-        Calculates faction reaction based on the rules here: https://strange-aeons.info/doku.php?id=ttrpg:gameplay:faction
-
-        :param player_alignment: A one- or two-character alignment ("N", "DN", "OE", etc.)
-        :param faction_pair: A tuple of (faction_name, faction_alignment) pairs
-        :return: A tuple of (comparison, reaction), like: ("Completely Opposed", "Ready to Attack (-10)")
-        """
-        player_alignment_pair = ("N", "N") if player_alignment.upper() == "N" else (player_alignment.upper()[0], player_alignment.upper()[1])
-        faction_alignment_pair = ("N", "N") if faction_pair[1].upper() == "N" else (faction_pair[1].upper()[0], faction_pair[1].upper()[1])
-
-        if player_alignment_pair == faction_alignment_pair:
+        if pp == fp:
             return "Same", "Kind (+2)"
 
-        if player_alignment_pair[0] == _opposite_alignment_letter(faction_alignment_pair[0]) and player_alignment_pair[1] == _opposite_alignment_letter(faction_alignment_pair[1]):
+        if (_opposite_alignment_letter(pp[0]) == fp[0]
+                and _opposite_alignment_letter(pp[1]) == fp[1]):
             return "Completely Opposed", "Ready to Attack (-10)"
 
-        if player_alignment_pair[1] == _opposite_alignment_letter(faction_alignment_pair[1]):
+        if _opposite_alignment_letter(pp[1]) == fp[1]:
             return "Opposed Good/Evil", "Threatening (-6)"
 
-        if player_alignment_pair[1] == faction_alignment_pair[1] and player_alignment_pair[0] == _opposite_alignment_letter(faction_alignment_pair[0]):
+        if pp[1] == fp[1] and _opposite_alignment_letter(pp[0]) == fp[0]:
             return "Opposed Order/Discord", "Amiable (+1)"
 
-        if player_alignment_pair == ("N", "N") and faction_alignment_pair in [("O", "G"), ("D", "G"), ("O", "E"), ("D", "E")] or faction_alignment_pair == ("N", "N") and player_alignment_pair in [("O", "G"), ("D", "G"), ("O", "E"), ("D", "E")]:
+        if (pp == ("N", "N") and fp in _EXTREME_ALIGNMENTS
+                or fp == ("N", "N") and pp in _EXTREME_ALIGNMENTS):
             return "Dissimilar", "Dubious (-4)"
 
         return "One Step Removed", "Indifferent (+0)"

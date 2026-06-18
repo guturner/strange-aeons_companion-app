@@ -1,26 +1,97 @@
-import shlex
+import nextcord
+
+_EMBED_COLOR = 0xC8A96E
+_FACTIONS_PER_PAGE = 6
+
+_FACTION_ICON = "🏳️"
+
+# Maps comparison label → emoji for quick visual scanning in Discord
+_REACTION_ICONS = {
+    "Same":                  "💚",
+    "Opposed Order/Discord": "🟡",
+    "One Step Removed":      "🟡",
+    "Dissimilar":            "🟠",
+    "Opposed Good/Evil":     "🔴",
+    "Completely Opposed":    "💀",
+}
+
+
+def _faction_entry(faction_name: str, faction_alignment: str, comparison: str, reaction: str) -> str:
+    """
+    Formats a single faction result as a two-line Discord markdown string.
+
+    Example:
+        🏳️  **Freeport Militia** (NG)
+        💚  Same → Kind (+2)
+    """
+    icon = _REACTION_ICONS.get(comparison, "❓")
+    return (
+        f"{_FACTION_ICON}  **{faction_name}** ({faction_alignment})\n"
+        f"{icon}  {comparison} → {reaction}"
+    )
 
 
 class BuildFactionTableUseCase:
-    def __init__(self, build_table_use_case, faction_use_case):
-        self.__build_table_use_case = build_table_use_case
+    """
+    Builds paginated Discord embeds for the /faction slash command.
+
+    Depends on FactionUseCase for:
+      - faction name normalisation (title-casing)
+      - reaction calculation
+    """
+
+    def __init__(self, faction_use_case):
         self.__faction_use_case = faction_use_case
 
-    def build_faction_tables(self, raw_player_alignment, raw_faction_data):
-        is_player_alignment_valid = self.__faction_use_case.validate_alignment(raw_player_alignment)
-        if is_player_alignment_valid:
-            player_alignment = raw_player_alignment.upper()
-        else:
-            raise ValueError("Your player alignment should be a one- or two-character abbreviation, for example: N, DN, ON, etc.")
+    def build_faction_embeds(
+        self,
+        player_alignment: str,
+        factions: list[tuple[str | None, str | None]],
+    ) -> list[nextcord.Embed]:
+        """
+        Returns one embed per page (up to ``_FACTIONS_PER_PAGE`` factions each).
 
-        user_input_tokens = shlex.split(raw_faction_data)
-        faction_pairs = self.__faction_use_case.parse_faction_pairs(user_input_tokens)
+        All faction content lives in ``embed.description`` so names are easily
+        searchable in tests and the layout is consistent with other bot embeds.
+        ``None`` pairs are silently skipped.
 
-        headers = ("PLAYER ALIGNMENT", "FACTION NAME", "FACTION ALIGNMENT", "ALIGNMENT COMPARISON", "FACTION REACTION")
-        rows = tuple(
-            (player_alignment,) + faction_pair + self.__faction_use_case.calculate_faction_reaction(player_alignment, faction_pair)
-            for faction_pair in faction_pairs
-        )
+        :param player_alignment: The player's alignment code ("N", "NG", "DE", …).
+        :param factions: List of ``(faction_name, faction_alignment)`` tuples.
+        :returns: Non-empty list of ``nextcord.Embed`` objects.
+        :raises ValueError: If no valid (non-None) factions are provided.
+        """
+        active = [
+            (self.__faction_use_case.normalize_faction_name(name), alignment)
+            for name, alignment in factions
+            if name is not None and alignment is not None
+        ]
 
-        raw_tables = self.__build_table_use_case.build_ascii_tables(headers, rows)
-        return [f"```\n{table}```" for table in raw_tables]
+        if not active:
+            raise ValueError("No factions provided.")
+
+        pages: list[nextcord.Embed] = []
+
+        for page_start in range(0, len(active), _FACTIONS_PER_PAGE):
+            chunk = active[page_start: page_start + _FACTIONS_PER_PAGE]
+
+            entries: list[str] = []
+            for faction_name, faction_alignment in chunk:
+                comparison, reaction = self.__faction_use_case.calculate_faction_reaction(
+                    player_alignment, (faction_name, faction_alignment)
+                )
+                entries.append(_faction_entry(faction_name, faction_alignment, comparison, reaction))
+
+            description = (
+                f"-# Your alignment: **{player_alignment.upper()}**\n\n"
+                + "\n\n".join(entries)
+            )
+
+            embed = nextcord.Embed(
+                title="Faction Standing",
+                description=description,
+                color=_EMBED_COLOR,
+            )
+
+            pages.append(embed)
+
+        return pages

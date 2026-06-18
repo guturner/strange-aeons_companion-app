@@ -22,12 +22,16 @@ class E2ETest(unittest.IsolatedAsyncioTestCase):
         data_path = Path(__file__).parent.parent / "sample_data" / "mongodb" / file_name
 
         mongo._container.put_archive("/tmp", _tar_for_file(data_path, file_name))
+
+        # Since authentication is disabled on the container, use a clean unauthenticated URI
+        internal_uri = "mongodb://localhost:27017/everquest"
+
         exec_result = mongo._container.exec_run([
             "mongoimport",
-            "--db", "everquest",
+            "--uri", internal_uri,
             "--collection", collection_name,
             "--file", f"/tmp/{file_name}",
-            "--mode=upsert"
+            "--mode=upsert",
         ])
 
         if exec_result.exit_code != 0:
